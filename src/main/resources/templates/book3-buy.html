@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(预订)}"></div>
+
+<body>
+<div class="wrapper">
+
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="order-container">
+            <div class="order">
+                <img class="order__images" alt='' src="images/tickets.png">
+                <p class="order__title">预订<br><span class="order__descript">祝您观影愉快！</span></p>
+            </div>
+        </div>
+        <div class="order-step-area">
+            <div class="order-step first--step order-step--disable ">1.选择您要观看的场次</div>
+            <div class="order-step second--step order-step--disable">2.选择座位</div>
+            <div class="order-step third--step">3.结算</div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="checkout-wrapper">
+                <h2 class="page-heading">价格</h2>
+                <ul class="book-result">
+                    <li class="book-result__item">票数: <span class="book-result__count booking-ticket">3</span></li>
+                    <li class="book-result__item">单价: <span
+                            class="book-result__count booking-price">￥20</span></li>
+                    <li class="book-result__item">总价: <span class="book-result__count booking-cost">￥60</span></li>
+                </ul>
+
+                <h2 class="page-heading">联系方式</h2>
+                <form id='contact-info' method='post' novalidate="" class="form contact-info">
+                    <div class="contact-info__field contact-info__field-tel">
+                        <input type='tel' name='phone' placeholder='手机号' class="form__mail">
+                    </div>
+                </form>
+            </div>
+
+            <div class="order">
+                <a href="book-final.html" class="btn btn-md btn--warning btn--wide">预订</a>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="clearfix"></div>
+
+    <div class="booking-pagination">
+        <a href="book2.html" class="booking-pagination__prev">
+            <p class="arrow__text arrow--prev">上一步</p>
+            <span class="arrow__info">选择座位</span>
+        </a>
+        <a href="book-final.html" class="booking-pagination__next">
+            <span class="arrow__text arrow--next">下一步</span>
+            <span class="arrow__info">查看预订信息</span>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+</body>
+</html>

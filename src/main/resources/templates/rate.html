@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <div th:replace="~{/fragment/common-fragment :: head(评分)}"></div>
+
+  <body>
+    <div class="wrapper">
+      <!-- Header section -->
+      <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+      <!-- Main content -->
+      <section class="container">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="page-heading">评分</h2>
+
+              <div class="rates-wrapper rates--full">
+                <table>
+                  <colgroup class="col-width-lg"></colgroup>
+                  <colgroup class="col-width"></colgroup>
+                  <colgroup class="col-width-sm"></colgroup>
+                  <colgroup class="col-width"></colgroup>
+
+                  <tr class="rates rates--top">
+                    <td class="rates__obj">
+                      <a href="#" class="rates__obj-name"
+                        >1. Thor: The Dark World</a
+                      >
+                    </td>
+                    <td class="rates__vote">233 546 评分</td>
+                    <td class="rates__result">5.0</td>
+                    <td class="rates__stars"><div class="score"></div></td>
+                  </tr>
+
+                  <tr class="rates rates--top">
+                    <td class="rates__obj">
+                      <a href="#" class="rates__obj-name">2. The Book Thief</a>
+                    </td>
+                    <td class="rates__vote">163 546 评分</td>
+                    <td class="rates__result">5.0</td>
+                    <td class="rates__stars"><div class="score"></div></td>
+                  </tr>
+
+                  <tr class="rates rates--top">
+                    <td class="rates__obj">
+                      <a href="#" class="rates__obj-name">3. How I Live Now</a>
+                    </td>
+                    <td class="rates__vote">843 546 votes</td>
+                    <td class="rates__result">4.9</td>
+                    <td class="rates__stars"><div class="score"></div></td>
+                  </tr>
+
+                  <tr class="rates">
+                    <td class="rates__obj">
+                      <a href="#" class="rates__obj-name"
+                        >4. The Armstrong Lie</a
+                      >
+                    </td>
+                    <td class="rates__vote">3 598 votes</td>
+                    <td class="rates__result">4.9</td>
+                    <td class="rates__stars"><div class="score"></div></td>
+                  </tr>
+
+                  <tr class="rates">
+                    <td class="rates__obj">
+                      <a href="#" class="rates__obj-name">5. Ender's Game</a>
+                    </td>
+                    <td class="rates__vote">14 641 votes</td>
+                    <td class="rates__result">4.8</td>
+                    <td class="rates__stars"><div class="score"></div></td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="pagination paginatioon--full coloum-wrapper">
+                <a href="#" class="pagination__prev">prev</a>
+                <a href="#" class="pagination__next">next</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="clearfix"></div>
+
+      <!-- footer -->
+      <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+    </div>
+
+    <!-- open/close -->
+    <div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+    <!-- JavaScript-->
+    <div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        init_Rates();
+      });
+    </script>
+  </body>
+</html>

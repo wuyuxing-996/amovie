@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(电影名)}"></div>
+
+  <body>
+    <div class="wrapper">
+      <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+      <!-- Main content -->
+      <section class="container">
+        <div class="col-sm-12">
+          <div class="movie">
+            <h2 class="page-heading">The Hobbit: An Unexpected Journey</h2>
+
+            <div class="movie__info">
+              <div class="col-sm-4 col-md-3 movie-mobile">
+                <div class="movie__images">
+                  <span class="movie__rating">5.0</span>
+                  <img alt="" src="http://placehold.it/526x773" />
+                </div>
+                <div class="movie__rate">
+                  Your vote:
+                  <div id="score" class="score"></div>
+                </div>
+              </div>
+
+              <div class="col-sm-8 col-md-9">
+                <p class="movie__time">169 min</p>
+
+                <p class="movie__option">
+                  <strong>国家: </strong><a href="#">New Zeland</a>,
+                  <a href="#">USA</a>
+                </p>
+                <p class="movie__option">
+                  <strong>年份: </strong><a href="#">2012</a>
+                </p>
+                <p class="movie__option">
+                  <strong>类别: </strong><a href="#">Adventure</a>,
+                  <a href="#">Fantazy</a>
+                </p>
+                <p class="movie__option">
+                  <strong>上映日期: </strong>December 12, 2012
+                </p>
+                <p class="movie__option">
+                  <strong>导演: </strong><a href="#">Peter Jackson</a>
+                </p>
+                <p class="movie__option">
+                  <strong>演员: </strong>
+                  <a href="#">Martin Freeman</a>,
+                  <a href="#">Ian McKellen</a>,
+                  <a href="#">Richard Armitage</a>,
+                  <a href="#">Ken Stott</a>,
+                  <a href="#">Graham McTavish</a>,
+                  <a href="#">Cate Blanchett</a>,
+                  <a href="#">Hugo Weaving</a>,
+                  <a href="#">Ian Holm</a>,
+                  <a href="#">Elijah Wood</a>
+                  <a href="#">...</a>
+
+                <a href="#" class="comment-link">评论: 15</a>
+
+                <div class="movie__btns movie__btns--full">
+                  <a href="#" class="btn btn-md btn--warning">预订此电影</a>
+                  <a href="#" class="watchlist">添加到播放列表</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <h2 class="page-heading">剧情</h2>
+
+            <p class="movie__describe">
+              Bilbo Baggins is swept into a quest to reclaim the lost Dwarf
+              Kingdom of Erebor from the fearsome dragon Smaug. Approached out
+              of the blue by the wizard Gandalf the Grey, Bilbo finds himself
+              joining a company of thirteen dwarves led by the legendary
+              warrior, Thorin Oakenshield. Their journey will take them into the
+              Wild; through treacherous lands swarming with Goblins and Orcs,
+              deadly Wargs and Giant Spiders, Shapeshifters and Sorcerers.
+              Although their goal lies to the East and the wastelands of the
+              Lonely Mountain first they must escape the goblin tunnels, where
+              Bilbo meets the creature that will change his life forever ...
+              Gollum. Here, alone with Gollum, on the shores of an underground
+              lake, the unassuming Bilbo Baggins not only discovers depths of
+              guile and courage that surprise even him, he also gains possession
+              of Gollum's "precious" ring that holds unexpected and useful
+              qualities ... A simple, gold ring that is tied to the fate of all
+              Middle-earth in ways Bilbo cannot begin to ...
+            </p>
+          </div>
+
+          <h2 class="page-heading">场次</h2>
+          <div class="choose-container">
+
+            <div class="clearfix"></div>
+
+            <div class="time-select">
+              <div class="time-select__group">
+                <div class="col-sm-4">
+                  <p class="time-select__place">Curzon</p>
+                </div>
+                <ul class="col-sm-8 items-wrap">
+                  <li class="time-select__item" data-time="09:00">09:00</li>
+                  <li class="time-select__item" data-time="11:00">11:00</li>
+                  <li class="time-select__item" data-time="13:00">13:00</li>
+                  <li class="time-select__item" data-time="15:00">15:00</li>
+                  <li class="time-select__item" data-time="17:00">17:00</li>
+                  <li class="time-select__item" data-time="19:0">19:00</li>
+                  <li class="time-select__item" data-time="21:0">21:00</li>
+                  <li class="time-select__item" data-time="23:0">23:00</li>
+                  <li class="time-select__item" data-time="01:0">01:00</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <h2 class="page-heading">评论 (15)</h2>
+
+            <div class="comment-wrapper">
+              <form id="comment-form" class="comment-form" method="post">
+                <textarea
+                  class="comment-form__text"
+                  placeholder="发表您的评论吧"
+                ></textarea>
+                <button
+                  type="submit"
+                  class="btn btn-md btn--danger comment-form__btn"
+                >
+                  发表评论
+                </button>
+              </form>
+
+              <div class="comment-sets">
+                <!-- 评论 -->
+                <div class="comment">
+                  <a href="#" class="comment__author">Roberta Inetti</a>
+                  <p class="comment__date">today | 03:04</p>
+                  <p class="comment__message">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    vitae enim sollicitudin, euismod erat id, fringilla lacus.
+                    Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra
+                    a, mattis in velit. Morbi molestie rhoncus enim, vitae
+                    sagittis dolor tristique et.
+                  </p>
+                  <a href="#" class="comment__reply">Reply</a>
+                </div>
+                <!-- 评论结束 -->
+
+                <!-- 评论 -->
+                <div class="comment">
+                  <a href="#" class="comment__author">Olia Gozha</a>
+                  <p class="comment__date">22.10.2013 | 14:40</p>
+                  <p class="comment__message">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    vitae enim sollicitudin, euismod erat id, fringilla lacus.
+                    Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra
+                    a, mattis in velit. Morbi molestie rhoncus enim, vitae
+                    sagittis dolor tristique et.
+                  </p>
+                  <a href="#" class="comment__reply">Reply</a>
+                </div>
+                <!-- 评论结束 -->
+
+                <!-- 回复提示框的展开，在custom.js 1069行 -->
+                <!-- 评论回复 -->
+                <div class="comment comment--answer">
+                  <a href="#" class="comment__author">Dmitriy Pustovalov</a>
+                  <p class="comment__date">today | 10:19</p>
+                  <p class="comment__message">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    vitae enim sollicitudin, euismod erat id, fringilla lacus.
+                    Cras ut rutrum lectus. Etiam ante justo, volutpat at viverra
+                    a, mattis in velit. Morbi molestie rhoncus enim, vitae
+                    sagittis dolor tristique et.
+                  </p>
+                  <a href="#" class="comment__reply">Reply</a>
+                </div>
+                <!-- 回复结束 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="clearfix"></div>
+
+      <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+    </div>
+
+    <!-- open/close -->
+    <div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+    <!-- JavaScript-->
+    <div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        init_MoviePage();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- title为当前页面的标题 -->
+<head th:fragment="head(title)">
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8"/>
+    <title th:text="${title}"></title>
+
+    <!-- Mobile Specific Metas-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="telephone=no" name="format-detection"/>
+
+    <!-- Fonts -->
+    <!-- Font awesome - icon font -->
+    <link
+            href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+            rel="stylesheet"
+    />
+    <!-- Roboto -->
+    <link
+            href="http://fonts.googleapis.com/css?family=Roboto:400,100,700"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <!-- Open Sans -->
+    <link
+            href="http://fonts.googleapis.com/css?family=Open+Sans:800italic"
+            rel="stylesheet"
+            type="text/css"
+    />
+
+    <!-- Stylesheets -->
+
+    <!-- Mobile menu -->
+    <link th:href="@{/css/gozha-nav.css}" rel="stylesheet"/>
+    <!-- Select -->
+    <link th:href="@{/css/external/jquery.selectbox.css}" rel="stylesheet"/>
+
+    <!-- Custom -->
+    <link th:href="@{/css/style.css?v=1}" rel="stylesheet"/>
+
+    <!-- Modernizr -->
+    <script th:src="@{/js/external/modernizr.custom.js}"></script>
+</head>
+
+<!-- header -->
+<header th:fragment="header" class="header-wrapper">
+    <div class="container">
+        <!-- Logo link-->
+        <a href="index.html" class="logo">
+            <img alt="logo" src="images/logo.png"/>
+        </a>
+
+        <!-- Main website navigation-->
+        <nav id="navigation-box">
+            <!-- Toggle for mobile menu mode -->
+            <a href="#" id="navigation-toggle">
+              <span class="menu-icon">
+                <span
+                        class="icon-toggle"
+                        role="button"
+                        aria-label="Toggle Navigation"
+                >
+                  <span class="lines"></span>
+                </span>
+              </span>
+            </a>
+
+            <!-- Link navigation -->
+            <ul id="navigation">
+                <li>
+                    <span class="sub-nav-toggle plus"></span>
+                    <a href="movie-list.html">全部电影</a>
+                </li>
+                <li>
+                    <span class="sub-nav-toggle plus"></span>
+                    <a href="rate.html">排行榜</a>
+                </li>
+                <li>
+                    <span class="sub-nav-toggle plus"></span>
+                    <a href="news-list.html">资讯</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Additional header buttons / Auth and direct link to booking-->
+        <div class="control-panel">
+            <div class="auth auth--home">
+                <div class="auth__show">
+                </div>
+                <a href="#" class="btn btn--sign btn--singin">
+                    me
+                </a>
+                <ul class="auth__function">
+                    <li><a href="/watchlist.html" class="auth__function-item">观看列表</a></li>
+                    <li><a href="/ticket.html" class="auth__function-item">已预定的电影票</a></li>
+                    <li><a href="" class="auth__function-item">退出登录</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">预订</a>
+        </div>
+    </div>
+</header>
+
+<!-- footer -->
+<footer th:fragment="footer" class="footer-wrapper">
+    <section class="container">
+        <div class="col-xs-4 col-md-2 footer-nav">
+            <ul class="nav-link">
+                <li><a href="movie-list.html" class="nav-link__item">电影</a></li>
+                <li><a href="rate.html" class="nav-link__item">评分</a></li>
+                <li><a href="news-list.html" class="nav-link__item">资讯</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-4 col-md-2 footer-nav">
+            <ul class="nav-link">
+                <li><a href="#" class="nav-link__item">Terms of use</a></li>
+                <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
+                <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="footer-info">
+                <p class="heading-special--small">A.Movie<br/>
+                    <span class="title-edition">in the social media</span>
+                </p>
+
+                <div class="social">
+                    <a href="#" class="social__variant fa fa-facebook"></a>
+                    <a href="#" class="social__variant fa fa-twitter"></a>
+                    <a href="#" class="social__variant fa fa-instagram"></a>
+                </div>
+
+                <div class="clearfix"></div>
+                <p class="copy">&copy; A.Movie, 2019. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<!-- 登录弹出框 -->
+<div th:fragment="pop" class="overlay overlay-hugeinc">
+    <section class="container">
+        <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" class="overlay-close">Close</button>
+            <form id="login-form" class="login" method="get" novalidate="">
+                <p class="login__title">登录 <br/>
+                    <span class="login-edition">欢迎来到 A.Movie</span>
+                </p>
+
+                <div class="field-wrap">
+                    <input
+                            type="email"
+                            placeholder="邮箱"
+                            name="email"
+                            class="login__input"
+                    />
+                    <input
+                            type="password"
+                            placeholder="密码"
+                            name="password"
+                            class="login__input"
+                    />
+
+                    <input
+                            type="checkbox"
+                            id="#informed"
+                            class="login__check styled"
+                    />
+                    <label for="#informed" class="login__check-info">记住登录状态</label>
+                </div>
+
+                <div class="login__control">
+                    <button type="submit" class="btn btn-md btn--warning btn--wider">
+                        登录
+                    </button>
+                    <a href="#" class="login__tracker form__tracker">忘记密码?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<div th:fragment="script">
+    <!-- JavaScript-->
+    <!-- jQuery 1.9.1-->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <!-- Migrate -->
+    <script th:src="@{/js/external/jquery-migrate-1.2.1.min.js}"></script>
+    <!-- Bootstrap 3-->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <!-- Mobile menu -->
+    <script th:src="@{/js/jquery.mobile.menu.js}"></script>
+    <!-- Select -->
+    <script th:src="@{/js/external/jquery.selectbox-0.2.min.js}"></script>
+    <!-- Stars rate -->
+    <script th:src="@{/js/external/jquery.raty.js}"></script>
+
+    <!-- Form element -->
+    <script th:src="@{/js/external/form-element.js}"></script>
+    <!-- Form validation -->
+    <script th:src="@{/js/form.js}"></script>
+
+    <!-- Custom -->
+    <script th:src="@{/js/custom.js}"></script>
+</div>
+</body>
+</html>

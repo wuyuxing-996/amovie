@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 利用thymeleaf的fragment机制加载head -->
+<!-- 其中head(title)为函数, title为当前页面的的标题 -->
+<!-- th:insert为插入 th:replace为替换 -->
+<div th:replace="~{/fragment/common-fragment :: head(首页)}"></div>
+<body>
+<div class="wrapper">
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <!-- 推荐 -->
+        <div class="movie-best" style="margin-top: 30px">
+            <div class="col-sm-10 col-sm-offset-1 movie-best__rating">
+                今日最佳影片
+            </div>
+            <div class="col-sm-12 change--col">
+                <!-- 一项 -->
+                <div class="movie-beta__item ">
+                    <!-- 海报 -->
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <!-- 评分 -->
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">今天 71 人为此影片评分</span></li>
+                        <li>
+                            <p class="movie__time">169 分钟</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 评论</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">更多</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 一项结束 -->
+                <div class="movie-beta__item second--item">
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">71 people voted today</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="movie-beta__item third--item">
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">71 people voted today</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="movie-beta__item hidden-xs">
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">71 people voted today</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="movie-beta__item hidden-xs hidden-sm">
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">71 people voted today</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="movie-beta__item hidden-xs hidden-sm">
+                    <img alt="" src="http://placehold.it/380x600"/>
+                    <span class="best-rate">5.0</span>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">71 people voted today</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy</p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="movie-page-left.html" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 间隔 -->
+        <div class="clearfix"></div>
+        <h2 id="target" class="page-heading heading--outcontainer">正在热映</h2>
+        <!-- 热映 -->
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-8 col-md-9">
+                    <!-- Movie variant with time -->
+                    <div class="movie movie--test movie--test--dark movie--test--left">
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >Gravity (2013)
+                            </a>
+
+                            <p class="movie__time">91 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Sci-Fi</a> | <a href="#">Thriller</a> |
+                                <a href="#">Drama</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">4.1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--light movie--test--left"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >The Hobbit: The Desolation of Smaug (2013)
+                            </a>
+
+                            <p class="movie__time">169 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Adventure</a> | <a href="#">Fantasy</a> |
+                                <a href="#">Drama</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--light movie--test--right"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >The Hunger Games: Catching Fire (2013)
+                            </a>
+
+                            <p class="movie__time">146 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Action</a> | <a href="#">Adventure</a> |
+                                <a href="#">Sci-Fi</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--dark movie--test--right"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >Thor: The Dark World (2013)
+                            </a>
+
+                            <p class="movie__time">112 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Action</a> | <a href="#">Adventure</a> |
+                                <a href="#">Fantasy</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--dark movie--test--left"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >World War Z (2013)
+                            </a>
+
+                            <p class="movie__time">116 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Action</a> | <a href="#">Adventure</a> |
+                                <a href="#">Horror</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">4.1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--light movie--test--left"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >Prisoners (2013)
+                            </a>
+
+                            <p class="movie__time">153 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Crime</a> | <a href="#">Thriller</a> |
+                                <a href="#">Drama</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--light movie--test--right"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >This Is the End (2013)
+                            </a>
+
+                            <p class="movie__time">107 min</p>
+
+                            <p class="movie__option">
+                                <a href="#">Comedy</a> | <a href="#">Fantasy</a>
+                            </p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+
+                    <!-- Movie variant with time -->
+                    <div
+                            class="movie movie--test movie--test--dark movie--test--right"
+                    >
+                        <div class="movie__images">
+                            <a href="movie-page-left.html" class="movie-beta__link">
+                                <img alt="" src="http://placehold.it/424x424"/>
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="movie-page-left.html" class="movie__title"
+                            >The Internship (2013)
+                            </a>
+
+                            <p class="movie__time">112 min</p>
+
+                            <p class="movie__option"><a href="#">Comedy</a></p>
+
+                            <div class="movie__rate">
+                                <div class="score"></div>
+                                <span class="movie__rating">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie variant with time -->
+                </div>
+
+                <aside class="col-sm-4 col-md-3">
+                    <div class="sitebar first-banner--left">
+                        <div class="banner-wrap first-banner--left">
+                            <img alt="banner" src="http://placehold.it/500x500"/>
+                        </div>
+
+                        <div class="banner-wrap">
+                            <img alt="banner" src="http://placehold.it/500x500"/>
+                        </div>
+
+                        <div class="banner-wrap banner-wrap--last">
+                            <img alt="banner" src="http://placehold.it/500x500"/>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- 资讯 -->
+        <div class="col-sm-12">
+            <h2 class="page-heading">最新资讯</h2>
+
+            <!-- start -->
+            <div class="col-sm-4 similar-wrap col--remove">
+                <div class="post post--preview post--preview--wide">
+                    <div class="post__image">
+                        <img alt="" src="http://placehold.it/270x330"/>
+                    </div>
+                    <p class="post__date">22 October 2013</p>
+                    <a href="news.html" class="post__title">"Thor: The Dark World" - World Premiere</a>
+                    <a href="news.html" class="btn read-more post--btn">了解更多</a>
+                </div>
+            </div>
+            <!-- end -->
+
+            <div class="col-sm-4 similar-wrap col--remove">
+                <div class="post post--preview post--preview--wide">
+                    <div class="post__image">
+                        <img alt="" src="http://placehold.it/270x330"/>
+                        <div class="social social--position social--hide">
+                            <span class="social__name">Share:</span>
+                            <a
+                                    href="#"
+                                    class="social__variant social--first fa fa-facebook"
+                            ></a>
+                            <a
+                                    href="#"
+                                    class="social__variant social--second fa fa-twitter"
+                            ></a>
+                            <a
+                                    href="#"
+                                    class="social__variant social--third fa fa-vk"
+                            ></a>
+                        </div>
+                    </div>
+                    <p class="post__date">22 October 2013</p>
+                    <a href="single-page-left.html" class="post__title"
+                    >30th Annual Night Of Stars Presented By The Fashion Group
+                        International</a
+                    >
+                    <a href="single-page-left.html" class="btn read-more post--btn"
+                    >read more</a
+                    >
+                </div>
+            </div>
+
+            <div class="col-sm-4 similar-wrap col--remove">
+                <div class="post post--preview post--preview--wide">
+                    <div class="post__image">
+                        <img alt="" src="http://placehold.it/270x330"/>
+                        <div class="social social--position social--hide">
+                            <span class="social__name">Share:</span>
+                            <a
+                                    href="#"
+                                    class="social__variant social--first fa fa-facebook"
+                            ></a>
+                            <a
+                                    href="#"
+                                    class="social__variant social--second fa fa-twitter"
+                            ></a>
+                            <a
+                                    href="#"
+                                    class="social__variant social--third fa fa-vk"
+                            ></a>
+                        </div>
+                    </div>
+                    <p class="post__date">22 October 2013</p>
+                    <a href="single-page-left.html" class="post__title"
+                    >Hollywood Film Awards 2013</a
+                    >
+                    <a href="single-page-left.html" class="btn read-more post--btn"
+                    >read more</a
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <!-- footer -->
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript -->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        init_Home();
+    });
+</script>
+</body>
+</html>

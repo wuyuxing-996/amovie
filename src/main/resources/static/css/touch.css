@@ -1,0 +1,38 @@
+@media (max-width: 640px){
+	.bannercontainer{
+		display: none;
+		opacity: 0;
+	}
+
+	.banner,
+	.tparrows{
+		display: none !important;
+	}
+
+	.movie-best{
+		margin-top: 90px;
+	}
+}
+
+@media (max-width: 480px){
+	.movie-best{
+		margin-top: 30px;
+	}
+
+	.control-panel {
+    	margin-right: -80px;
+	}
+
+	.auth--home {
+		top: -54px;
+	}
+
+	.auth--home .auth__show{
+		display: none;
+	}
+
+	.auth .auth__function{
+		top: 42px;
+	}
+
+}

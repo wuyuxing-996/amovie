@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{/fragment/common-fragment :: head(播放列表)}"></div>
+
+<body>
+<div class="wrapper">
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="col-sm-12">
+
+            <!-- Movie preview item -->
+            <div class="movie movie--preview movie--full release">
+                <div class="col-sm-3 col-md-2 col-lg-2">
+                    <div class="movie__images">
+                        <img alt="" src="http://placehold.it/380x600"/>
+                    </div>
+                    <!-- 评论数 -->
+                    <div class="movie__feature">
+                        <a href="#" class="movie__feature-item movie__feature--comment">123</a>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                    <a href="movie.html" class="movie__title link--huge"
+                    >Last Vegas (2013)</a
+                    >
+
+                    <p class="movie__time">105 min</p>
+
+                    <p class="movie__option">
+                        <strong>Country: </strong><a href="#">USA</a>
+                    </p>
+                    <p class="movie__option">
+                        <strong>Category: </strong><a href="#">Comady</a>
+                    </p>
+                    <p class="movie__option">
+                        <strong>Release date: </strong>November 1, 2013
+                    </p>
+                    <p class="movie__option">
+                        <strong>Director: </strong><a href="#">Jon Turteltaub</a>
+                    </p>
+                    <p class="movie__option">
+                        <strong>Actors: </strong><a href="#">Robert De Niro</a>,
+                        <a href="#">Michael Douglas</a>, <a href="#">Morgan Freeman</a>,
+                        <a href="#">Kevin Kline</a>, <a href="#">Mary Steenburgen</a>,
+                        <a href="#">Jerry Ferrara</a>, <a href="#">Romany Malco</a>
+                        <a href="#">...</a>
+                    </p>
+                    <p class="movie__option">
+                        <strong>Age restriction: </strong><a href="#">13</a>
+                    </p>
+
+                    <div class="movie__btns">
+                        <a href="#" class="btn btn-md btn--warning">预订此电影</a>
+                        <a href="#" class="watchlist">添加到播放列表</a>
+                    </div>
+
+                    <div class="preview-footer">
+                        <div class="movie__rate">
+                            <div class="score"></div>
+                            <span class="movie__rate-number">170 个评分</span>
+                            <span class="movie__rating">5.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- end movie preview item -->
+
+            <div class="coloum-wrapper">
+                <div class="pagination paginatioon--full">
+                    <a href="#" class="pagination__prev">prev</a>
+                    <a href="#" class="pagination__next">next</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <div th:insert="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        init_MovieList();
+    });
+</script>
+</body>
+</html>

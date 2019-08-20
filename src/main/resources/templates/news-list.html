@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(资讯列表)}"></div>
+<body>
+<div class="wrapper">
+
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="overflow-wrapper">
+            <div class="col-sm-12">
+
+                <h2 class="page-heading">资讯</h2>
+
+                <!-- News post article-->
+                <article class="post post--news">
+                    <a href='news.html' class="post__image-link">
+                        <img alt='' src="http://placehold.it/1600x600">
+                    </a>
+
+                    <h1><a href="single-page-full.html" class="post__title-link">Donec eu mollis augue, ut egestas
+                        leo</a></h1>
+                    <p class="post__date">29 October 2013 </p>
+
+                    <div class="wave-devider"></div>
+
+                    <p class="post__text">Mauris gravida ipsum vitae libero molestie eget dignissim ipsum egestas.
+                        Quisque in eros id velit molestie placerat a ut arcu. Etiam consequat, turpis ac commodo
+                        rhoncus, justo enim consequat tortor, vitae interdum odio tellus at sem. Aliquam lacus quam,
+                        lobortis sed lacus eget, commodo volutpat nunc. Text link sample. Proin accumsan diam vel nulla
+                        ultrices congue.</p>
+
+                    <div class="devider-huge"></div>
+                </article>
+                <!-- end news post article-->
+
+                <div class="pagination">
+                    <a href='#' class="pagination__prev">prev</a>
+                    <a href='#' class="pagination__next">next</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+</body>
+</html>

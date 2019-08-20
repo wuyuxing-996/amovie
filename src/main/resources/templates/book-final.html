@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(电影票)}"></div>
+
+<body>
+<div class="wrapper place-wrapper">
+
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="order-container">
+            <div class="order">
+                <img class="order__images" alt='' src="images/tickets.png">
+                <p class="order__title">感谢 <br><span class="order__descript">您已成功预订此电影！</span>
+                </p>
+            </div>
+
+            <div class="ticket">
+                <div class="ticket-position">
+                    <div class="ticket__indecator indecator--pre">
+                        <div class="indecator-text pre--text">online ticket</div>
+                    </div>
+                    <div class="ticket__inner">
+
+                        <div class="ticket-secondary">
+                            <span class="ticket__item">Ticket number <strong
+                                    class="ticket__number">a126bym4</strong></span>
+                            <span class="ticket__item ticket__date">25/10/2013</span>
+                            <span class="ticket__item ticket__time">17:45</span>
+                            <span class="ticket__item">Cinema: <span class="ticket__cinema">Cineworld</span></span>
+                            <span class="ticket__item">Hall: <span class="ticket__hall">Visconti</span></span>
+                            <span class="ticket__item ticket__price">price: <strong
+                                    class="ticket__cost">$60</strong></span>
+                        </div>
+
+                        <div class="ticket-primery">
+                            <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong
+                                    class="ticket__movie">The Fifth Estate (2013)</strong></span>
+                            <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">11F, 12F, 13F</span></span>
+                        </div>
+
+
+                    </div>
+                    <div class="ticket__indecator indecator--post">
+                        <div class="indecator-text post--text">online ticket</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.top-scroll').parent().find('.top-scroll').remove();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(电影票)}"></div>
+
+<body>
+<div class="wrapper place-wrapper">
+
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="order-container">
+            <div class="ticket">
+                <div class="ticket-position">
+                    <div class="ticket__inner">
+                        <div class="ticket-secondary">
+                            <span class="ticket__item">Ticket number <strong
+                                    class="ticket__number">a126bym4</strong></span>
+                            <span class="ticket__item ticket__date">25/10/2013</span>
+                            <span class="ticket__item ticket__time">17:45</span>
+                            <span class="ticket__item">Cinema: <span class="ticket__cinema">Cineworld</span></span>
+                            <span class="ticket__item">Hall: <span class="ticket__hall">Visconti</span></span>
+                            <span class="ticket__item ticket__price">price:<strong class="ticket__cost">$60</strong></span>
+                        </div>
+
+                        <div class="ticket-primery">
+                            <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong
+                                    class="ticket__movie">The Fifth Estate (2013)</strong></span>
+                            <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">11F, 12F, 13F</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket">
+                <div class="ticket-position">
+                    <div class="ticket__inner">
+                        <div class="ticket-secondary">
+                            <span class="ticket__item">Ticket number <strong
+                                    class="ticket__number">a126bym4</strong></span>
+                            <span class="ticket__item ticket__date">25/10/2013</span>
+                            <span class="ticket__item ticket__time">17:45</span>
+                            <span class="ticket__item">Cinema: <span class="ticket__cinema">Cineworld</span></span>
+                            <span class="ticket__item">Hall: <span class="ticket__hall">Visconti</span></span>
+                            <span class="ticket__item ticket__price">price:<strong class="ticket__cost">$60</strong></span>
+                        </div>
+
+                        <div class="ticket-primery">
+                            <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong
+                                    class="ticket__movie">The Fifth Estate (2013)</strong></span>
+                            <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">11F, 12F, 13F</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+</body>
+</html>

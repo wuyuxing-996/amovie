@@ -1,0 +1,89 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{/fragment/common-fragment :: head(预订)}"></div>
+
+<body>
+<div class="wrapper">
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <section class="container">
+        <div class="order-container">
+            <div class="order">
+                <img class="order__images" alt='' src="images/tickets.png">
+                <p class="order__title">预订<br><span class="order__descript">祝您观影愉快！</span></p>
+            </div>
+        </div>
+        <div class="order-step-area">
+            <div class="order-step first--step">1.选择您要观看的场次</div>
+        </div>
+    </section>
+    <section class="container">
+        <div class="col-sm-12">
+            <h2 class="page-heading">选择场次</h2>
+            <div class="time-select time-select--wide">
+                <div class="time-select__group">
+                    <div class="col-sm-3">
+                        <p class="time-select__place">Curzon</p>
+                    </div>
+                    <ul class="col-sm-6 items-wrap">
+                        <li class="time-select__item" data-time='09:00'>09:00</li>
+                        <li class="time-select__item" data-time='11:00'>11:00</li>
+                        <li class="time-select__item" data-time='13:00'>13:00</li>
+                        <li class="time-select__item" data-time='15:00'>15:00</li>
+                        <li class="time-select__item" data-time='17:00'>17:00</li>
+                        <li class="time-select__item" data-time='19:00'>19:00</li>
+                        <li class="time-select__item" data-time='21:00'>21:00</li>
+                        <li class="time-select__item" data-time='23:00'>23:00</li>
+                        <li class="time-select__item" data-time='01:00'>01:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="clearfix"></div>
+
+    <form id='film-and-time' class="booking-form" method='get' action='book2.html'>
+        <input type='text' name='choosen-movie' class="choosen-movie">
+
+        <input type='text' name='choosen-city' class="choosen-city">
+        <input type='text' name='choosen-date' class="choosen-date">
+
+        <input type='text' name='choosen-cinema' class="choosen-cinema">
+        <input type='text' name='choosen-time' class="choosen-time">
+
+
+        <div class="booking-pagination">
+            <a href="#" class="booking-pagination__prev hide--arrow">
+                <span class="arrow__text arrow--prev"></span>
+                <span class="arrow__info"></span>
+            </a>
+            <a href="book2.html" class="booking-pagination__next">
+                <span class="arrow__text arrow--next">下一步</span>
+                <span class="arrow__info">选择座位</span>
+            </a>
+        </div>
+
+    </form>
+
+    <div class="clearfix"></div>
+
+    <div th:replace="~{/fragment/common-fragment :: footer}"></div>
+</div>
+
+<!-- open/close -->
+<div th:replace="~{/fragment/common-fragment :: pop}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        init_BookingOne();
+    });
+</script>
+
+</body>
+</html>
