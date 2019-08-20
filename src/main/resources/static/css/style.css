@@ -153,7 +153,7 @@ input[type="search"] {
 }
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 fieldset {
   border: 1px solid #c0c0c0;
@@ -730,7 +730,7 @@ textarea {
 }
 input,
 textarea {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 .devider-wrapper {
   width: 100%;
@@ -7648,7 +7648,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
   width: 100%;
   -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   border: 1px solid #dbdee1;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

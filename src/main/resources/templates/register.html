@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<div th:replace="~{/fragment/common-fragment :: head(注册)}"></div>
+
+<body>
+<div class="wrapper">
+    <!-- Header section -->
+    <div th:replace="~{/fragment/common-fragment :: header}"></div>
+
+    <!-- Main content -->
+    <form id="login-form" class="login" method="post" novalidate="">
+        <p class="login__title">
+            注册 <br/><span class="login-edition">欢迎来到 A.Movie</span>
+        </p>
+
+        <div class="field-wrap">
+            <input
+                    type="text"
+                    placeholder="昵称"
+                    name="nickname"
+                    class="login__input"
+            />
+            <input
+                    type="email"
+                    placeholder="邮箱"
+                    name="email"
+                    class="login__input"
+            />
+            <input
+                    type="password"
+                    placeholder="密码"
+                    name="password"
+                    class="login__input"
+            />
+            <input
+                    type="text"
+                    placeholder="电话"
+                    name="phone"
+                    class="login__input"
+            />
+            <span class="checkbox-inline">
+                <input type="radio" name="sex" id="sex1"
+                       value="0" checked>男
+            </span>
+            <span style="margin-left: 10px" class="checkbox-inline">
+                <input type="radio" name="sex" id="sex2"
+                       value="1">女
+            </span>
+        </div>
+
+        <div class="login__control">
+            <button type="submit" class="btn btn-md btn--warning btn--wider">
+                注册
+            </button>
+            <a href="#" class="login__tracker form__tracker">去登录</a>
+        </div>
+    </form>
+
+    <div class="clearfix"></div>
+</div>
+
+<div th:replace="~{/fragment/common-fragment :: footer}"></div>
+
+<!-- JavaScript-->
+<div th:replace="~{/fragment/common-fragment :: script}"></div>
+</body>
+</html>

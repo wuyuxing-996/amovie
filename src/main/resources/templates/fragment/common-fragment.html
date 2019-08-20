@@ -87,19 +87,21 @@
 
         <!-- Additional header buttons / Auth and direct link to booking-->
         <div class="control-panel">
-            <div class="auth auth--home">
+            <a th:if="${session.login==null}" >
+                <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">登录</a>
+            </a>
+            <div th:unless="${session.login==null}" class="auth auth--home">
                 <div class="auth__show">
                 </div>
                 <a href="#" class="btn btn--sign btn--singin">
-                    me
+                    <span th:text="${session.login.getNickname()}"></span>
                 </a>
                 <ul class="auth__function">
                     <li><a href="/watchlist.html" class="auth__function-item">观看列表</a></li>
                     <li><a href="/ticket.html" class="auth__function-item">已预定的电影票</a></li>
-                    <li><a href="" class="auth__function-item">退出登录</a></li>
+                    <li><a href="/logout" class="auth__function-item">退出登录</a></li>
                 </ul>
             </div>
-            <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">预订</a>
         </div>
     </div>
 </header>
@@ -165,12 +167,12 @@
                             class="login__input"
                     />
 
-                    <input
+<!--                    <input
                             type="checkbox"
                             id="#informed"
                             class="login__check styled"
                     />
-                    <label for="#informed" class="login__check-info">记住登录状态</label>
+                    <label for="#informed" class="login__check-info">记住登录状态</label>-->
                 </div>
 
                 <div class="login__control">

@@ -20,6 +20,7 @@ public interface UserMapper {
     User getUserById(Integer integer);
 
     //根据email查询用户
+    @Select("select * from user where email=#{email}")
     User getUserByEmail(String email);
 
     //保存用户

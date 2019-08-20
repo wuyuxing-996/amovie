@@ -100,19 +100,23 @@ $('.login').submit(function(e) {
 			createErrTult('Error! Wrong password!', $pass);
 			error++;
 		}
-		
-		
-		
-		if (error!=0)return;
-		self.find('[type=submit]').attr('disabled', 'disabled');
 
-		self.children().fadeOut(300,function(){ $(this).remove() });
+
+/*		self.children().fadeOut(300,function(){ $(this).remove() });
 		$('<p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p><p class="success">You have successfully<br> signed in!</p>').appendTo(self)
-		.hide().delay(300).fadeIn();
+		.hide().delay(300).fadeIn();*/
 
 
-		// var formInput = self.serialize();
-		// $.post(self.attr('action'),formInput, function(data){}); // end post
+		var formInput = self.serialize();
+		$.post("/login",formInput, function(data){
+			if (data.code==400){
+				alert(data.extend.error);
+			}else {
+				window.location.href="/";
+				if (error!=0)return;
+				self.find('[type=submit]').attr('disabled', 'disabled');
+			}
+		},"json");
 }); // end submit
 		
 		
