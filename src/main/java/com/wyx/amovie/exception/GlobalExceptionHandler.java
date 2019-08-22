@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * 异常处理器的自定义实现类
+ * @author wyx
  */
 @ControllerAdvice
 @ResponseBody
-public class GlobalExceptionHandler{
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public Msg resolveException(HttpServletRequest request,
@@ -24,7 +25,7 @@ public class GlobalExceptionHandler{
         //判断异常
         if (e instanceof MessageException) {
             MessageException me = (MessageException) e;
-            msg = Msg.fail().add("error",me.getMessage());
+            msg = Msg.fail().add("error", me.getMessage());
         } else {
             msg = Msg.fail().add("error", "未知异常！");
         }

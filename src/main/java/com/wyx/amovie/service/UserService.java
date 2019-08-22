@@ -4,6 +4,9 @@ import com.wyx.amovie.entity.User;
 
 import java.util.List;
 
+/**
+ * @author wyx
+ */
 public interface UserService {
 
     /**

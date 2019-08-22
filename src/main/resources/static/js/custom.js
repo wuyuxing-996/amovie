@@ -53,7 +53,6 @@ $('.overlay-close').click(function (e) {
 });
 
 
-
 function user_list() {
     //user list option
     $('.auth__show').click(function (e) {

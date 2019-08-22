@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyx.amovie.mapper.MovieMapper">
+
+    <resultMap id="movieResult" type="Movie">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="duration" column="duration"/>
+        <result property="directors" column="directors"/>
+        <result property="actors" column="actors"/>
+        <result property="releaseDate" column="release_date"/>
+        <result property="status" column="status"/>
+        <result property="plot" column="plot"/>
+        <result property="poster" column="poster"/>
+        <result property="country" column="country"/>
+        <collection property="categories" column="id" ofType="Category" select="selectMovieCate">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="getAll" resultMap="movieResult">
+        select * from movie
+    </select>
+
+    <!--子查询-->
+    <select id="selectMovieCate" parameterType="int" resultType="Category">
+        select c.* from movie_category m left join category c on c.id=m.category_id where movie_id=#{movieId}
+    </select>
+
+    <!--根据id-->
+    <select id="getById" resultMap="movieResult" parameterType="Integer">
+        select * from movie where id=#{id}
+    </select>
+
+    <!--根据类别查电影-->
+    <select id="getByCategory" parameterType="Integer" resultMap="movieResult">
+        select m.*
+        from movie m,movie_category mc
+        where mc.movie_id=m.id
+        and mc.category_id=#{categoryId}
+    </select>
+
+    <!--更新电影-->
+    <update id="updateMovie" parameterType="Movie">
+        UPDATE `movie`
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="duration != null">duration = #{duration},</if>
+            <if test="directors != null">directors = #{directors},</if>
+            <if test="actors != null">actors = #{actors},</if>
+            <if test="releaseTime != null">release_time = #{releaseTime},</if>
+            <if test="plot != null">plot = #{plot},</if>
+            <if test="poster != null">poster = #{poster},</if>
+            <if test="country != null">country = #{country},</if>
+            <if test="status != null">status = #{status}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

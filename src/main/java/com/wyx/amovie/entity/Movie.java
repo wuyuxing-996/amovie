@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
+/**
+ * @author wyx
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,9 +20,9 @@ public class Movie {
     private String directors;
     private String actors;
     private Date releaseDate;
-    private String categoryIds;
     private Integer status;
     private String plot;
     private String poster;
     private String country;
+    private List<Category> categories;
 }

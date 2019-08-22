@@ -12,3 +12,9 @@ thymeleaf:
 mybatis:
   configuration:
     cache-enabled: false
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.wyx.amovie.entity
+
+pagehelper:
+  reasonable: true

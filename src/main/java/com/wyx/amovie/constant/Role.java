@@ -1,7 +1,8 @@
 package com.wyx.amovie.constant;
 
+
 /**
- * 角色常量
+ * @author wyx
  */
 public class Role {
     /**

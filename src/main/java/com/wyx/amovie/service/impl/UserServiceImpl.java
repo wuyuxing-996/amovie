@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+/**
+ * @author wyx
+ */
 @Service
-public class UserServiceIpml implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;

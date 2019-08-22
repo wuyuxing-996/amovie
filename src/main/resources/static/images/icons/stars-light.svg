@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
+        <!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+        ]>
 <svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="80px" height="16px" viewBox="-3.565 -2 80 16" enable-background="new -3.565 -2 80 16"
-	 xml:space="preserve">
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+     x="0px" y="0px" width="80px" height="16px" viewBox="-3.565 -2 80 16" enable-background="new -3.565 -2 80 16"
+     xml:space="preserve">
 <defs>
 </defs>
-<g>
+    <g>
 	<g>
 		<path fill-rule="evenodd" clip-rule="evenodd" fill="#DBDEE1" d="M8.994,4.511L7.391,4.51L5.973,0l-1.41,4.51H3.749H0l3.679,2.825
 			l0.068-0.218l0,0.271L3.679,7.335l-1.456,4.653l3.765-2.882L5.846,8.998h0.149h0.135L5.988,9.106l3.753,2.884L8.283,7.35

@@ -9,7 +9,7 @@
     <div th:replace="~{/fragment/common-fragment :: header}"></div>
 
     <!-- Main content -->
-    <form id="login-form" class="login" method="post" novalidate="">
+    <form id="register-form" class="login" method="post" novalidate="">
         <p class="login__title">
             注册 <br/><span class="login-edition">欢迎来到 A.Movie</span>
         </p>
@@ -40,11 +40,11 @@
                     class="login__input"
             />
             <span class="checkbox-inline">
-                <input type="radio" name="sex" id="sex1"
+                <input type="radio" name="gender" id="sex1"
                        value="0" checked>男
             </span>
-            <span style="margin-left: 10px" class="checkbox-inline">
-                <input type="radio" name="sex" id="sex2"
+            <span style="margin-left: 15px" class="checkbox-inline">
+                <input type="radio" name="gender" id="sex2"
                        value="1">女
             </span>
         </div>
@@ -53,7 +53,7 @@
             <button type="submit" class="btn btn-md btn--warning btn--wider">
                 注册
             </button>
-            <a href="#" class="login__tracker form__tracker">去登录</a>
+            <a href="/login" class="login__tracker form__tracker">去登录</a>
         </div>
     </form>
 
