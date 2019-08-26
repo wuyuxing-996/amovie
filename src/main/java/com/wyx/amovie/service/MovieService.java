@@ -54,4 +54,12 @@ public interface MovieService {
      * @return
      */
     int deleteMovie(Integer id);
+
+    /**
+     * 获取上映电影
+     *
+     * @param
+     * @return
+     */
+    List<Movie> getMovieReleased();
 }

@@ -17,7 +17,7 @@ var $block = $('<div/>', {'class': 'top-scroll'}).append('<a href="#"/>').hide()
 });
 
 //2. Mobile menu
-//Init mobile menu
+//Init mobile menu 手机端按钮
 $('#navigation').mobileMenu({
     triggerMenu: '#navigation-toggle',
     subMenuTrigger: ".sub-nav-toggle",
@@ -25,7 +25,7 @@ $('#navigation').mobileMenu({
 });
 
 //3. Search bar dropdown
-//search bar
+//search bar 确定按什么来搜索
 $("#search-sort").selectbox({
     onChange: function (val, inst) {
 
@@ -37,12 +37,12 @@ $("#search-sort").selectbox({
 });
 
 //4. Login window pop up
-//Login pop up
+//登录模态框弹出
 $('.login-window').click(function (e) {
     e.preventDefault();
     $('.overlay').removeClass('close').addClass('open');
 });
-
+//登录模态框隐藏
 $('.overlay-close').click(function (e) {
     e.preventDefault;
     $('.overlay').removeClass('open').addClass('close');
@@ -52,7 +52,7 @@ $('.overlay-close').click(function (e) {
     }, 500);
 });
 
-
+//用户名下拉
 function user_list() {
     //user list option
     $('.auth__show').click(function (e) {
@@ -157,7 +157,7 @@ function init_BookingOne() {
     "use strict";
 
     //1. Buttons for choose order method
-    //order factor
+    //order factor  没用
     $('.order__control-btn').click(function (e) {
         e.preventDefault();
 
@@ -174,7 +174,7 @@ function init_BookingOne() {
         time = $('.choosen-time');
 
     //6. Choose variant proccess
-    //choose film
+    //choose film   沒用
     $('.film-images').click(function (e) {
         //visual iteractive for choose
         $('.film-images').removeClass('film--choosed');
@@ -196,15 +196,17 @@ function init_BookingOne() {
         $(this).addClass('active');
 
         //data element init
-        var chooseTime = $(this).attr('data-time');
+        //var chooseTime = $(this).attr('data-time');
+        var chooseTime = $(this).val();
         $('.choose-indector--time').find('.choosen-area').text(chooseTime);
 
         //data element init
-        var chooseCinema = $(this).parent().parent().find('.time-select__place').text();
+        //var chooseCinema = $(this).parent().parent().find('.time-select__place').text();
 
         //data element set
         time.val(chooseTime);
-        cinema.val(chooseCinema);
+        console.log(time.val());
+        //cinema.val(chooseCinema);
     });
 
     // choose (change) city and date for film
@@ -507,11 +509,12 @@ function init_BookingTwo() {
 
 }
 
+//未使用
 function init_CinemaList() {
     "use strict";
 
     //1. Dropdowns
-    //select
+    //select 使得选项被选中 movie-list页面
     $(".select__sort").selectbox({
         onChange: function (val, inst) {
 
@@ -524,7 +527,7 @@ function init_CinemaList() {
     });
 
     //2. Sorting buy category
-    // sorting function
+    // sorting function 按类别查询
     $('.tags__item').click(function (e) {
         //prevent the default behaviour of the link
         e.preventDefault();
@@ -553,6 +556,7 @@ function init_CinemaList() {
     });
 }
 
+//未使用
 function init_Contact() {
     "use strict";
 
@@ -660,6 +664,7 @@ function init_Contact() {
     });
 }
 
+//未使用
 function init_Gallery() {
     "use strict";
     //1. Pop up fuction for gallery elements
@@ -727,11 +732,12 @@ function init_Gallery() {
     });
 }
 
+//movie-list的函数
 function init_MovieList() {
     "use strict";
 
     //1. Dropdown init
-    //select
+    //select  城市，影院，类型
     $(".select__sort").selectbox({
         onChange: function (val, inst) {
 
@@ -744,7 +750,7 @@ function init_MovieList() {
     });
 
     //3. Rating scrore init
-    //Rating star
+    //Rating star  评分
     $('.score').raty({
         width: 130,
         score: 0,
@@ -759,7 +765,7 @@ function init_MovieList() {
     });
 
     //4. Sorting by category
-    // sorting function
+    // sorting function 类型
     $('.tags__item').click(function (e) {
         //prevent the default behaviour of the link
         e.preventDefault();
@@ -784,13 +790,14 @@ function init_MovieList() {
     });
 
     //5. Toggle function for additional content
-    //toggle timetable show
+    //toggle timetable show  未使用
     $('.movie__show-btn').click(function (ev) {
         ev.preventDefault();
 
         $(this).parents('.movie--preview').find('.time-select').slideToggle(500);
     });
 
+    //选择场次 未使用
     $('.time-select__item').click(function () {
         $('.time-select__item').removeClass('active');
         $(this).addClass('active');

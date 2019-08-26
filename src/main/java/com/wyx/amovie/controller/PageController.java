@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @RequestMapping(value = "/login")
-    public String toLogin(){
+    public String login() {
         return "login";
     }
 
@@ -20,8 +20,33 @@ public class PageController {
         return "index";
     }
 
-    @RequestMapping(value = "/test")
+    @RequestMapping(value = "/register")
     public String test() {
         return "register";
+    }
+
+    @RequestMapping(value = "/rate")
+    public String rate() {
+        return "rate";
+    }
+
+    @RequestMapping(value = "/news-list")
+    public String newsList() {
+        return "news-list";
+    }
+
+    @RequestMapping(value = "/watchlist")
+    public String watchList() {
+        return "watchlist";
+    }
+
+    @RequestMapping(value = "/movie")
+    public String detial() {
+        return "movie";
+    }
+
+    @RequestMapping(value = "/404")
+    public String error() {
+        return "404";
     }
 }

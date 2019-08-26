@@ -37,7 +37,7 @@ public interface NewsMapper {
      * @param news
      * @return
      */
-    @Insert("insert into news(content,create_time) values(#{content},#{createTime})")
+    @Insert("insert into news(content,title,create_time) values(#{content},#{title},#{createTime})")
     int addNews(News news);
 
     /**
@@ -46,7 +46,7 @@ public interface NewsMapper {
      * @param news
      * @return
      */
-    @Update("update news set content=#{content},create_time=#{createTime} where id=#{id}")
+    @Update("update news set content=#{content},title=#{title},create_time=#{createTime} where id=#{id}")
     int updateNews(News news);
 
     /**

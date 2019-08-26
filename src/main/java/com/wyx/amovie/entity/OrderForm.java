@@ -8,13 +8,18 @@ import java.util.Date;
 
 /**
  * @author wyx
+ * @date 2019-08-24 17:12
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class News {
+@NoArgsConstructor
+public class OrderForm {
     private Integer id;
-    private String title;
-    private String content;
+    private Integer status;
+    private Integer userId;
     private Date createTime;
+    private Integer sceneId;
+    private String ticketNum;
+    private Float totalPrice;
+    private String seat;
 }

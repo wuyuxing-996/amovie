@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress ALL-->
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{/fragment/common-fragment :: head(预订)}"></div>
 
@@ -25,18 +26,14 @@
             <div class="time-select time-select--wide">
                 <div class="time-select__group">
                     <div class="col-sm-3">
-                        <p class="time-select__place">Curzon</p>
+                        <p class="time-select__place">看清楚哦 --></p>
                     </div>
                     <ul class="col-sm-6 items-wrap">
-                        <li class="time-select__item" data-time='09:00'>09:00</li>
-                        <li class="time-select__item" data-time='11:00'>11:00</li>
-                        <li class="time-select__item" data-time='13:00'>13:00</li>
-                        <li class="time-select__item" data-time='15:00'>15:00</li>
-                        <li class="time-select__item" data-time='17:00'>17:00</li>
-                        <li class="time-select__item" data-time='19:00'>19:00</li>
-                        <li class="time-select__item" data-time='21:00'>21:00</li>
-                        <li class="time-select__item" data-time='23:00'>23:00</li>
-                        <li class="time-select__item" data-time='01:00'>01:00</li>
+                        <li th:each="scene:${scenes}" th:text="${scene.showtime}" class="time-select__item"
+                            th:value="${scene.showtime}">09:00
+                        </li>
+                        <!--                        <li class="time-select__item" data-time='11:00'>11:00</li>
+                                                <li class="time-select__item" data-time='13:00'>13:00</li>-->
                     </ul>
                 </div>
             </div>
@@ -46,7 +43,7 @@
 
     <div class="clearfix"></div>
 
-    <form id='film-and-time' class="booking-form" method='get' action='book2.html'>
+    <form id='film-and-time' class="booking-form" method='get' action='/book2'>
         <input type='text' name='choosen-movie' class="choosen-movie">
 
         <input type='text' name='choosen-city' class="choosen-city">
@@ -61,7 +58,7 @@
                 <span class="arrow__text arrow--prev"></span>
                 <span class="arrow__info"></span>
             </a>
-            <a href="book2.html" class="booking-pagination__next">
+            <a href="/book2" class="booking-pagination__next">
                 <span class="arrow__text arrow--next">下一步</span>
                 <span class="arrow__info">选择座位</span>
             </a>

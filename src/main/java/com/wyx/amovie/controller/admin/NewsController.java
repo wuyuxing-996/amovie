@@ -1,10 +1,11 @@
-package com.wyx.amovie.controller;
+package com.wyx.amovie.controller.admin;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wyx.amovie.entity.News;
 import com.wyx.amovie.service.NewsService;
 import com.wyx.amovie.utils.Msg;
+import com.wyx.amovie.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,9 @@ import java.util.Date;
 /**
  * @author wyx
  */
+@CrossOrigin
 @RestController
-@RequestMapping(value = "/news")
+@RequestMapping(value = "/api/news")
 public class NewsController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class NewsController {
     @GetMapping
     public ResponseEntity getCategory(
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-            @RequestParam(value = "size", required = false, defaultValue = "2") Integer size) {
+            @RequestParam(value = "size", required = false, defaultValue = "20") Integer size) {
         Page<News> news = PageHelper.startPage(page, size)
                 .doSelectPage(() -> newsService.getAll());
         return new ResponseEntity(news.toPageInfo(), HttpStatus.OK);
@@ -34,19 +36,14 @@ public class NewsController {
     @GetMapping(value = "{id}")
     public ResponseEntity getById(@PathVariable(value = "id") Integer id) {
         News news = newsService.getById(id);
-        if (news != null) {
-            return ResponseEntity.ok(news);
-        }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return Result.checkObject(news);
     }
 
     @PostMapping
     public ResponseEntity addNews(@RequestBody News news) {
         news.setCreateTime(new Date());
-        if (newsService.addNews(news) != 0) {
-            return ResponseEntity.ok(Msg.success());
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        int result = newsService.addNews(news);
+        return Result.checkAdd(result);
     }
 
     @PutMapping(value = "{id}")
@@ -60,10 +57,7 @@ public class NewsController {
         news.setId(id);
         news.setCreateTime(new Date());
         int result = newsService.updateNews(news);
-        if (result != 0) {
-            return ResponseEntity.ok(Msg.success());
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return Result.checkUpdate(result);
     }
 
     @DeleteMapping(value = "{id}")
@@ -74,9 +68,6 @@ public class NewsController {
             return new ResponseEntity(msg, HttpStatus.NOT_FOUND);
         }
         int result = newsService.deleteNews(id);
-        if (result != 0) {
-            return ResponseEntity.ok(Msg.success());
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return Result.checkDelete(result);
     }
 }

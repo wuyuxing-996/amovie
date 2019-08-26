@@ -1,17 +1,20 @@
 package com.wyx.amovie.service.impl;
 
+import com.wyx.amovie.constant.Status;
 import com.wyx.amovie.entity.Movie;
 import com.wyx.amovie.mapper.CategoryMapper;
 import com.wyx.amovie.mapper.MovieMapper;
 import com.wyx.amovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * @author wyx
  */
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class MovieServiceImpl implements MovieService {
 
@@ -58,5 +61,8 @@ public class MovieServiceImpl implements MovieService {
         return result + result1;
     }
 
-
+    @Override
+    public List<Movie> getMovieReleased() {
+        return movieMapper.getMovieReleased(Status.ON);
+    }
 }

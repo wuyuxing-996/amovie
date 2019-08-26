@@ -49,7 +49,7 @@
 <header th:fragment="header" class="header-wrapper">
     <div class="container">
         <!-- Logo link-->
-        <a href="index.html" class="logo">
+        <a href="/index" class="logo">
             <img alt="logo" src="images/logo.png"/>
         </a>
 
@@ -72,15 +72,15 @@
             <ul id="navigation">
                 <li>
                     <span class="sub-nav-toggle plus"></span>
-                    <a href="movie-list.html">全部电影</a>
+                    <a href="/movie-list">全部电影</a>
                 </li>
                 <li>
                     <span class="sub-nav-toggle plus"></span>
-                    <a href="rate.html">排行榜</a>
+                    <a href="/rate">排行榜</a>
                 </li>
                 <li>
                     <span class="sub-nav-toggle plus"></span>
-                    <a href="news-list.html">资讯</a>
+                    <a href="/news-list">资讯</a>
                 </li>
             </ul>
         </nav>
@@ -90,6 +90,9 @@
             <a th:if="${session.login==null}">
                 <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">登录</a>
             </a>
+            <a th:if="${session.login==null}">
+                <a href="/register" class="btn btn-md btn--warning btn--book btn-control--home">注册</a>
+            </a>
             <div th:unless="${session.login==null}" class="auth auth--home">
                 <div class="auth__show">
                 </div>
@@ -97,13 +100,13 @@
                     <span th:text="${session.login.getNickname()}"></span>
                 </a>
                 <ul class="auth__function">
-                    <li><a href="/watchlist.html" class="auth__function-item">观看列表</a></li>
-                    <li><a href="/ticket.html" class="auth__function-item">已预定的电影票</a></li>
+                    <li><a href="/watchlist" class="auth__function-item">观看列表</a></li>
+                    <li><a href="/ticket" class="auth__function-item">已预定的电影票</a></li>
                     <li><a href="/doLogout" class="auth__function-item">退出登录</a></li>
                 </ul>
             </div>
             <a th:if="${session.login!=null}">
-                <a href="/bookTicket" class="btn btn-md btn--warning btn--book btn-control--home">预定</a>
+                <a href="/book1" class="btn btn-md btn--warning btn--book btn-control--home">预定</a>
             </a>
         </div>
     </div>
@@ -114,9 +117,9 @@
     <section class="container">
         <div class="col-xs-4 col-md-2 footer-nav">
             <ul class="nav-link">
-                <li><a href="movie-list.html" class="nav-link__item">电影</a></li>
-                <li><a href="rate.html" class="nav-link__item">评分</a></li>
-                <li><a href="news-list.html" class="nav-link__item">资讯</a></li>
+                <li><a href="/movie-list" class="nav-link__item">电影</a></li>
+                <li><a href="/rate" class="nav-link__item">评分</a></li>
+                <li><a href="/news-list" class="nav-link__item">资讯</a></li>
             </ul>
         </div>
         <div class="col-xs-4 col-md-2 footer-nav">

@@ -60,4 +60,8 @@
         WHERE id = #{id}
     </update>
 
+    <select id="getMovieReleased" resultMap="movieResult">
+        select * from movie where status=#{status}
+    </select>
+
 </mapper>

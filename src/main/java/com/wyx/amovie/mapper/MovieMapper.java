@@ -75,4 +75,11 @@ public interface MovieMapper {
      * @return
      */
     List<Movie> getByCategory(Integer id);
+
+    /**
+     * 获取上映电影
+     *
+     * @return
+     */
+    List<Movie> getMovieReleased(Integer status);
 }

@@ -28,6 +28,7 @@ $(function () {
         });
     }
 
+    //注册
     $('#register-form').submit(function (e) {
 
         e.preventDefault();
@@ -84,6 +85,7 @@ $(function () {
         }, "json");
     }); // end register
 
+    //登录
     $('#login-form').submit(function (e) {
 
         e.preventDefault();
@@ -126,7 +128,7 @@ $(function () {
         }, "json");
     }); // end submit
 
-
+    //提示框
     function createErrTult(text, $elem) {
         $elem.focus();
         $('<p />', {

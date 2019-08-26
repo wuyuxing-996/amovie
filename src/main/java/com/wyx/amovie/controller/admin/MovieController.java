@@ -1,4 +1,4 @@
-package com.wyx.amovie.controller;
+package com.wyx.amovie.controller.admin;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -8,6 +8,7 @@ import com.wyx.amovie.entity.Scene;
 import com.wyx.amovie.service.MovieService;
 import com.wyx.amovie.service.SceneService;
 import com.wyx.amovie.utils.Msg;
+import com.wyx.amovie.utils.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,9 @@ import java.util.List;
 /**
  * @author wyx
  */
+@CrossOrigin
 @Controller
-@RequestMapping(value = "/movies")
+@RequestMapping(value = "/api/movies")
 public class MovieController {
 
     @Autowired
@@ -35,7 +37,7 @@ public class MovieController {
     @GetMapping
     public ResponseEntity getMovie(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
-            @RequestParam(value = "size", defaultValue = "4") Integer size) {
+            @RequestParam(value = "size", defaultValue = "20") Integer size) {
         Page<Movie> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getAll());
         return new ResponseEntity(movies.toPageInfo(), HttpStatus.OK);
     }
@@ -55,15 +57,18 @@ public class MovieController {
         return ResponseEntity.ok(scenes);
     }
 
+    @GetMapping(value = "/released")
+    public ResponseEntity getMovies() {
+        List<Movie> movies = movieService.getMovieReleased();
+        return ResponseEntity.ok(movies);
+    }
+
     @PostMapping
     public ResponseEntity addMovie(@RequestBody MovieForm movieForm) {
         Movie movie = toMovie(movieForm);
         Integer[] categoryIds = movieForm.getCategoryIds();
         int result = movieService.addMovie(movie, categoryIds);
-        if (result != 0) {
-            return ResponseEntity.ok("插入成功！");
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return Result.checkAdd(result);
     }
 
     @PutMapping(value = "{id}")
@@ -98,11 +103,17 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    //MovieForm对象转到Movie
+    /**
+     * MovieForm对象转到Movie
+     *
+     * @param movieForm
+     * @return
+     */
     Movie toMovie(MovieForm movieForm) {
         Movie movie = new Movie();
         BeanUtils.copyProperties(movieForm, movie);
         //TODO 时间转换
+        movie.setName(movieForm.getMovieName());
         movie.setReleaseDate(new Date());
         return movie;
     }
