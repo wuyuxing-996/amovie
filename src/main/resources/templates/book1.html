@@ -30,7 +30,8 @@
                     </div>
                     <ul class="col-sm-6 items-wrap">
                         <li th:each="scene:${scenes}" th:text="${scene.showtime}" class="time-select__item"
-                            th:value="${scene.showtime}">09:00
+                            th:attr="data-sceneId=${scene.id},data-price=${scene.price},data-movieId=${scene.movieId},data-name=${scene.movieName},data-time=${scene.showtime}">
+                            09:00
                         </li>
                         <!--                        <li class="time-select__item" data-time='11:00'>11:00</li>
                                                 <li class="time-select__item" data-time='13:00'>13:00</li>-->
@@ -44,13 +45,14 @@
     <div class="clearfix"></div>
 
     <form id='film-and-time' class="booking-form" method='get' action='/book2'>
-        <input type='text' name='choosen-movie' class="choosen-movie">
-
-        <input type='text' name='choosen-city' class="choosen-city">
-        <input type='text' name='choosen-date' class="choosen-date">
-
-        <input type='text' name='choosen-cinema' class="choosen-cinema">
-        <input type='text' name='choosen-time' class="choosen-time">
+        <input type='text' name='choosenMovie' class="choosen-movie">
+        <input type='text' name='choosenMovieId' class="choosen-movieId">
+        <input type='text' name='choosenPrice' class="choosen-price">
+        <input type='text' name='choosenTime' class="choosen-time">
+        <input type='text' name='choosenDate' class="choosen-date">
+        <input type='text' name='choosenScene' class="choosen-scene">
+        <input type='text' name='choosenCity' class="choosen-city">
+        <input type='text' name='choosenCinema' class="choosen-cinema">
 
 
         <div class="booking-pagination">
@@ -58,7 +60,7 @@
                 <span class="arrow__text arrow--prev"></span>
                 <span class="arrow__info"></span>
             </a>
-            <a href="/book2" class="booking-pagination__next">
+            <a class="booking-pagination__next book1Submit">
                 <span class="arrow__text arrow--next">下一步</span>
                 <span class="arrow__info">选择座位</span>
             </a>

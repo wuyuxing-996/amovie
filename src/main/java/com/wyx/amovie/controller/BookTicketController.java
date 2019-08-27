@@ -2,6 +2,7 @@ package com.wyx.amovie.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.wyx.amovie.entity.BookForm;
 import com.wyx.amovie.entity.Movie;
 import com.wyx.amovie.entity.Scene;
 import com.wyx.amovie.service.MovieService;
@@ -51,18 +52,20 @@ public class BookTicketController {
     }
 
     @RequestMapping(value = "/book2")
-    public String book2(Model model) {
-        model.addAttribute("movieId", 2);
+    public String book2(BookForm bookForm, Model model) {
+        model.addAttribute("bookForm", bookForm);
         return "book2";
     }
 
     @RequestMapping(value = "/book3-buy")
-    public String book3() {
+    public String book3(BookForm bookForm, Model model) {
+        model.addAttribute("bookForm", bookForm);
         return "book3-buy";
     }
 
     @RequestMapping(value = "/book-final")
-    public String book4() {
+    public String book4(BookForm bookForm, Model model) {
+        model.addAttribute("bookForm", bookForm);
         return "book-final";
     }
 }

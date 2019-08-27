@@ -153,7 +153,51 @@ function init_Home() {
     });
 }
 
+
+//订票函数book1副本(使用)
 function init_BookingOne() {
+
+    //1.将数据放置到隐藏form中
+    var movie = $('.choosen-movie'),
+        movieId = $('.choosen-movieId'),
+        scene = $('.choosen-scene'),
+        city = $('.choosen-city'),
+        date = $('.choosen-date'),
+        cinema = $('.choosen-cinema'),
+        time = $('.choosen-time'),
+        price = $('.choosen-price');
+
+    //2.选择场次
+    $('.time-select__item').click(function () {
+        //选择时添加样式
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
+        //数据初始化
+        var chooseTime = $(this).attr('data-time');
+        var chooseMovie = $(this).attr('data-name');
+        var chooseScene = $(this).attr(('data-sceneId'));
+        var choosenMovieId = $(this).attr(('data-movieId'));
+        var choosenPrice = $(this).attr(('data-price'));
+        movie.val(chooseMovie);
+        date.val("2018-08-08");
+        time.val(chooseTime);
+        scene.val(chooseScene);
+        movieId.val(choosenMovieId);
+        price.val(choosenPrice);
+    });
+
+    //3.下一步触发发送
+    $('.book1Submit').click(function () {
+        $('.booking-form').submit();
+    });
+    //4.将数据打包发给下一个页面
+    /*    $('.booking-form').submit(function () {
+            var bookData = $(this).serialize();
+            $.post("/book2", bookData);
+        });*/
+}
+
+/*function init_BookingOne() {
     "use strict";
 
     //1. Buttons for choose order method
@@ -197,7 +241,7 @@ function init_BookingOne() {
 
         //data element init
         //var chooseTime = $(this).attr('data-time');
-        var chooseTime = $(this).val();
+        var chooseTime = $(this).attr('data-time');
         $('.choose-indector--time').find('.choosen-area').text(chooseTime);
 
         //data element init
@@ -253,13 +297,106 @@ function init_BookingOne() {
         $(this).toggleClass('hide-content');
         $('.time-select').slideToggle(400);
     })
+}*/
+
+//订票函数book2副本(使用)
+function init_BookingTwo() {
+
+    //1.将数据放置到隐藏表单中
+    var numberTicket = $('.choosen-number'),
+        sumTicket = $('.choosen-cost'),
+        cheapTicket = $('.choosen-number--cheap'),
+        middleTicket = $('.choosen-number--middle'),
+        expansiveTicket = $('.choosen-number--expansive'),
+        sits = $('.choosen-sits');
+
+    //2.获取座位和票价等信息
+    var sum = 0;
+    var cheap = 0;
+    var middle = 0;
+    var expansive = 0;
+
+    $('.sits__place').click(function (e) {
+        e.preventDefault();
+        var place = $(this).attr('data-place');
+        var ticketPrice = $(this).attr('data-price');
+        ticketPrice = Number(ticketPrice);
+
+        if (!$(e.target).hasClass('sits-state--your')) {
+
+            if (!$(this).hasClass('sits-state--not')) {
+                $(this).addClass('sits-state--your');
+
+                $('.checked-place').prepend('<span class="choosen-place ' + place + '">' + place + '</span>');
+                sum += ticketPrice;
+
+                $('.checked-result').text('$' + sum);
+            }
+        } else {
+            $(this).removeClass('sits-state--your');
+
+            $('.' + place + '').remove();
+            sum -= ticketPrice;
+
+            $('.checked-result').text('$' + sum)
+        }
+
+        //data element init
+        var number = $('.checked-place').children().length;
+
+        //data element set
+        numberTicket.val(number);
+        sumTicket.val(sum);
+        cheapTicket.val(cheap);
+        middleTicket.val(middle);
+        expansiveTicket.val(expansive);
+
+
+        //data element init
+        var chooseSits = '';
+        $('.choosen-place').each(function () {
+            chooseSits += ', ' + $(this).text();
+        });
+
+        //data element set
+        sits.val(chooseSits.substr(2));
+    });
+
+    //3.获取url中的信息
+    var url = decodeURIComponent(document.URL);
+    var prevData = url.substr(url.indexOf('?') + 1);
+
+    //4.下一步触发表单提交
+    $('.book2Submit').click(function () {
+        var bookData = $('.booking-form').serialize();
+        var fullData = prevData + '&' + bookData;
+        var action = "/book3-buy";
+        window.location.href = action + "?" + fullData;
+        /*$.get(action, fullData, function (data) {
+            window.location.href="/book3-buy";
+        });*/
+    });
+    //5.发送请求
+    $('.booking-form').submit(function (e) {
+        e.preventDefault();
+        var bookData = $(this).serialize();
+
+        var fullData = prevDate + '&' + bookData;
+        var action = "/book3-buy";
+
+        $.get(action, fullData, function (data) {
+
+        });
+    });
+
+
 }
 
-function init_BookingTwo() {
+/*function init_BookingTwo() {
     "use strict";
 
     //1. Buttons for choose order method
-    //order factor
+    //order factor  未使用
     $('.order__control-btn').click(function (e) {
         e.preventDefault();
 
@@ -397,7 +534,7 @@ function init_BookingTwo() {
 
     });
 
-    //add new sits line
+    //add new sits line 移动端
     $('.add-sits-line').click(function (e) {
         e.preventDefault();
         var temp = $('<div class="sits-select"><select name="sorting_item" class="sits__sort sit-row" tabindex="0"><option selected="selected" value="1">A</option><option value="2">B</option><option value="3">C</option><option value="4">D</option><option value="5">E</option><option value="6">F</option><option value="7">G</option> <option value="8">I</option><option value="9">J</option><option value="10">K</option><option value="11">L</option></select><select name="sorting_item" class="sits__sort sit-number" tabindex="1"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option></select><a href="#" class="btn btn-md btn--warning toogle-sits">Choose sit</a></div>');
@@ -419,9 +556,8 @@ function init_BookingTwo() {
 
     });
 
-    //choose sits
+    //choose sits  移动端
     $('.toogle-sits').click(ChoosePlace);
-
 
     function ChoosePlace(e) {
         e.preventDefault();
@@ -507,8 +643,28 @@ function init_BookingTwo() {
     }
 
 
-}
+}*/
 
+//订票函数book3(使用)
+function init_BookingThree() {
+    var hasPay = false;
+    $('.pay').click(function () {
+        hasPay = true;
+        $(this).attr("disabled", true);
+        console.log(hasPay);
+    });
+
+
+    //获取url中的信息
+    var url = decodeURIComponent(document.URL);
+    var prevData = url.substr(url.indexOf('?') + 1);
+    $('.book3Submit').click(function () {
+        if (hasPay) {
+            window.location.href = "/book-final?" + prevData;
+        }
+    });
+
+}
 //未使用
 function init_CinemaList() {
     "use strict";
