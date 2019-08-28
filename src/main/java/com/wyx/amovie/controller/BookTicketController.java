@@ -1,11 +1,7 @@
 package com.wyx.amovie.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.wyx.amovie.entity.BookForm;
-import com.wyx.amovie.entity.Movie;
 import com.wyx.amovie.entity.Scene;
-import com.wyx.amovie.service.MovieService;
 import com.wyx.amovie.service.SceneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,20 +19,7 @@ import java.util.List;
 public class BookTicketController {
 
     @Autowired
-    private MovieService movieService;
-
-    @Autowired
     private SceneService sceneService;
-
-    @RequestMapping(value = "/movie-list")
-    public String movieList(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                            @RequestParam(value = "size", defaultValue = "3") Integer size,
-                            Model model) {
-        Page<Movie> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getAll());
-        model.addAttribute("movies", movies);
-        model.addAttribute("pageNum", movies.getPageNum());
-        return "movie-list";
-    }
 
     @RequestMapping(value = "/ticket")
     public String ticket() {

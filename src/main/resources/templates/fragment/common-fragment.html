@@ -49,8 +49,8 @@
 <header th:fragment="header" class="header-wrapper">
     <div class="container">
         <!-- Logo link-->
-        <a href="/index" class="logo">
-            <img alt="logo" src="images/logo.png"/>
+        <a href="/" class="logo">
+            <img alt="logo" src="/images/logo.png"/>
         </a>
 
         <!-- Main website navigation-->
@@ -100,7 +100,7 @@
                     <span th:text="${session.login.getNickname()}"></span>
                 </a>
                 <ul class="auth__function">
-                    <li><a href="/watchlist" class="auth__function-item">观看列表</a></li>
+                    <li><a href="/watch" class="auth__function-item">观看列表</a></li>
                     <li><a href="/ticket" class="auth__function-item">已预定的电影票</a></li>
                     <li><a href="/doLogout" class="auth__function-item">退出登录</a></li>
                 </ul>

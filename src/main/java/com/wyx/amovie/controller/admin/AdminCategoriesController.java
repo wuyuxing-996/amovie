@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/categories")
-public class CategoriesController {
+public class AdminCategoriesController {
 
     @Autowired
     private CategoryService categoryService;

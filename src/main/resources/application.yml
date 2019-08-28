@@ -4,6 +4,9 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      file-size-threshold: 10MB
 thymeleaf:
   prefix: classpath:/templates/
   suffix: .html
@@ -18,3 +21,5 @@ mybatis:
 
 pagehelper:
   reasonable: true
+
+filepath: G:\my_document\upload

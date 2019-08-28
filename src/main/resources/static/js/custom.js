@@ -140,7 +140,7 @@ function init_Home() {
     $('.score').raty({
         width: 130,
         score: 0,
-        path: 'images/rate/',
+        path: '/images/rate/',
         starOff: 'star-off.svg',
         starOn: 'star-on.svg'
     });
@@ -888,8 +888,56 @@ function init_Gallery() {
     });
 }
 
-//movie-list的函数
+//movie-list的函数副本(使用)
 function init_MovieList() {
+    //1.选择城市，影院等
+    $(".select__sort").selectbox({
+        onChange: function (val, inst) {
+
+            $(inst.input[0]).children().each(function (item) {
+                $(this).removeAttr('selected');
+            });
+            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
+        }
+
+    });
+
+    //2.添加到播放列表
+    $(".addWatchlist").click(function () {
+        var movieId = $(this).attr('data-movieId');
+        var data = {
+            movieId: movieId,
+        };
+        $.post("/watch", data, function (data) {
+            alert(data);
+            window.location.href = "/watch";
+        });
+    });
+
+    //3.从播放列表移除
+    $(".removeWatchlist").click(function () {
+
+        var movieId = $(this).attr('data-movieId');
+
+        var r = confirm("确认删除该？");
+        if (r) {
+            $.ajax({
+                url: "/watch/" + movieId,
+                type: "POST",
+                data: {_method: "DELETE", movieId: movieId},
+                success: function (result) {
+                    alert(result);
+                    window.location.href = "/watch";
+                }
+
+            });
+
+        }
+        ;
+    });
+}
+
+/*function init_MovieList() {
     "use strict";
 
     //1. Dropdown init
@@ -915,7 +963,7 @@ function init_MovieList() {
         half: true,
         readOnly: true,
         noRatedMsg: '您还没评分！',
-        path: 'images/rate/',
+        path: '/images/rate/',
         starOff: 'star-off.svg',
         starOn: 'star-on.svg'
     });
@@ -936,8 +984,8 @@ function init_MovieList() {
         $(".movie--preview").show();
         $('.pagination').show();
 
-        /*using the :not attribute and the filter class in it we are selecting
-            only the list items that don't have that class and hide them '*/
+        /!*using the :not attribute and the filter class in it we are selecting
+            only the list items that don't have that class and hide them '*!/
         if (filter.toLowerCase() !== 'all') {
             $('.movie--preview:not(.' + filter + ')').hide();
             //Show pagination on filter = all;
@@ -958,9 +1006,60 @@ function init_MovieList() {
         $('.time-select__item').removeClass('active');
         $(this).addClass('active');
     });
+}*/
+
+//电影详情页函数副本(使用)
+function init_MoviePage() {
+    //1.评分
+    $('.score').raty({
+        width: 130,
+        score: 5,
+        path: '/images/rate/',
+        starOff: 'star-off.svg',
+        starOn: 'star-on.svg'
+    });
+
+    //2.回复
+    $('.comment__reply').click(function (e) {
+        e.preventDefault();
+
+        $('.comment').find('.comment-form').remove();
+        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
+                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
+                        </form>");
+    });
+
+    //3.场次添加样式
+    $('.time-select__item').click(function () {
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    //4.评论
+    $('.comment-form__btn').click(function () {
+        var movieId = $('.comment-form').find('[name=movieId]').val();
+        var formInput = $('.comment-form').serialize();
+        $.post("/review", formInput, function (data) {
+            alert(data);
+            window.location.href = "/movie/" + movieId;
+        });
+    });
+
+    //5.添加到播放列表
+    $(".watchlist").click(function () {
+        var movieId = $(this).attr('data-movieId');
+        var data = {
+            movieId: movieId,
+        };
+        $.post("/watch", data, function (data) {
+            alert(data);
+            window.location.href = "/watch";
+        });
+    });
 }
 
-function init_MoviePage() {
+/*function init_MoviePage() {
     "use strict";
 
     //1. Rating scrore init
@@ -968,14 +1067,14 @@ function init_MoviePage() {
     $('.score').raty({
         width: 130,
         score: 5,
-        path: 'images/rate/',
+        path: '/images/rate/',
         starOff: 'star-off.svg',
         starOn: 'star-on.svg'
     });
 
 
     //4. Dropdown init 
-    //select
+    //select  未使用
     $("#select-sort").selectbox({
         onChange: function (val, inst) {
 
@@ -988,7 +1087,7 @@ function init_MoviePage() {
     });
 
     //6. Reply comment form
-    //reply comment function
+    //reply comment function 回复评论的函数
     $('.comment__reply').click(function (e) {
         e.preventDefault();
 
@@ -999,19 +1098,19 @@ function init_MoviePage() {
                         </form>");
     });
 
-    //7. Timetable active element
+    //7. Timetable active element 场次选择时添加样式
     $('.time-select__item').click(function () {
         $('.time-select__item').removeClass('active');
         $(this).addClass('active');
     });
 
     //10. Scroll down navigation function
-    //scroll down
+    //scroll down 评分 未使用
     $('.comment-link').click(function (ev) {
         ev.preventDefault();
         $('html, body').stop().animate({'scrollTop': $('.comment-wrapper').offset().top - 90}, 900, 'swing');
     });
-}
+}*/
 
 function init_Rates() {
     "use strict";
@@ -1021,7 +1120,7 @@ function init_Rates() {
     $('.score').raty({
         width: 130,
         score: 0,
-        path: 'images/rate/',
+        path: '/images/rate/',
         starOff: 'star-off.svg',
         starOn: 'star-on.svg'
     });

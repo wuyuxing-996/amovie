@@ -65,4 +65,9 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getMovieReleased() {
         return movieMapper.getMovieReleased(Status.ON);
     }
+
+    @Override
+    public List<Movie> getUserMovie(Integer userId) {
+        return movieMapper.getUserMovie(userId);
+    }
 }

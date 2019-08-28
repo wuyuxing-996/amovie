@@ -112,7 +112,7 @@
             <div th:each="movie:${movies}" class="movie movie--preview movie--full release">
                 <div class="col-sm-3 col-md-2 col-lg-2">
                     <div class="movie__images">
-                        <img alt="" src="http://placehold.it/380x600"/>
+                        <img alt="" th:src="${movie.poster}"/>
                     </div>
                     <!-- 评论数 -->
                     <div class="movie__feature">
@@ -121,10 +121,10 @@
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
-                    <a href="/movie" th:text="${movie.name}" class="movie__title link--huge"
+                    <a th:href="'/movie/'+${movie.id}" th:text="${movie.name}" class="movie__title link--huge"
                     >Last Vegas (2013)</a>
 
-                    <p class="movie__time" th:text="${movie.duration}">105 min</p>
+                    <p class="movie__time" th:text="${movie.duration}+' min'">105 min</p>
 
                     <p class="movie__option">
                         <strong>Country: </strong><a th:text="${movie.country}" href="#">USA</a>
@@ -135,7 +135,7 @@
                     </p>
                     <p class="movie__option">
                         <strong>Release date: </strong><span
-                            th:text="${#dates.format(movie.releaseDate,'yyyy-MM-dd HH:mm:ss')}">November 1, 2013</span>
+                            th:text="${#dates.format(movie.releaseDate,'yyyy-MM-dd')}">November 1, 2013</span>
                     </p>
                     <p class="movie__option">
                         <strong>Director: </strong><a href="#" th:text="${movie.directors}">Jon Turteltaub</a>
@@ -149,7 +149,7 @@
 
                     <div class="movie__btns">
                         <a th:href="@{/book1(movieId=${movie.id})}" class="btn btn-md btn--warning">预订此电影</a>
-                        <a href="#" class="watchlist">添加到播放列表</a>
+                        <a th:attr="data-movieId=${movie.id}" class="watchlist addWatchlist">添加到播放列表</a>
                     </div>
 
                     <div class="preview-footer">

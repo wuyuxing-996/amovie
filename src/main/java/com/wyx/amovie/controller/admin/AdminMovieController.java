@@ -26,7 +26,7 @@ import java.util.List;
 @CrossOrigin
 @Controller
 @RequestMapping(value = "/api/movies")
-public class MovieController {
+public class AdminMovieController {
 
     @Autowired
     private MovieService movieService;
@@ -45,10 +45,7 @@ public class MovieController {
     @GetMapping(value = "{id}")
     public ResponseEntity getById(@PathVariable(value = "id") Integer id) {
         Movie movie = movieService.getById(id);
-        if (movie != null) {
-            return ResponseEntity.ok(movie);
-        }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return Result.checkObject(movie);
     }
 
     @GetMapping(value = "{id}/scenes")
@@ -113,7 +110,6 @@ public class MovieController {
         Movie movie = new Movie();
         BeanUtils.copyProperties(movieForm, movie);
         //TODO 时间转换
-        movie.setName(movieForm.getMovieName());
         movie.setReleaseDate(new Date());
         return movie;
     }

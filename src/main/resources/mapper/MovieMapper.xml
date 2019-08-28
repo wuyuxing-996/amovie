@@ -60,8 +60,12 @@
         WHERE id = #{id}
     </update>
 
-    <select id="getMovieReleased" resultMap="movieResult">
+    <!--获取已经上映的电影-->
+    <select id="getMovieReleased" resultMap="movieResult" parameterType="Integer">
         select * from movie where status=#{status}
     </select>
 
+    <select id="getUserMovie" resultMap="movieResult">
+        SELECT m.* FROM `watch` w LEFT JOIN `movie` m ON w.movie_id=m.id where w.user_id=#{userId}
+    </select>
 </mapper>

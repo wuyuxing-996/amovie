@@ -35,16 +35,6 @@ public class PageController {
         return "news-list";
     }
 
-    @RequestMapping(value = "/watchlist")
-    public String watchList() {
-        return "watchlist";
-    }
-
-    @RequestMapping(value = "/movie")
-    public String detial() {
-        return "movie";
-    }
-
     @RequestMapping(value = "/404")
     public String error() {
         return "404";

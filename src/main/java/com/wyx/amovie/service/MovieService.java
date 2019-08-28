@@ -62,4 +62,12 @@ public interface MovieService {
      * @return
      */
     List<Movie> getMovieReleased();
+
+    /**
+     * 获取某人收藏的电影
+     *
+     * @param userId
+     * @return
+     */
+    List<Movie> getUserMovie(Integer userId);
 }

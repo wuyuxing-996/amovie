@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class MovieForm {
     private Integer id;
-    private String movieName;
+    private String name;
     private String duration;
     private String directors;
     private String actors;

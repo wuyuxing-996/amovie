@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL-->
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="~{/fragment/common-fragment :: head(播放列表)}"></div>
@@ -13,10 +14,10 @@
         <div class="col-sm-12">
 
             <!-- MovieService preview item -->
-            <div class="movie movie--preview movie--full release">
+            <div th:each="movie:${movies}" class="movie movie--preview movie--full release">
                 <div class="col-sm-3 col-md-2 col-lg-2">
                     <div class="movie__images">
-                        <img alt="" src="http://placehold.it/380x600"/>
+                        <img alt="" th:src="${movie.poster}"/>
                     </div>
                     <!-- 评论数 -->
                     <div class="movie__feature">
@@ -25,29 +26,27 @@
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
-                    <a href="movie.html" class="movie__title link--huge"
-                    >Last Vegas (2013)</a
-                    >
+                    <a th:href="'/movie/'+${movie.id}" th:text="${movie.name}" class="movie__title link--huge"
+                    >Last Vegas (2013)</a>
 
-                    <p class="movie__time">105 min</p>
+                    <p th:text="${movie.duration}+' min'" class="movie__time">105 min</p>
 
                     <p class="movie__option">
-                        <strong>Country: </strong><a href="#">USA</a>
+                        <strong>Country: </strong><a th:text="${movie.country}" href="#">USA</a>
                     </p>
                     <p class="movie__option">
-                        <strong>Category: </strong><a href="#">Comady</a>
+                        <strong>Category: </strong><a th:each="cate:${movie.categories}" th:text="${cate.name}+' '"
+                                                      href="#">Comady</a>
                     </p>
                     <p class="movie__option">
-                        <strong>Release date: </strong>November 1, 2013
+                        <strong>Release date: </strong><span
+                            th:text="${#dates.format(movie.releaseDate,'yyyy-MM-dd')}">November 1, 2013</span>
                     </p>
                     <p class="movie__option">
                         <strong>Director: </strong><a href="#">Jon Turteltaub</a>
                     </p>
                     <p class="movie__option">
-                        <strong>Actors: </strong><a href="#">Robert De Niro</a>,
-                        <a href="#">Michael Douglas</a>, <a href="#">Morgan Freeman</a>,
-                        <a href="#">Kevin Kline</a>, <a href="#">Mary Steenburgen</a>,
-                        <a href="#">Jerry Ferrara</a>, <a href="#">Romany Malco</a>
+                        <strong>Actors: </strong><a th:text="${movie.actors}" href="#">Robert De Niro</a>
                         <a href="#">...</a>
                     </p>
                     <p class="movie__option">
@@ -55,8 +54,8 @@
                     </p>
 
                     <div class="movie__btns">
-                        <a href="#" class="btn btn-md btn--warning">预订此电影</a>
-                        <a href="#" class="watchlist">添加到播放列表</a>
+                        <a th:href="@{/book1(movieId=${movie.id})}" class="btn btn-md btn--warning">预订此电影</a>
+                        <a th:attr="data-movieId=${movie.id}" class="watchlist removeWatchlist">从播放列表移除</a>
                     </div>
 
                     <div class="preview-footer">
@@ -74,8 +73,9 @@
 
             <div class="coloum-wrapper">
                 <div class="pagination paginatioon--full">
-                    <a href="#" class="pagination__prev">prev</a>
-                    <a href="#" class="pagination__next">next</a>
+                    <a th:href="@{/watch(page=${pageNum}-1)}" class="pagination__prev">prev</a>
+                    <!--/*@thymesVar id="pageNum" type="int"*/-->
+                    <a th:href="@{/watch(page=${pageNum}+1)}" class="pagination__next">next</a>
                 </div>
             </div>
         </div>

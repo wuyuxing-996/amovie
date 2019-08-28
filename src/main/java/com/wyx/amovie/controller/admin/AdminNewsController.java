@@ -19,7 +19,7 @@ import java.util.Date;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/news")
-public class NewsController {
+public class AdminNewsController {
 
     @Autowired
     private NewsService newsService;

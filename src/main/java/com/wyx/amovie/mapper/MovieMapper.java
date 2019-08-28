@@ -82,4 +82,12 @@ public interface MovieMapper {
      * @return
      */
     List<Movie> getMovieReleased(Integer status);
+
+    /**
+     * 获取某人收藏的所有电影
+     *
+     * @param userId
+     * @return
+     */
+    List<Movie> getUserMovie(Integer userId);
 }

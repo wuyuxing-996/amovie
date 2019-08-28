@@ -3717,6 +3717,18 @@ ul#navigation a:hover {
     transition: 0.5s;
 }
 
+.removeWatchlist:before {
+    content: '\f056';
+    color: #4c4145;
+    font-family: "FontAwesome";
+    font-size: 16px;
+    position: absolute;
+    top: 4px;
+    left: 11px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
 .watchlist:hover,
 .watchlist:focus {
     text-decoration: none;
