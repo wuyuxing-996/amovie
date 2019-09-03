@@ -13,7 +13,7 @@
         <div class="order-container">
             <div class="order">
                 <img class="order__images" alt='' src="images/tickets.png">
-                <p class="order__title">预订:<span th:text="' '+${scenes.get(0).movieName}"><br><span
+                <p class="order__title">预订:<span th:text="' '+${scenes.get(0).movieName}"></span><br><span
                         class="order__descript">祝您观影愉快！</span></p>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     </div>
                     <ul class="col-sm-6 items-wrap">
                         <li th:each="scene:${scenes}" th:text="${scene.showtime}" class="time-select__item"
-                            th:attr="data-sceneId=${scene.id},data-price=${scene.price},data-movieId=${scene.movieId},data-name=${scene.movieName},data-time=${scene.showtime}">
+                            th:attr="data-sceneId=${scene.id}">
                             09:00
                         </li>
                         <!--                        <li class="time-select__item" data-time='11:00'>11:00</li>
@@ -46,12 +46,7 @@
     <div class="clearfix"></div>
 
     <form id='film-and-time' class="booking-form" method='get' action='/book2'>
-        <input type='text' name='choosenMovie' class="choosen-movie">
-        <input type='text' name='choosenMovieId' class="choosen-movieId">
-        <input type='text' name='choosenPrice' class="choosen-price">
-        <input type='text' name='choosenTime' class="choosen-time">
-        <input type='text' name='choosenDate' class="choosen-date">
-        <input type='text' name='choosenScene' class="choosen-scene">
+        <input type='text' name='sceneId' class="choosen-scene">
 
         <div class="booking-pagination">
             <a href="#" class="booking-pagination__prev hide--arrow">

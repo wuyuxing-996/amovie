@@ -13,11 +13,10 @@
     <section class="container">
         <div class="order-container">
             <div class="order">
-                <img class="order__images" alt='' src="images/tickets.png">
+                <img class="order__images" alt='' src="/images/tickets.png">
                 <p class="order__title">感谢 <br><span class="order__descript">您已成功预订此电影！</span>
                 </p>
             </div>
-
             <div class="ticket">
                 <div class="ticket-position">
                     <div class="ticket__indecator indecator--pre">
@@ -26,24 +25,25 @@
                     <div class="ticket__inner">
 
                         <div class="ticket-secondary">
-                            <span class="ticket__item">票号：<strong
-                                    class="ticket__number">a126bym4</strong></span>
-                            <span th:text="${bookForm.choosenDate}" class="ticket__item ticket__date">25/10/2013</span>
-                            <span th:text="${bookForm.choosenTime}" class="ticket__item ticket__time">17:45</span>
+                            <span class="ticket__item">票号：<strong th:text="${order.ticketNum}"
+                                                                  class="ticket__number">a126bym4</strong></span>
+                            <span th:text="${#dates.format(order.createTime,'yyyy-MM-dd')}"
+                                  class="ticket__item ticket__date">25/10/2013</span>
+                            <span th:text="${order.showtime}" class="ticket__item ticket__time">17:45</span>
                             <span class="ticket__item">影院: <span class="ticket__cinema">万达影城</span></span>
                             <span class="ticket__item">影厅: <span class="ticket__hall">巨幕厅</span></span>
                             <span class="ticket__item ticket__price">总价: <strong
-                                    th:text="'￥'+${bookForm.choosenCost}"
+                                    th:text="'￥'+${order.totalPrice}"
                                     class="ticket__cost">$60</strong></span>
                         </div>
 
                         <div class="ticket-primery">
                             <span class="ticket__item ticket__item--primery ticket__film">电影:<br><strong
-                                    th:text="${bookForm.choosenMovie}"
+                                    th:text="${order.movieName}"
                                     class="ticket__movie">The Fifth Estate (2013)</strong></span>
                             <span
                                     class="ticket__item ticket__item--primery">座位: <span
-                                    th:text="'  '+${bookForm.choosenSits}"
+                                    th:text="' '+${order.seat}"
                                     class="ticket__place">11F, 12F, 13F</span></span>
                         </div>
 

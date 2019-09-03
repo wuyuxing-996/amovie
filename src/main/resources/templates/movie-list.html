@@ -152,7 +152,8 @@
 
                     <div class="movie__btns">
                         <a th:href="@{/book1(movieId=${movie.id})}" class="btn btn-md btn--warning">预订此电影</a>
-                        <a th:attr="data-movieId=${movie.id}" class="watchlist addWatchlist">添加到播放列表</a>
+                        <a th:if="${session.login!=null}" th:attr="data-movieId=${movie.id}"
+                           class="watchlist addWatchlist">添加到播放列表</a>
                     </div>
 
                     <div class="preview-footer">

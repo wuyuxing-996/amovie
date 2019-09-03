@@ -80,4 +80,11 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderVoList;
     }
+
+    @Override
+    public OrderVo getTicketByNum(Integer userId, String ticketNum) {
+        OrderVo orderVo = orderMapper.getTicketByNum(userId, ticketNum);
+        orderVo.setSeat(orderVo.getSeat().replaceAll("#", ","));
+        return orderVo;
+    }
 }

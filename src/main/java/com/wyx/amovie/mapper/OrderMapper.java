@@ -80,4 +80,14 @@ public interface OrderMapper {
      */
     @Select("select o.*,s.movie_name,s.showtime from `order` o LEFT JOIN scene s on o.scene_id=s.id where o.user_id=#{userId}")
     List<OrderVo> getTicketByUserId(Integer userId);
+
+    /**
+     * 获取某张票
+     *
+     * @param userId
+     * @param ticketNum
+     * @return
+     */
+    @Select("select o.*,s.movie_name,s.showtime from `order` o LEFT JOIN scene s on o.scene_id=s.id where o.user_id=#{userId} and o.ticket_num=#{ticketNum}")
+    OrderVo getTicketByNum(Integer userId, String ticketNum);
 }

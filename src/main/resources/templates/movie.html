@@ -54,7 +54,8 @@
                         <p><a href="#" th:text="'评论: '+${reviews.size()}" class="comment-link">评论: 15</a></p>
                         <div class="movie__btns movie__btns--full">
                             <a th:href="@{/book1(movieId=${movie.id})}" class="btn btn-md btn--warning">预订此电影</a>
-                            <a th:attr="data-movieId=${movie.id}" class="watchlist addWatchlist">添加到播放列表</a>
+                            <a th:if="${session.login!=null}" th:attr="data-movieId=${movie.id}"
+                               class="watchlist addWatchlist">添加到播放列表</a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +92,6 @@
 
                 <div class="comment-wrapper">
                     <form id="comment-form" class="comment-form">
-                        <input type="text" hidden name="userId" th:value="${session.login.getId()}">
                         <input type="text" hidden name="movieId" th:value="${movie.id}">
                 <textarea
                         class="comment-form__text"

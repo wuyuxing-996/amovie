@@ -15,15 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookForm {
     //第一次提交
-    private Integer choosenMovieId;
-    private String choosenMovie;
-    private String choosenTime;
-    private String choosenDate;
-    private Integer choosenScene;
-    private Integer choosenPrice;
+
+    private String movieName;
+    private String showtime;
+    private String showDate;
+    private Integer sceneId;
+    private Integer price;
 
     //第二次提交
-    private Integer choosenNumber;
-    private Integer choosenCost;
-    private String choosenSits;
+
+    private Integer siteNum;
+    private Integer totalPrice;
+    private String bookedSits;
 }

@@ -13,8 +13,8 @@
     <section class="container">
         <div class="order-container">
             <div class="order">
-                <img class="order__images" alt='' src="images/tickets.png">
-                <p class="order__title">预订:<span th:text="' '+${bookForm.choosenMovie}"></span><br><span
+                <img class="order__images" alt='' src="/images/tickets.png">
+                <p class="order__title">预订:<span th:text="' '+${bookForm.movieName}"></span><br><span
                         class="order__descript">祝您观影愉快！</span></p>
             </div>
         </div>
@@ -28,11 +28,11 @@
             <div class="checkout-wrapper">
                 <h2 class="page-heading">价格</h2>
                 <ul class="book-result">
-                    <li class="book-result__item">票数: <span th:text="${bookForm.choosenNumber}"
+                    <li class="book-result__item">票数: <span th:text="${bookForm.siteNum}"
                                                             class="book-result__count booking-ticket">3</span></li>
-                    <li class="book-result__item">单价: <span th:text="'￥'+${bookForm.choosenPrice}"
-                            class="book-result__count booking-price">￥20</span></li>
-                    <li class="book-result__item">总价: <span th:text="'￥'+${bookForm.choosenCost}"
+                    <li class="book-result__item">单价: <span th:text="'￥'+${bookForm.price}"
+                                                            class="book-result__count booking-price">￥20</span></li>
+                    <li class="book-result__item">总价: <span th:text="'￥'+${bookForm.totalPrice}"
                                                             class="book-result__count booking-cost">￥60</span></li>
                 </ul>
 

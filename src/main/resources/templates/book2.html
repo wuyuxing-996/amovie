@@ -15,7 +15,7 @@
             <div class="order-container">
                 <div class="order">
                     <img class="order__images" alt='' src="images/tickets.png">
-                    <p class="order__title">预订:<span th:text="' '+${bookForm.choosenMovie}"><br><span
+                    <p class="order__title">预订:<span th:text="' '+${bookForm.movieName}"></span><br><span
                             class="order__descript">祝您观影愉快！</span></p>
                 </div>
             </div>
@@ -28,9 +28,9 @@
                 <div class="choose-sits__info choose-sits__info--first">
                     <ul>
                         <li class="sits-price marker--none"><strong>价格</strong></li>
-                        <li th:text="'￥'+${bookForm.choosenPrice}" class="sits-price sits-price--cheap">￥10</li>
-                        <li th:text="'￥'+${bookForm.choosenPrice}" class="sits-price sits-price--middle">￥20</li>
-                        <li th:text="'￥'+${bookForm.choosenPrice}" class="sits-price sits-price--expensive">￥30</li>
+                        <li th:text="'￥'+${bookForm.price}" class="sits-price sits-price--cheap">￥10</li>
+                        <li th:text="'￥'+${bookForm.price}" class="sits-price sits-price--middle">￥20</li>
+                        <li th:text="'￥'+${bookForm.price}" class="sits-price sits-price--expensive">￥30</li>
                     </ul>
                 </div>
 
@@ -40,6 +40,7 @@
                         <li class="sits-state sits-state--your">已选择的</li>
                     </ul>
                 </div>
+                <input type="text" hidden id="sits" th:value="${sits}">
 
                 <div class="col-sm-12 col-lg-10 col-lg-offset-1">
                     <div class="sits-area hidden-xs">
@@ -62,367 +63,367 @@
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--cheap" data-place='A2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A2</span>
+                                      th:attr="data-price=${bookForm.price}">A2</span>
                                 <span class="sits__place sits-price--cheap" data-place='A3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A3</span>
+                                      th:attr="data-price=${bookForm.price}">A3</span>
                                 <span class="sits__place sits-price--cheap" data-place='A4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A4</span>
+                                      th:attr="data-price=${bookForm.price}">A4</span>
                                 <span class="sits__place sits-price--cheap" data-place='A5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A5</span>
+                                      th:attr="data-price=${bookForm.price}">A5</span>
                                 <span class="sits__place sits-price--cheap" data-place='A6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A6</span>
+                                      th:attr="data-price=${bookForm.price}">A6</span>
                                 <span class="sits__place sits-price--cheap" data-place='A7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A7</span>
+                                      th:attr="data-price=${bookForm.price}">A7</span>
                                 <span class="sits__place sits-price--cheap" data-place='A8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A8</span>
+                                      th:attr="data-price=${bookForm.price}">A8</span>
                                 <span class="sits__place sits-price--cheap" data-place='A9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A9</span>
+                                      th:attr="data-price=${bookForm.price}">A9</span>
                                 <span class="sits__place sits-price--cheap" data-place='A10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A10</span>
+                                      th:attr="data-price=${bookForm.price}">A10</span>
                                 <span class="sits__place sits-price--cheap" data-place='A11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A11</span>
+                                      th:attr="data-price=${bookForm.price}">A11</span>
                                 <span class="sits__place sits-price--cheap" data-place='A12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A12</span>
+                                      th:attr="data-price=${bookForm.price}">A12</span>
                                 <span class="sits__place sits-price--cheap" data-place='A13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A13</span>
+                                      th:attr="data-price=${bookForm.price}">A13</span>
                                 <span class="sits__place sits-price--cheap" data-place='A14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A14</span>
+                                      th:attr="data-price=${bookForm.price}">A14</span>
                                 <span class="sits__place sits-price--cheap" data-place='A15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A15</span>
+                                      th:attr="data-price=${bookForm.price}">A15</span>
                                 <span class="sits__place sits-price--cheap" data-place='A16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A16</span>
+                                      th:attr="data-price=${bookForm.price}">A16</span>
                                 <span class="sits__place sits-price--cheap" data-place='A17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">A17</span>
+                                      th:attr="data-price=${bookForm.price}">A17</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--cheap" data-place='B1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B1</span>
+                                      th:attr="data-price=${bookForm.price}">B1</span>
                                 <span class="sits__place sits-price--cheap" data-place='B2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B2</span>
+                                      th:attr="data-price=${bookForm.price}">B2</span>
                                 <span class="sits__place sits-price--cheap" data-place='B3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B3</span>
+                                      th:attr="data-price=${bookForm.price}">B3</span>
                                 <span class="sits__place sits-price--cheap" data-place='B4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B4</span>
+                                      th:attr="data-price=${bookForm.price}">B4</span>
                                 <span class="sits__place sits-price--cheap" data-place='B5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B5</span>
+                                      th:attr="data-price=${bookForm.price}">B5</span>
                                 <span class="sits__place sits-price--cheap" data-place='B6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B6</span>
+                                      th:attr="data-price=${bookForm.price}">B6</span>
                                 <span class="sits__place sits-price--cheap" data-place='B7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B7</span>
+                                      th:attr="data-price=${bookForm.price}">B7</span>
                                 <span class="sits__place sits-price--cheap" data-place='B8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B8</span>
+                                      th:attr="data-price=${bookForm.price}">B8</span>
                                 <span class="sits__place sits-price--cheap" data-place='B9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B9</span>
+                                      th:attr="data-price=${bookForm.price}">B9</span>
                                 <span class="sits__place sits-price--cheap" data-place='B10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B10</span>
+                                      th:attr="data-price=${bookForm.price}">B10</span>
                                 <span class="sits__place sits-price--cheap" data-place='B11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B11</span>
+                                      th:attr="data-price=${bookForm.price}">B11</span>
                                 <span class="sits__place sits-price--cheap" data-place='B12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B12</span>
+                                      th:attr="data-price=${bookForm.price}">B12</span>
                                 <span class="sits__place sits-price--cheap" data-place='B13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B13</span>
+                                      th:attr="data-price=${bookForm.price}">B13</span>
                                 <span class="sits__place sits-price--cheap" data-place='B14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B14</span>
+                                      th:attr="data-price=${bookForm.price}">B14</span>
                                 <span class="sits__place sits-price--cheap" data-place='B15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B15</span>
+                                      th:attr="data-price=${bookForm.price}">B15</span>
                                 <span class="sits__place sits-price--cheap" data-place='B16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B16</span>
+                                      th:attr="data-price=${bookForm.price}">B16</span>
                                 <span class="sits__place sits-price--cheap" data-place='B17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B17</span>
+                                      th:attr="data-price=${bookForm.price}">B17</span>
                                 <span class="sits__place sits-price--cheap" data-place='B18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">B18</span>
+                                      th:attr="data-price=${bookForm.price}">B18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--cheap" data-place='C1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C1</span>
+                                      th:attr="data-price=${bookForm.price}">C1</span>
                                 <span class="sits__place sits-price--cheap" data-place='C2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C2</span>
+                                      th:attr="data-price=${bookForm.price}">C2</span>
                                 <span class="sits__place sits-price--cheap" data-place='C3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C3</span>
+                                      th:attr="data-price=${bookForm.price}">C3</span>
                                 <span class="sits__place sits-price--cheap" data-place='C4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C4</span>
+                                      th:attr="data-price=${bookForm.price}">C4</span>
                                 <span class="sits__place sits-price--cheap" data-place='C5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C5</span>
+                                      th:attr="data-price=${bookForm.price}">C5</span>
                                 <span class="sits__place sits-price--cheap" data-place='C6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C6</span>
+                                      th:attr="data-price=${bookForm.price}">C6</span>
                                 <span class="sits__place sits-price--cheap" data-place='C7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C7</span>
+                                      th:attr="data-price=${bookForm.price}">C7</span>
                                 <span class="sits__place sits-price--cheap" data-place='C8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C8</span>
+                                      th:attr="data-price=${bookForm.price}">C8</span>
                                 <span class="sits__place sits-price--cheap" data-place='C9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C9</span>
+                                      th:attr="data-price=${bookForm.price}">C9</span>
                                 <span class="sits__place sits-price--cheap" data-place='C10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C10</span>
+                                      th:attr="data-price=${bookForm.price}">C10</span>
                                 <span class="sits__place sits-price--cheap" data-place='C11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C11</span>
+                                      th:attr="data-price=${bookForm.price}">C11</span>
                                 <span class="sits__place sits-price--cheap" data-place='C12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C12</span>
+                                      th:attr="data-price=${bookForm.price}">C12</span>
                                 <span class="sits__place sits-price--cheap" data-place='C13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C13</span>
+                                      th:attr="data-price=${bookForm.price}">C13</span>
                                 <span class="sits__place sits-price--cheap" data-place='C14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C14</span>
+                                      th:attr="data-price=${bookForm.price}">C14</span>
                                 <span class="sits__place sits-price--cheap" data-place='C15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C15</span>
+                                      th:attr="data-price=${bookForm.price}">C15</span>
                                 <span class="sits__place sits-price--cheap" data-place='C16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C16</span>
+                                      th:attr="data-price=${bookForm.price}">C16</span>
                                 <span class="sits__place sits-price--cheap" data-place='C17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C17</span>
+                                      th:attr="data-price=${bookForm.price}">C17</span>
                                 <span class="sits__place sits-price--cheap" data-place='C18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">C18</span>
+                                      th:attr="data-price=${bookForm.price}">C18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--cheap" data-place='D1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D1</span>
+                                      th:attr="data-price=${bookForm.price}">D1</span>
                                 <span class="sits__place sits-price--cheap" data-place='D2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D2</span>
+                                      th:attr="data-price=${bookForm.price}">D2</span>
                                 <span class="sits__place sits-price--cheap" data-place='D3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D3</span>
+                                      th:attr="data-price=${bookForm.price}">D3</span>
                                 <span class="sits__place sits-price--cheap" data-place='D4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D4</span>
+                                      th:attr="data-price=${bookForm.price}">D4</span>
                                 <span class="sits__place sits-price--cheap" data-place='D5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D5</span>
+                                      th:attr="data-price=${bookForm.price}">D5</span>
                                 <span class="sits__place sits-price--cheap" data-place='D6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D6</span>
-                                <span class="sits__place sits-price--cheap sits-state--not" data-place='D7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D7</span>
-                                <span class="sits__place sits-price--cheap sits-state--not" data-place='D8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D8</span>
+                                      th:attr="data-price=${bookForm.price}">D6</span>
+                                <span class="sits__place sits-price--cheap" data-place='D7'
+                                      th:attr="data-price=${bookForm.price}">D7</span>
+                                <span class="sits__place sits-price--cheap" data-place='D8'
+                                      th:attr="data-price=${bookForm.price}">D8</span>
                                 <span class="sits__place sits-price--cheap" data-place='D9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D9</span>
+                                      th:attr="data-price=${bookForm.price}">D9</span>
                                 <span class="sits__place sits-price--cheap" data-place='D10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D10</span>
+                                      th:attr="data-price=${bookForm.price}">D10</span>
                                 <span class="sits__place sits-price--cheap" data-place='D11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D11</span>
+                                      th:attr="data-price=${bookForm.price}">D11</span>
                                 <span class="sits__place sits-price--cheap" data-place='D12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D12</span>
+                                      th:attr="data-price=${bookForm.price}">D12</span>
                                 <span class="sits__place sits-price--cheap" data-place='D13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D13</span>
+                                      th:attr="data-price=${bookForm.price}">D13</span>
                                 <span class="sits__place sits-price--cheap" data-place='D14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D14</span>
+                                      th:attr="data-price=${bookForm.price}">D14</span>
                                 <span class="sits__place sits-price--cheap" data-place='D15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D15</span>
+                                      th:attr="data-price=${bookForm.price}">D15</span>
                                 <span class="sits__place sits-price--cheap" data-place='D16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D16</span>
+                                      th:attr="data-price=${bookForm.price}">D16</span>
                                 <span class="sits__place sits-price--cheap" data-place='D17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D17</span>
+                                      th:attr="data-price=${bookForm.price}">D17</span>
                                 <span class="sits__place sits-price--cheap" data-place='D18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">D18</span>
+                                      th:attr="data-price=${bookForm.price}">D18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--middle" data-place='E1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E1</span>
+                                      th:attr="data-price=${bookForm.price}">E1</span>
                                 <span class="sits__place sits-price--middle" data-place='E2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E2</span>
+                                      th:attr="data-price=${bookForm.price}">E2</span>
                                 <span class="sits__place sits-price--middle" data-place='E3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E3</span>
+                                      th:attr="data-price=${bookForm.price}">E3</span>
                                 <span class="sits__place sits-price--middle" data-place='E4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E4</span>
+                                      th:attr="data-price=${bookForm.price}">E4</span>
                                 <span class="sits__place sits-price--middle" data-place='E5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E5</span>
+                                      th:attr="data-price=${bookForm.price}">E5</span>
                                 <span class="sits__place sits-price--middle" data-place='E6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E6</span>
+                                      th:attr="data-price=${bookForm.price}">E6</span>
                                 <span class="sits__place sits-price--middle" data-place='E7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E7</span>
+                                      th:attr="data-price=${bookForm.price}">E7</span>
                                 <span class="sits__place sits-price--middle" data-place='E8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E8</span>
+                                      th:attr="data-price=${bookForm.price}">E8</span>
                                 <span class="sits__place sits-price--middle" data-place='E9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E9</span>
+                                      th:attr="data-price=${bookForm.price}">E9</span>
                                 <span class="sits__place sits-price--middle" data-place='E10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E10</span>
+                                      th:attr="data-price=${bookForm.price}">E10</span>
                                 <span class="sits__place sits-price--middle" data-place='E11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E11</span>
+                                      th:attr="data-price=${bookForm.price}">E11</span>
                                 <span class="sits__place sits-price--middle" data-place='E12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E12</span>
+                                      th:attr="data-price=${bookForm.price}">E12</span>
                                 <span class="sits__place sits-price--middle" data-place='E13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E13</span>
+                                      th:attr="data-price=${bookForm.price}">E13</span>
                                 <span class="sits__place sits-price--middle" data-place='E14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E14</span>
+                                      th:attr="data-price=${bookForm.price}">E14</span>
                                 <span class="sits__place sits-price--middle" data-place='E15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E15</span>
+                                      th:attr="data-price=${bookForm.price}">E15</span>
                                 <span class="sits__place sits-price--middle" data-place='E16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E16</span>
+                                      th:attr="data-price=${bookForm.price}">E16</span>
                                 <span class="sits__place sits-price--middle" data-place='E17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E17</span>
+                                      th:attr="data-price=${bookForm.price}">E17</span>
                                 <span class="sits__place sits-price--middle" data-place='E18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">E18</span>
+                                      th:attr="data-price=${bookForm.price}">E18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--middle" data-place='F1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F1</span>
+                                      th:attr="data-price=${bookForm.price}">F1</span>
                                 <span class="sits__place sits-price--middle" data-place='F2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F2</span>
+                                      th:attr="data-price=${bookForm.price}">F2</span>
                                 <span class="sits__place sits-price--middle" data-place='F3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F3</span>
+                                      th:attr="data-price=${bookForm.price}">F3</span>
                                 <span class="sits__place sits-price--middle" data-place='F4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F4</span>
+                                      th:attr="data-price=${bookForm.price}">F4</span>
                                 <span class="sits__place sits-price--middle" data-place='F5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F5</span>
+                                      th:attr="data-price=${bookForm.price}">F5</span>
                                 <span class="sits__place sits-price--middle" data-place='F6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F6</span>
+                                      th:attr="data-price=${bookForm.price}">F6</span>
                                 <span class="sits__place sits-price--middle" data-place='F7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F7</span>
+                                      th:attr="data-price=${bookForm.price}">F7</span>
                                 <span class="sits__place sits-price--middle" data-place='F8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F8</span>
+                                      th:attr="data-price=${bookForm.price}">F8</span>
                                 <span class="sits__place sits-price--middle" data-place='F9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F9</span>
+                                      th:attr="data-price=${bookForm.price}">F9</span>
                                 <span class="sits__place sits-price--middle" data-place='F10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F10</span>
+                                      th:attr="data-price=${bookForm.price}">F10</span>
                                 <span class="sits__place sits-price--middle" data-place='F11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F11</span>
+                                      th:attr="data-price=${bookForm.price}">F11</span>
                                 <span class="sits__place sits-price--middle" data-place='F12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F12</span>
+                                      th:attr="data-price=${bookForm.price}">F12</span>
                                 <span class="sits__place sits-price--middle" data-place='F13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F13</span>
+                                      th:attr="data-price=${bookForm.price}">F13</span>
                                 <span class="sits__place sits-price--middle" data-place='F14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F14</span>
+                                      th:attr="data-price=${bookForm.price}">F14</span>
                                 <span class="sits__place sits-price--middle" data-place='F15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F15</span>
+                                      th:attr="data-price=${bookForm.price}">F15</span>
                                 <span class="sits__place sits-price--middle" data-place='F16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F16</span>
+                                      th:attr="data-price=${bookForm.price}">F16</span>
                                 <span class="sits__place sits-price--middle" data-place='F17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F17</span>
+                                      th:attr="data-price=${bookForm.price}">F17</span>
                                 <span class="sits__place sits-price--middle" data-place='F18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">F18</span>
+                                      th:attr="data-price=${bookForm.price}">F18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--middle" data-place='G1'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G1</span>
+                                      th:attr="data-price=${bookForm.price}">G1</span>
                                 <span class="sits__place sits-price--middle" data-place='G2'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G2</span>
+                                      th:attr="data-price=${bookForm.price}">G2</span>
                                 <span class="sits__place sits-price--middle" data-place='G3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G3</span>
+                                      th:attr="data-price=${bookForm.price}">G3</span>
                                 <span class="sits__place sits-price--middle" data-place='G4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G4</span>
+                                      th:attr="data-price=${bookForm.price}">G4</span>
                                 <span class="sits__place sits-price--middle" data-place='G5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G5</span>
+                                      th:attr="data-price=${bookForm.price}">G5</span>
                                 <span class="sits__place sits-price--middle" data-place='G6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G6</span>
+                                      th:attr="data-price=${bookForm.price}">G6</span>
                                 <span class="sits__place sits-price--middle" data-place='G7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G7</span>
+                                      th:attr="data-price=${bookForm.price}">G7</span>
                                 <span class="sits__place sits-price--middle" data-place='G8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G8</span>
+                                      th:attr="data-price=${bookForm.price}">G8</span>
                                 <span class="sits__place sits-price--middle" data-place='G9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G9</span>
+                                      th:attr="data-price=${bookForm.price}">G9</span>
                                 <span class="sits__place sits-price--middle" data-place='G10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G10</span>
+                                      th:attr="data-price=${bookForm.price}">G10</span>
                                 <span class="sits__place sits-price--middle" data-place='G11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G11</span>
+                                      th:attr="data-price=${bookForm.price}">G11</span>
                                 <span class="sits__place sits-price--middle" data-place='G12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G12</span>
+                                      th:attr="data-price=${bookForm.price}">G12</span>
                                 <span class="sits__place sits-price--middle" data-place='G13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G13</span>
+                                      th:attr="data-price=${bookForm.price}">G13</span>
                                 <span class="sits__place sits-price--middle" data-place='G14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G14</span>
+                                      th:attr="data-price=${bookForm.price}">G14</span>
                                 <span class="sits__place sits-price--middle" data-place='G15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G15</span>
+                                      th:attr="data-price=${bookForm.price}">G15</span>
                                 <span class="sits__place sits-price--middle" data-place='G16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G16</span>
+                                      th:attr="data-price=${bookForm.price}">G16</span>
                                 <span class="sits__place sits-price--middle" data-place='G17'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G17</span>
+                                      th:attr="data-price=${bookForm.price}">G17</span>
                                 <span class="sits__place sits-price--middle" data-place='G18'
-                                      th:attr="data-price=${bookForm.choosenPrice}">G18</span>
+                                      th:attr="data-price=${bookForm.price}">G18</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--middle" data-place='I3'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I3</span>
+                                      th:attr="data-price=${bookForm.price}">I3</span>
                                 <span class="sits__place sits-price--middle" data-place='I4'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I4</span>
+                                      th:attr="data-price=${bookForm.price}">I4</span>
                                 <span class="sits__place sits-price--middle" data-place='I5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I5</span>
+                                      th:attr="data-price=${bookForm.price}">I5</span>
                                 <span class="sits__place sits-price--middle" data-place='I6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I6</span>
+                                      th:attr="data-price=${bookForm.price}">I6</span>
                                 <span class="sits__place sits-price--middle" data-place='I7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I7</span>
+                                      th:attr="data-price=${bookForm.price}">I7</span>
                                 <span class="sits__place sits-price--middle" data-place='I8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I8</span>
+                                      th:attr="data-price=${bookForm.price}">I8</span>
                                 <span class="sits__place sits-price--middle" data-place='I9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I9</span>
+                                      th:attr="data-price=${bookForm.price}">I9</span>
                                 <span class="sits__place sits-price--middle" data-place='I10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I10</span>
+                                      th:attr="data-price=${bookForm.price}">I10</span>
                                 <span class="sits__place sits-price--middle" data-place='I11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I11</span>
+                                      th:attr="data-price=${bookForm.price}">I11</span>
                                 <span class="sits__place sits-price--middle" data-place='I12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I12</span>
+                                      th:attr="data-price=${bookForm.price}">I12</span>
                                 <span class="sits__place sits-price--middle" data-place='I13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I13</span>
+                                      th:attr="data-price=${bookForm.price}">I13</span>
                                 <span class="sits__place sits-price--middle" data-place='I14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I14</span>
+                                      th:attr="data-price=${bookForm.price}">I14</span>
                                 <span class="sits__place sits-price--middle" data-place='I15'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I15</span>
+                                      th:attr="data-price=${bookForm.price}">I15</span>
                                 <span class="sits__place sits-price--middle" data-place='I16'
-                                      th:attr="data-price=${bookForm.choosenPrice}">I16</span>
+                                      th:attr="data-price=${bookForm.price}">I16</span>
                             </div>
 
                             <div class="sits__row additional-margin">
                                 <span class="sits__place sits-price--expensive" data-place='J5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J5</span>
+                                      th:attr="data-price=${bookForm.price}">J5</span>
                                 <span class="sits__place sits-price--expensive" data-place='J6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J6</span>
+                                      th:attr="data-price=${bookForm.price}">J6</span>
                                 <span class="sits__place sits-price--expensive" data-place='J7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J7</span>
+                                      th:attr="data-price=${bookForm.price}">J7</span>
                                 <span class="sits__place sits-price--expensive" data-place='J8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J8</span>
+                                      th:attr="data-price=${bookForm.price}">J8</span>
                                 <span class="sits__place sits-price--expensive" data-place='J9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J9</span>
+                                      th:attr="data-price=${bookForm.price}">J9</span>
                                 <span class="sits__place sits-price--expensive" data-place='J10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J10</span>
+                                      th:attr="data-price=${bookForm.price}">J10</span>
                                 <span class="sits__place sits-price--expensive" data-place='J11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J11</span>
+                                      th:attr="data-price=${bookForm.price}">J11</span>
                                 <span class="sits__place sits-price--expensive" data-place='J12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J12</span>
+                                      th:attr="data-price=${bookForm.price}">J12</span>
                                 <span class="sits__place sits-price--expensive" data-place='J13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J13</span>
+                                      th:attr="data-price=${bookForm.price}">J13</span>
                                 <span class="sits__place sits-price--expensive" data-place='J14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">J14</span>
+                                      th:attr="data-price=${bookForm.price}">J14</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--expensive" data-place='K5'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K5</span>
+                                      th:attr="data-price=${bookForm.price}">K5</span>
                                 <span class="sits__place sits-price--expensive" data-place='K6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K6</span>
+                                      th:attr="data-price=${bookForm.price}">K6</span>
                                 <span class="sits__place sits-price--expensive" data-place='K7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K7</span>
+                                      th:attr="data-price=${bookForm.price}">K7</span>
                                 <span class="sits__place sits-price--expensive" data-place='K8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K8</span>
+                                      th:attr="data-price=${bookForm.price}">K8</span>
                                 <span class="sits__place sits-price--expensive" data-place='K9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K9</span>
+                                      th:attr="data-price=${bookForm.price}">K9</span>
                                 <span class="sits__place sits-price--expensive" data-place='K10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K10</span>
+                                      th:attr="data-price=${bookForm.price}">K10</span>
                                 <span class="sits__place sits-price--expensive" data-place='K11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K11</span>
+                                      th:attr="data-price=${bookForm.price}">K11</span>
                                 <span class="sits__place sits-price--expensive" data-place='K12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K12</span>
+                                      th:attr="data-price=${bookForm.price}">K12</span>
                                 <span class="sits__place sits-price--expensive" data-place='K13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K13</span>
+                                      th:attr="data-price=${bookForm.price}">K13</span>
                                 <span class="sits__place sits-price--expensive" data-place='K14'
-                                      th:attr="data-price=${bookForm.choosenPrice}">K14</span>
+                                      th:attr="data-price=${bookForm.price}">K14</span>
                             </div>
 
                             <div class="sits__row">
                                 <span class="sits__place sits-price--expensive" data-place='L6'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L6</span>
+                                      th:attr="data-price=${bookForm.price}">L6</span>
                                 <span class="sits__place sits-price--expensive" data-place='L7'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L7</span>
+                                      th:attr="data-price=${bookForm.price}">L7</span>
                                 <span class="sits__place sits-price--expensive" data-place='L8'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L8</span>
+                                      th:attr="data-price=${bookForm.price}">L8</span>
                                 <span class="sits__place sits-price--expensive" data-place='L9'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L9</span>
+                                      th:attr="data-price=${bookForm.price}">L9</span>
                                 <span class="sits__place sits-price--expensive" data-place='L10'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L10</span>
+                                      th:attr="data-price=${bookForm.price}">L10</span>
                                 <span class="sits__place sits-price--expensive" data-place='L11'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L11</span>
+                                      th:attr="data-price=${bookForm.price}">L11</span>
                                 <span class="sits__place sits-price--expensive" data-place='L12'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L12</span>
+                                      th:attr="data-price=${bookForm.price}">L12</span>
                                 <span class="sits__place sits-price--expensive" data-place='L13'
-                                      th:attr="data-price=${bookForm.choosenPrice}">L13</span>
+                                      th:attr="data-price=${bookForm.price}">L13</span>
                             </div>
 
                             <aside class="sits__checked">
@@ -523,9 +524,9 @@
     <div class="clearfix"></div>
     <form id='film-and-time' class="booking-form">
 
-        <input type='text' name='choosenNumber' class="choosen-number">
-        <input type='text' name='choosenCost' class="choosen-cost">
-        <input type='text' name='choosenSits' class="choosen-sits">
+        <input type='text' name='siteNum' class="choosen-number">
+        <input type='text' name='totalPrice' class="choosen-cost">
+        <input type='text' name='bookedSits' class="choosen-sits">
 
 
         <div class="booking-pagination booking-pagination--margin">

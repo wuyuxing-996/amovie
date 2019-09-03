@@ -158,12 +158,7 @@ function init_Home() {
 function init_BookingOne() {
 
     //1.将数据放置到隐藏form中
-    var movie = $('.choosen-movie'),
-        movieId = $('.choosen-movieId'),
-        scene = $('.choosen-scene'),
-        date = $('.choosen-date'),
-        time = $('.choosen-time'),
-        price = $('.choosen-price');
+    var scene = $('.choosen-scene');
 
     //2.选择场次
     $('.time-select__item').click(function () {
@@ -171,17 +166,9 @@ function init_BookingOne() {
         $('.time-select__item').removeClass('active');
         $(this).addClass('active');
         //数据初始化
-        var chooseTime = $(this).attr('data-time');
-        var chooseMovie = $(this).attr('data-name');
         var chooseScene = $(this).attr(('data-sceneId'));
-        var choosenMovieId = $(this).attr(('data-movieId'));
-        var choosenPrice = $(this).attr(('data-price'));
-        movie.val(chooseMovie);
-        date.val("2018-08-08");
-        time.val(chooseTime);
+
         scene.val(chooseScene);
-        movieId.val(choosenMovieId);
-        price.val(choosenPrice);
     });
 
     //3.下一步触发发送
@@ -199,108 +186,6 @@ function init_BookingOne() {
         });*/
 }
 
-/*function init_BookingOne() {
-    "use strict";
-
-    //1. Buttons for choose order method
-    //order factor  没用
-    $('.order__control-btn').click(function (e) {
-        e.preventDefault();
-
-        $('.order__control-btn').removeClass('active');
-        $(this).addClass('active');
-    });
-
-    //2. Init vars for order data
-    // var for booking;
-    var movie = $('.choosen-movie'),
-        city = $('.choosen-city'),
-        date = $('.choosen-date'),
-        cinema = $('.choosen-cinema'),
-        time = $('.choosen-time');
-
-    //6. Choose variant proccess
-    //choose film   沒用
-    $('.film-images').click(function (e) {
-        //visual iteractive for choose
-        $('.film-images').removeClass('film--choosed');
-        $(this).addClass('film--choosed');
-
-        //data element init
-        var chooseFilm = $(this).parent().attr('data-film');
-        $('.choose-indector--film').find('.choosen-area').text(chooseFilm);
-
-        //data element set
-        movie.val(chooseFilm);
-
-    });
-
-    //choose time
-    $('.time-select__item').click(function () {
-        //visual iteractive for choose
-        $('.time-select__item').removeClass('active');
-        $(this).addClass('active');
-
-        //data element init
-        //var chooseTime = $(this).attr('data-time');
-        var chooseTime = $(this).attr('data-time');
-        $('.choose-indector--time').find('.choosen-area').text(chooseTime);
-
-        //data element init
-        //var chooseCinema = $(this).parent().parent().find('.time-select__place').text();
-
-        //data element set
-        time.val(chooseTime);
-        console.log(time.val());
-        //cinema.val(chooseCinema);
-    });
-
-    // choose (change) city and date for film
-
-    //data element init (default)
-    var chooseCity = $('.select .sbSelector').text();
-    var chooseDate = $('.datepicker__input').val();
-
-    //data element set (default)
-    city.val(chooseCity);
-    date.val(chooseDate);
-
-
-    $('.select .sbOptions').click(function () {
-        //data element change
-        var chooseCity = $('.select .sbSelector').text();
-        //data element set change
-        city.val(chooseCity);
-    });
-
-    $('.datepicker__input').change(function () {
-        //data element change
-        var chooseDate = $('.datepicker__input').val();
-        //data element set change
-        date.val(chooseDate);
-    });
-
-    // --- Step for data - serialize and send to next page---//
-    $('.booking-form').submit(function () {
-        var bookData = $(this).serialize();
-        $.get($(this).attr('action'), bookData);
-    });
-
-    //7. Visibility block on page control
-    //control block display on page
-    $('.choose-indector--film').click(function (e) {
-        e.preventDefault();
-        $(this).toggleClass('hide-content');
-        $('.choose-film').slideToggle(400);
-    });
-
-    $('.choose-indector--time').click(function (e) {
-        e.preventDefault();
-        $(this).toggleClass('hide-content');
-        $('.time-select').slideToggle(400);
-    })
-}*/
-
 //订票函数book2副本(使用)
 function init_BookingTwo() {
 
@@ -309,7 +194,15 @@ function init_BookingTwo() {
         sumTicket = $('.choosen-cost'),
         sits = $('.choosen-sits');
 
-    //2.获取座位和票价等信息
+    //2.使得已经预定的座位不可选
+    var bookedSits = $('#sits').val()
+    var selled = bookedSits.split("#");
+    $('span').filter(function () {
+        var res = $.inArray($(this).attr('data-place'), selled) != -1;
+        return res;
+    }).addClass('sits-state--not');
+
+    //3.获取座位和票价等信息
     var sum = 0;
 
     $('.sits__place').click(function (e) {
@@ -355,11 +248,11 @@ function init_BookingTwo() {
         sits.val(chooseSits.substr(1));
     });
 
-    //3.获取url中的信息
+    //4.获取url中的信息
     var url = decodeURIComponent(document.URL);
     var prevData = url.substr(url.indexOf('?') + 1);
 
-    //4.下一步触发表单提交
+    //5.下一步触发表单提交
     $('.book2Submit').click(function () {
         var bookData = $('.booking-form').serialize();
         var fullData = prevData + '&' + bookData;
@@ -369,26 +262,536 @@ function init_BookingTwo() {
         } else {
             window.location.href = action + "?" + fullData;
         }
-        /*$.get(action, fullData, function (data) {
-            window.location.href="/book3-buy";
-        });*/
     });
-    //5.发送请求
-    /*$('.booking-form').submit(function (e) {
-        e.preventDefault();
-        var bookData = $(this).serialize();
-
-        var fullData = prevDate + '&' + bookData;
-        var action = "/book3-buy";
-
-        $.get(action, fullData, function (data) {
-
-        });
-    });*/
-
 
 }
 
+//订票函数book3(使用)
+function init_BookingThree() {
+    var hasPay = false;
+    var num;
+    //获取url中的信息
+    var url = decodeURIComponent(document.URL);
+    var prevData = url.substr(url.indexOf('?') + 1);
+
+    //生成订单
+    $('.pay').click(function () {
+
+        $.post("/order", prevData, function (data) {
+            alert(data.message);
+            if (data.ticketNum != null) {
+                num = data.ticketNum;
+                hasPay = true;
+            }
+        }, 'json');
+    });
+    //查看该订单
+    $('.book3Submit').click(function () {
+        if (hasPay) {
+            window.location.href = "/book-final/" + num;
+        } else {
+            alert("请先支付哦！");
+        }
+    });
+
+}
+
+//movie-list的函数副本(使用)
+function init_MovieList() {
+    //1.选择城市，影院等
+    $(".select__sort").selectbox({
+        onChange: function (val, inst) {
+
+            $(inst.input[0]).children().each(function (item) {
+                $(this).removeAttr('selected');
+            });
+            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
+        }
+
+    });
+
+    //2.添加到播放列表
+    $(".addWatchlist").click(function () {
+        var movieId = $(this).attr('data-movieId');
+        var data = {
+            movieId: movieId,
+        };
+        $.post("/watch", data, function (data) {
+            alert(data);
+            window.location.reload();
+        });
+    });
+
+    //3.从播放列表移除
+    $(".removeWatchlist").click(function () {
+
+        var movieId = $(this).attr('data-movieId');
+
+        var r = confirm("确认删除该？");
+        if (r) {
+            $.ajax({
+                url: "/watch/" + movieId,
+                type: "POST",
+                data: {_method: "DELETE", movieId: movieId},
+                success: function (result) {
+                    alert(result);
+                    window.location.reload();
+                }
+
+            });
+
+        }
+        ;
+    });
+
+    //4.搜索电影
+    $("#searchBtn").click(function (e) {
+        e.preventDefault();
+        var keyword = $("input[name='keyword']").val().replace(/\s+/g, "");
+        var cate = $("#search-sort").val();
+        var url = "/" + cate + "/" + keyword;
+        if (keyword.length != 0) {
+            window.location.href = url;
+        }
+    });
+}
+
+//电影详情页函数副本(使用)
+function init_MoviePage() {
+    //1.评分
+    $('.score').raty({
+        width: 130,
+        score: 5,
+        path: '/images/rate/',
+        starOff: 'star-off.svg',
+        starOn: 'star-on.svg'
+    });
+
+    //2.回复
+    $('.comment__reply').click(function (e) {
+        e.preventDefault();
+
+        $('.comment').find('.comment-form').remove();
+        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
+                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
+                        </form>");
+    });
+
+    //3.场次添加样式
+    $('.time-select__item').click(function () {
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    //4.评论
+    $('.comment-form__btn').click(function () {
+        var content = $('.comment-form').find('[name=content]').val();
+        var formInput = $('.comment-form').serialize();
+        if (content.length != 0) {
+            $.post("/review", formInput, function (data) {
+                alert(data);
+                window.location.reload();
+            });
+        }
+    });
+
+    //5.添加到播放列表
+    $(".addWatchlist").click(function () {
+        var movieId = $(this).attr('data-movieId');
+        var data = {
+            movieId: movieId,
+        };
+        $.post("/watch", data, function (data) {
+            alert(data);
+            window.location.reload();
+        });
+    });
+}
+
+function init_Rates() {
+    "use strict";
+
+    //1. Rating fucntion
+    //Rating star
+    $('.score').raty({
+        width: 130,
+        score: 0,
+        path: '/images/rate/',
+        starOff: 'star-off.svg',
+        starOn: 'star-on.svg'
+    });
+
+    //After rate callback
+    $('.score').click(function () {
+        $(this).html('<span class="rates__done">感谢您的评分<span>')
+    })
+}
+
+function init_SinglePage() {
+    "use strict";
+
+    //2. Comment area control
+
+    //reply comment function
+    $('.comment__reply').click(function (e) {
+        e.preventDefault();
+
+        $('.comment').find('.comment-form').remove();
+
+
+        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
+                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
+                        </form>");
+    });
+}
+
+//未使用
+function init_CinemaList() {
+    "use strict";
+
+    //1. Dropdowns
+    //select 使得选项被选中 movie-list页面
+    $(".select__sort").selectbox({
+        onChange: function (val, inst) {
+
+            $(inst.input[0]).children().each(function (item) {
+                $(this).removeAttr('selected');
+            });
+            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
+        }
+
+    });
+
+    //2. Sorting buy category
+    // sorting function 按类别查询
+    $('.tags__item').click(function (e) {
+        //prevent the default behaviour of the link
+        e.preventDefault();
+
+        $('.tags__item').removeClass('item-active');
+        $(this).addClass('item-active');
+
+        var filter = $(this).attr('data-filter');
+
+        //show all the list items(this is needed to get the hidden ones shown)
+        $(".cinema-item").show();
+        //hide advertazing and pagination block
+        $('.adv-place').show();
+        $('.pagination').show();
+
+        /*using the :not attribute and the filter class in it we are selecting
+            only the list items that don't have that class and hide them '*/
+        if (filter.toLowerCase() !== 'all') {
+            $('.cinema-item:not(.' + filter + ')').hide();
+            //show advertazing and pagination block only on filter (all)
+            $('.pagination').hide();
+            $('.adv-place').hide();
+            // fix grid position
+            $('.row').css('clear', 'none');
+        }
+    });
+}
+
+//未使用
+function init_Contact() {
+    "use strict";
+
+    //1. Fullscreen map init
+    //Init map
+    var mapOptions = {
+        scaleControl: true,
+        center: new google.maps.LatLng(51.509708, -0.130539),
+        zoom: 15,
+        navigationControl: false,
+        streetViewControl: false,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById('location-map'), mapOptions);
+    var marker = new google.maps.Marker({
+        map: map,
+        position: map.getCenter()
+    });
+
+    //Custome map style
+    var map_style = [{stylers: [{saturation: -100}, {gamma: 3}]}, {
+        elementType: "labels.text.stroke",
+        stylers: [{visibility: "off"}]
+    }, {
+        featureType: "poi.business",
+        elementType: "labels.text",
+        stylers: [{visibility: "off"}]
+    }, {
+        featureType: "poi.business",
+        elementType: "labels.icon",
+        stylers: [{visibility: "off"}]
+    }, {
+        featureType: "poi.place_of_worship",
+        elementType: "labels.text",
+        stylers: [{visibility: "off"}]
+    }, {
+        featureType: "poi.place_of_worship",
+        elementType: "labels.icon",
+        stylers: [{visibility: "off"}]
+    }, {featureType: "road", elementType: "geometry", stylers: [{visibility: "simplified"}]}, {
+        featureType: "water",
+        stylers: [{visibility: "on"}, {saturation: 0}, {gamma: 2}, {hue: "#aaaaaa"}]
+    }, {
+        featureType: "administrative.neighborhood",
+        elementType: "labels.text.fill",
+        stylers: [{visibility: "off"}]
+    }, {
+        featureType: "road.local",
+        elementType: "labels.text",
+        stylers: [{visibility: "off"}]
+    }, {featureType: "transit.station", elementType: "labels.icon", stylers: [{visibility: "off"}]}];
+
+    //Then we use this data to create the styles.
+    var styled_map = new google.maps.StyledMapType(map_style, {name: "Cusmome style"});
+
+    map.mapTypes.set('map_styles', styled_map);
+    map.setMapTypeId('map_styles');
+
+
+    //=====================================
+
+    // Maker
+
+    //=====================================
+
+    //Creates the information to go in the pop-up info box.
+    var boxTextA = document.createElement("div");
+    boxTextA.innerHTML = '<span class="pop_up_box_text">Leicester Sq, London, WC2H 7LP</span>';
+
+    //Sets up the configuration options of the pop-up info box.
+    var infoboxOptionsA = {
+        content: boxTextA
+        , disableAutoPan: false
+        , maxWidth: 0
+        , pixelOffset: new google.maps.Size(30, -50)
+        , zIndex: null
+        , boxStyle: {
+            background: "#4c4145"
+            , opacity: 1
+            , width: "300px"
+            , color: " #b4b1b2"
+            , fontSize: "13px"
+            , padding: '14px 20px 15px'
+        }
+        , closeBoxMargin: "6px 2px 2px 2px"
+        , infoBoxClearance: new google.maps.Size(1, 1)
+        , closeBoxURL: "images/components/close.svg"
+        , isHidden: false
+        , pane: "floatPane"
+        , enableEventPropagation: false
+    };
+
+
+    //Creates the pop-up infobox for Glastonbury, adding the configuration options set above.
+    var infoboxA = new InfoBox(infoboxOptionsA);
+
+
+    //Add an 'event listener' to the Glastonbury map marker to listen out for when it is clicked.
+    google.maps.event.addListener(marker, "click", function (e) {
+        //Open the Glastonbury info box.
+        infoboxA.open(map, this);
+        //Sets the Glastonbury marker to be the center of the map.
+        map.setCenter(marker.getPosition());
+    });
+}
+
+//未使用
+function init_Gallery() {
+    "use strict";
+    //1. Pop up fuction for gallery elements
+
+    //pop up for photo (object - images)
+    $('.gallery-item--photo').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-fade',
+        image: {
+            verticalFit: true
+        },
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        }
+
+    });
+
+    //pop up for photo (object - title link)
+    $('.gallery-item--photo-link').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-fade',
+        image: {
+            verticalFit: true
+        },
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        }
+
+    });
+
+    //pop up for video (object - images)
+    $('.gallery-item--video').magnificPopup({
+        disableOn: 700,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+
+        fixedContentPos: false,
+        gallery: {
+            enabled: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        }
+    });
+
+    //pop up for video (object - title link)
+    $('.gallery-item--video-link').magnificPopup({
+        disableOn: 700,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+
+        fixedContentPos: false,
+        gallery: {
+            enabled: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        }
+    });
+}
+
+/*function init_MoviePage() {
+    "use strict";
+
+    //1. Rating scrore init
+    //Rating star
+    $('.score').raty({
+        width: 130,
+        score: 5,
+        path: '/images/rate/',
+        starOff: 'star-off.svg',
+        starOn: 'star-on.svg'
+    });
+
+
+    //4. Dropdown init
+    //select  未使用
+    $("#select-sort").selectbox({
+        onChange: function (val, inst) {
+
+            $(inst.input[0]).children().each(function (item) {
+                $(this).removeAttr('selected');
+            });
+            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
+        }
+
+    });
+
+    //6. Reply comment form
+    //reply comment function 回复评论的函数
+    $('.comment__reply').click(function (e) {
+        e.preventDefault();
+
+        $('.comment').find('.comment-form').remove();
+        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
+                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
+                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
+                        </form>");
+    });
+
+    //7. Timetable active element 场次选择时添加样式
+    $('.time-select__item').click(function () {
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    //10. Scroll down navigation function
+    //scroll down 评分 未使用
+    $('.comment-link').click(function (ev) {
+        ev.preventDefault();
+        $('html, body').stop().animate({'scrollTop': $('.comment-wrapper').offset().top - 90}, 900, 'swing');
+    });
+}*/
+/*function init_MovieList() {
+    "use strict";
+
+    //1. Dropdown init
+    //select  城市，影院，类型
+    $(".select__sort").selectbox({
+        onChange: function (val, inst) {
+
+            $(inst.input[0]).children().each(function (item) {
+                $(this).removeAttr('selected');
+            });
+            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
+        }
+
+    });
+
+    //3. Rating scrore init
+    //Rating star  评分
+    $('.score').raty({
+        width: 130,
+        score: 0,
+        number: 5,
+        hintList: ['1分', '2分', '3分', '4分', '5分'],
+        half: true,
+        readOnly: true,
+        noRatedMsg: '您还没评分！',
+        path: '/images/rate/',
+        starOff: 'star-off.svg',
+        starOn: 'star-on.svg'
+    });
+
+    //4. Sorting by category
+    // sorting function 类型
+    $('.tags__item').click(function (e) {
+        //prevent the default behaviour of the link
+        e.preventDefault();
+
+        //active sorted item
+        $('.tags__item').removeClass('item-active');
+        $(this).addClass('item-active');
+
+        var filter = $(this).attr('data-filter');
+
+        //show all the list items(this is needed to get the hidden ones shown)
+        $(".movie--preview").show();
+        $('.pagination').show();
+
+        /!*using the :not attribute and the filter class in it we are selecting
+            only the list items that don't have that class and hide them '*!/
+        if (filter.toLowerCase() !== 'all') {
+            $('.movie--preview:not(.' + filter + ')').hide();
+            //Show pagination on filter = all;
+            $('.pagination').hide();
+        }
+    });
+
+    //5. Toggle function for additional content
+    //toggle timetable show  未使用
+    $('.movie__show-btn').click(function (ev) {
+        ev.preventDefault();
+
+        $(this).parents('.movie--preview').find('.time-select').slideToggle(500);
+    });
+
+    //选择场次 未使用
+    $('.time-select__item').click(function () {
+        $('.time-select__item').removeClass('active');
+        $(this).addClass('active');
+    });
+}*/
 /*function init_BookingTwo() {
     "use strict";
 
@@ -641,548 +1044,104 @@ function init_BookingTwo() {
 
 
 }*/
-
-//订票函数book3(使用)
-function init_BookingThree() {
-    var hasPay = false;
-
-    //获取url中的信息
-    var url = decodeURIComponent(document.URL);
-    var prevData = url.substr(url.indexOf('?') + 1);
-
-    //生成订单
-    $('.pay').click(function () {
-        hasPay = true;
-        $.post("/order", prevData, function (data) {
-            alert(data);
-        });
-    });
-    //查看该订单
-    $('.book3Submit').click(function () {
-        if (hasPay) {
-            window.location.href = "/book-final?" + prevData;
-        } else {
-            alert("请先支付哦！");
-        }
-    });
-
-}
-
-//post请求通用跳转页面
-function post(url, params) {
-    // 创建form元素
-    var temp_form = document.createElement("form");
-    // 设置form属性
-    temp_form.action = url;
-    temp_form.target = "_self";
-    temp_form.method = "post";
-    temp_form.style.display = "none";
-    // 处理需要传递的参数
-    for (var x in params) {
-        var opt = document.createElement("textarea");
-        opt.name = x;
-        opt.value = params[x];
-        temp_form.appendChild(opt);
-    }
-    document.body.appendChild(temp_form);
-    // 提交表单
-    temp_form.submit();
-}
-
-//未使用
-function init_CinemaList() {
+/*function init_BookingOne() {
     "use strict";
 
-    //1. Dropdowns
-    //select 使得选项被选中 movie-list页面
-    $(".select__sort").selectbox({
-        onChange: function (val, inst) {
-
-            $(inst.input[0]).children().each(function (item) {
-                $(this).removeAttr('selected');
-            });
-            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
-        }
-
-    });
-
-    //2. Sorting buy category
-    // sorting function 按类别查询
-    $('.tags__item').click(function (e) {
-        //prevent the default behaviour of the link
+    //1. Buttons for choose order method
+    //order factor  没用
+    $('.order__control-btn').click(function (e) {
         e.preventDefault();
 
-        $('.tags__item').removeClass('item-active');
-        $(this).addClass('item-active');
-
-        var filter = $(this).attr('data-filter');
-
-        //show all the list items(this is needed to get the hidden ones shown)
-        $(".cinema-item").show();
-        //hide advertazing and pagination block
-        $('.adv-place').show();
-        $('.pagination').show();
-
-        /*using the :not attribute and the filter class in it we are selecting
-            only the list items that don't have that class and hide them '*/
-        if (filter.toLowerCase() !== 'all') {
-            $('.cinema-item:not(.' + filter + ')').hide();
-            //show advertazing and pagination block only on filter (all)
-            $('.pagination').hide();
-            $('.adv-place').hide();
-            // fix grid position
-            $('.row').css('clear', 'none');
-        }
-    });
-}
-
-//未使用
-function init_Contact() {
-    "use strict";
-
-    //1. Fullscreen map init
-    //Init map
-    var mapOptions = {
-        scaleControl: true,
-        center: new google.maps.LatLng(51.509708, -0.130539),
-        zoom: 15,
-        navigationControl: false,
-        streetViewControl: false,
-        mapTypeControl: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById('location-map'), mapOptions);
-    var marker = new google.maps.Marker({
-        map: map,
-        position: map.getCenter()
-    });
-
-    //Custome map style
-    var map_style = [{stylers: [{saturation: -100}, {gamma: 3}]}, {
-        elementType: "labels.text.stroke",
-        stylers: [{visibility: "off"}]
-    }, {
-        featureType: "poi.business",
-        elementType: "labels.text",
-        stylers: [{visibility: "off"}]
-    }, {
-        featureType: "poi.business",
-        elementType: "labels.icon",
-        stylers: [{visibility: "off"}]
-    }, {
-        featureType: "poi.place_of_worship",
-        elementType: "labels.text",
-        stylers: [{visibility: "off"}]
-    }, {
-        featureType: "poi.place_of_worship",
-        elementType: "labels.icon",
-        stylers: [{visibility: "off"}]
-    }, {featureType: "road", elementType: "geometry", stylers: [{visibility: "simplified"}]}, {
-        featureType: "water",
-        stylers: [{visibility: "on"}, {saturation: 0}, {gamma: 2}, {hue: "#aaaaaa"}]
-    }, {
-        featureType: "administrative.neighborhood",
-        elementType: "labels.text.fill",
-        stylers: [{visibility: "off"}]
-    }, {
-        featureType: "road.local",
-        elementType: "labels.text",
-        stylers: [{visibility: "off"}]
-    }, {featureType: "transit.station", elementType: "labels.icon", stylers: [{visibility: "off"}]}];
-
-    //Then we use this data to create the styles.
-    var styled_map = new google.maps.StyledMapType(map_style, {name: "Cusmome style"});
-
-    map.mapTypes.set('map_styles', styled_map);
-    map.setMapTypeId('map_styles');
-
-
-    //=====================================
-
-    // Maker
-
-    //=====================================
-
-    //Creates the information to go in the pop-up info box.
-    var boxTextA = document.createElement("div");
-    boxTextA.innerHTML = '<span class="pop_up_box_text">Leicester Sq, London, WC2H 7LP</span>';
-
-    //Sets up the configuration options of the pop-up info box.
-    var infoboxOptionsA = {
-        content: boxTextA
-        , disableAutoPan: false
-        , maxWidth: 0
-        , pixelOffset: new google.maps.Size(30, -50)
-        , zIndex: null
-        , boxStyle: {
-            background: "#4c4145"
-            , opacity: 1
-            , width: "300px"
-            , color: " #b4b1b2"
-            , fontSize: "13px"
-            , padding: '14px 20px 15px'
-        }
-        , closeBoxMargin: "6px 2px 2px 2px"
-        , infoBoxClearance: new google.maps.Size(1, 1)
-        , closeBoxURL: "images/components/close.svg"
-        , isHidden: false
-        , pane: "floatPane"
-        , enableEventPropagation: false
-    };
-
-
-    //Creates the pop-up infobox for Glastonbury, adding the configuration options set above.
-    var infoboxA = new InfoBox(infoboxOptionsA);
-
-
-    //Add an 'event listener' to the Glastonbury map marker to listen out for when it is clicked.
-    google.maps.event.addListener(marker, "click", function (e) {
-        //Open the Glastonbury info box.
-        infoboxA.open(map, this);
-        //Sets the Glastonbury marker to be the center of the map.
-        map.setCenter(marker.getPosition());
-    });
-}
-
-//未使用
-function init_Gallery() {
-    "use strict";
-    //1. Pop up fuction for gallery elements
-
-    //pop up for photo (object - images)
-    $('.gallery-item--photo').magnificPopup({
-        type: 'image',
-        closeOnContentClick: true,
-        mainClass: 'mfp-fade',
-        image: {
-            verticalFit: true
-        },
-        gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-        }
-
-    });
-
-    //pop up for photo (object - title link)
-    $('.gallery-item--photo-link').magnificPopup({
-        type: 'image',
-        closeOnContentClick: true,
-        mainClass: 'mfp-fade',
-        image: {
-            verticalFit: true
-        },
-        gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-        }
-
-    });
-
-    //pop up for video (object - images)
-    $('.gallery-item--video').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-
-        fixedContentPos: false,
-        gallery: {
-            enabled: true,
-            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-        }
-    });
-
-    //pop up for video (object - title link)
-    $('.gallery-item--video-link').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-
-        fixedContentPos: false,
-        gallery: {
-            enabled: true,
-            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-        }
-    });
-}
-
-//movie-list的函数副本(使用)
-function init_MovieList() {
-    //1.选择城市，影院等
-    $(".select__sort").selectbox({
-        onChange: function (val, inst) {
-
-            $(inst.input[0]).children().each(function (item) {
-                $(this).removeAttr('selected');
-            });
-            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
-        }
-
-    });
-
-    //2.添加到播放列表
-    $(".addWatchlist").click(function () {
-        var movieId = $(this).attr('data-movieId');
-        var data = {
-            movieId: movieId,
-        };
-        $.post("/watch", data, function (data) {
-            alert(data);
-            window.location.reload();
-        });
-    });
-
-    //3.从播放列表移除
-    $(".removeWatchlist").click(function () {
-
-        var movieId = $(this).attr('data-movieId');
-
-        var r = confirm("确认删除该？");
-        if (r) {
-            $.ajax({
-                url: "/watch/" + movieId,
-                type: "POST",
-                data: {_method: "DELETE", movieId: movieId},
-                success: function (result) {
-                    alert(result);
-                    window.location.reload();
-                }
-
-            });
-
-        }
-        ;
-    });
-
-    //4.搜索电影
-    $("#searchBtn").click(function (e) {
-        e.preventDefault();
-        var keyword = $("input[name='keyword']").val().replace(/\s+/g, "");
-        var cate = $("#search-sort").val();
-        var url = "/" + cate + "/" + keyword;
-        if (keyword.length != 0) {
-            window.location.href = url;
-        }
-    });
-}
-
-/*function init_MovieList() {
-    "use strict";
-
-    //1. Dropdown init
-    //select  城市，影院，类型
-    $(".select__sort").selectbox({
-        onChange: function (val, inst) {
-
-            $(inst.input[0]).children().each(function (item) {
-                $(this).removeAttr('selected');
-            });
-            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
-        }
-
-    });
-
-    //3. Rating scrore init
-    //Rating star  评分
-    $('.score').raty({
-        width: 130,
-        score: 0,
-        number: 5,
-        hintList: ['1分', '2分', '3分', '4分', '5分'],
-        half: true,
-        readOnly: true,
-        noRatedMsg: '您还没评分！',
-        path: '/images/rate/',
-        starOff: 'star-off.svg',
-        starOn: 'star-on.svg'
-    });
-
-    //4. Sorting by category
-    // sorting function 类型
-    $('.tags__item').click(function (e) {
-        //prevent the default behaviour of the link
-        e.preventDefault();
-
-        //active sorted item
-        $('.tags__item').removeClass('item-active');
-        $(this).addClass('item-active');
-
-        var filter = $(this).attr('data-filter');
-
-        //show all the list items(this is needed to get the hidden ones shown)
-        $(".movie--preview").show();
-        $('.pagination').show();
-
-        /!*using the :not attribute and the filter class in it we are selecting
-            only the list items that don't have that class and hide them '*!/
-        if (filter.toLowerCase() !== 'all') {
-            $('.movie--preview:not(.' + filter + ')').hide();
-            //Show pagination on filter = all;
-            $('.pagination').hide();
-        }
-    });
-
-    //5. Toggle function for additional content
-    //toggle timetable show  未使用
-    $('.movie__show-btn').click(function (ev) {
-        ev.preventDefault();
-
-        $(this).parents('.movie--preview').find('.time-select').slideToggle(500);
-    });
-
-    //选择场次 未使用
-    $('.time-select__item').click(function () {
-        $('.time-select__item').removeClass('active');
-        $(this).addClass('active');
-    });
-}*/
-
-//电影详情页函数副本(使用)
-function init_MoviePage() {
-    //1.评分
-    $('.score').raty({
-        width: 130,
-        score: 5,
-        path: '/images/rate/',
-        starOff: 'star-off.svg',
-        starOn: 'star-on.svg'
-    });
-
-    //2.回复
-    $('.comment__reply').click(function (e) {
-        e.preventDefault();
-
-        $('.comment').find('.comment-form').remove();
-        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
-                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
-                        </form>");
-    });
-
-    //3.场次添加样式
-    $('.time-select__item').click(function () {
-        $('.time-select__item').removeClass('active');
+        $('.order__control-btn').removeClass('active');
         $(this).addClass('active');
     });
 
-    //4.评论
-    $('.comment-form__btn').click(function () {
-        var content = $('.comment-form').find('[name=content]').val();
-        var formInput = $('.comment-form').serialize();
-        if (content.length != 0) {
-            $.post("/review", formInput, function (data) {
-                alert(data);
-                window.location.reload();
-            });
-        }
-    });
+    //2. Init vars for order data
+    // var for booking;
+    var movie = $('.choosen-movie'),
+        city = $('.choosen-city'),
+        date = $('.choosen-date'),
+        cinema = $('.choosen-cinema'),
+        time = $('.choosen-time');
 
-    //5.添加到播放列表
-    $(".addWatchlist").click(function () {
-        var movieId = $(this).attr('data-movieId');
-        var data = {
-            movieId: movieId,
-        };
-        $.post("/watch", data, function (data) {
-            alert(data);
-            window.location.reload();
-        });
-    });
-}
+    //6. Choose variant proccess
+    //choose film   沒用
+    $('.film-images').click(function (e) {
+        //visual iteractive for choose
+        $('.film-images').removeClass('film--choosed');
+        $(this).addClass('film--choosed');
 
-/*function init_MoviePage() {
-    "use strict";
+        //data element init
+        var chooseFilm = $(this).parent().attr('data-film');
+        $('.choose-indector--film').find('.choosen-area').text(chooseFilm);
 
-    //1. Rating scrore init
-    //Rating star
-    $('.score').raty({
-        width: 130,
-        score: 5,
-        path: '/images/rate/',
-        starOff: 'star-off.svg',
-        starOn: 'star-on.svg'
-    });
-
-
-    //4. Dropdown init 
-    //select  未使用
-    $("#select-sort").selectbox({
-        onChange: function (val, inst) {
-
-            $(inst.input[0]).children().each(function (item) {
-                $(this).removeAttr('selected');
-            });
-            $(inst.input[0]).find('[value="' + val + '"]').attr('selected', 'selected');
-        }
+        //data element set
+        movie.val(chooseFilm);
 
     });
 
-    //6. Reply comment form
-    //reply comment function 回复评论的函数
-    $('.comment__reply').click(function (e) {
-        e.preventDefault();
-
-        $('.comment').find('.comment-form').remove();
-        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
-                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
-                        </form>");
-    });
-
-    //7. Timetable active element 场次选择时添加样式
+    //choose time
     $('.time-select__item').click(function () {
+        //visual iteractive for choose
         $('.time-select__item').removeClass('active');
         $(this).addClass('active');
+
+        //data element init
+        //var chooseTime = $(this).attr('data-time');
+        var chooseTime = $(this).attr('data-time');
+        $('.choose-indector--time').find('.choosen-area').text(chooseTime);
+
+        //data element init
+        //var chooseCinema = $(this).parent().parent().find('.time-select__place').text();
+
+        //data element set
+        time.val(chooseTime);
+        console.log(time.val());
+        //cinema.val(chooseCinema);
     });
 
-    //10. Scroll down navigation function
-    //scroll down 评分 未使用
-    $('.comment-link').click(function (ev) {
-        ev.preventDefault();
-        $('html, body').stop().animate({'scrollTop': $('.comment-wrapper').offset().top - 90}, 900, 'swing');
-    });
-}*/
+    // choose (change) city and date for film
 
-function init_Rates() {
-    "use strict";
+    //data element init (default)
+    var chooseCity = $('.select .sbSelector').text();
+    var chooseDate = $('.datepicker__input').val();
 
-    //1. Rating fucntion
-    //Rating star
-    $('.score').raty({
-        width: 130,
-        score: 0,
-        path: '/images/rate/',
-        starOff: 'star-off.svg',
-        starOn: 'star-on.svg'
+    //data element set (default)
+    city.val(chooseCity);
+    date.val(chooseDate);
+
+
+    $('.select .sbOptions').click(function () {
+        //data element change
+        var chooseCity = $('.select .sbSelector').text();
+        //data element set change
+        city.val(chooseCity);
     });
 
-    //After rate callback
-    $('.score').click(function () {
-        $(this).html('<span class="rates__done">感谢您的评分<span>')
+    $('.datepicker__input').change(function () {
+        //data element change
+        var chooseDate = $('.datepicker__input').val();
+        //data element set change
+        date.val(chooseDate);
+    });
+
+    // --- Step for data - serialize and send to next page---//
+    $('.booking-form').submit(function () {
+        var bookData = $(this).serialize();
+        $.get($(this).attr('action'), bookData);
+    });
+
+    //7. Visibility block on page control
+    //control block display on page
+    $('.choose-indector--film').click(function (e) {
+        e.preventDefault();
+        $(this).toggleClass('hide-content');
+        $('.choose-film').slideToggle(400);
+    });
+
+    $('.choose-indector--time').click(function (e) {
+        e.preventDefault();
+        $(this).toggleClass('hide-content');
+        $('.time-select').slideToggle(400);
     })
-}
-
-function init_SinglePage() {
-    "use strict";
-
-    //2. Comment area control
-
-    //reply comment function
-    $('.comment__reply').click(function (e) {
-        e.preventDefault();
-
-        $('.comment').find('.comment-form').remove();
-
-
-        $(this).parent().append("<form id='comment-form' class='comment-form' method='post'>\
-                            <textarea class='comment-form__text' placeholder='发表您的评论吧'></textarea>\
-                            <button type='submit' class='btn btn-md btn--danger comment-form__btn'>发表评论</button>\
-                        </form>");
-    });
-}
+}*/

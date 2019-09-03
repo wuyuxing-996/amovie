@@ -61,4 +61,13 @@ public interface OrderService {
      * @return
      */
     List<OrderVo> getTicketByUserId(Integer userId);
+
+    /**
+     * 获取某张票
+     *
+     * @param userId
+     * @param ticketNum
+     * @return
+     */
+    OrderVo getTicketByNum(Integer userId, String ticketNum);
 }
