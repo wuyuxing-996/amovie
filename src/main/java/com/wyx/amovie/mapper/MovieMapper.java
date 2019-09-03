@@ -1,7 +1,11 @@
 package com.wyx.amovie.mapper;
 
 import com.wyx.amovie.entity.Movie;
-import org.apache.ibatis.annotations.*;
+import com.wyx.amovie.entity.MovieScore;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -48,8 +52,7 @@ public interface MovieMapper {
      * @param name
      * @return
      */
-    @Select("select * from movie where name like CONCAT('%',#{name},'%')")
-    List<Movie> getByName(String name);
+    List<MovieScore> getByName(String name);
 
     /**
      * 更新电影
@@ -69,16 +72,16 @@ public interface MovieMapper {
     int deleteMovie(Integer id);
 
     /**
-     * 根据类别查电影
+     * 根据类别id查电影
      *
      * @param id
      * @return
      */
-    List<Movie> getByCategory(Integer id);
+    List<Movie> getByCategoryId(Integer id);
 
     /**
      * 获取上映电影
-     *
+     * @param status
      * @return
      */
     List<Movie> getMovieReleased(Integer status);
@@ -89,5 +92,52 @@ public interface MovieMapper {
      * @param userId
      * @return
      */
-    List<Movie> getUserMovie(Integer userId);
+    List<MovieScore> getUserMovie(Integer userId);
+
+    /**
+     * 获取电影所有评分
+     *
+     * @return
+     */
+    List<MovieScore> getMovieScore();
+
+    /**
+     * 根据导演查电影
+     *
+     * @param director
+     * @return
+     */
+    List<MovieScore> getByDirector(String director);
+
+    /**
+     * 根据演员查电影
+     *
+     * @param actor
+     * @return
+     */
+    List<MovieScore> getByActor(String actor);
+
+    /**
+     * 根据国家查电影
+     *
+     * @param country
+     * @return
+     */
+    List<MovieScore> getByCountry(String country);
+
+    /**
+     * 根据类型名称查询电影
+     *
+     * @param category
+     * @return
+     */
+    List<MovieScore> getByCategory(String category);
+
+    /**
+     * 获取已经上映电影及其评分
+     *
+     * @param status
+     * @return
+     */
+    List<MovieScore> getMovieScoreReleased(Integer status);
 }

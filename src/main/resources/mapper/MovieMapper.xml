@@ -20,9 +20,29 @@
         </collection>
     </resultMap>
 
-    <!--查询所有-->
-    <select id="getAll" resultMap="movieResult">
-        select * from movie
+    <!--movieScore-->
+    <resultMap id="movieScoreResult" type="MovieScore">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="duration" column="duration"/>
+        <result property="directors" column="directors"/>
+        <result property="actors" column="actors"/>
+        <result property="releaseDate" column="release_date"/>
+        <result property="status" column="status"/>
+        <result property="plot" column="plot"/>
+        <result property="poster" column="poster"/>
+        <result property="country" column="country"/>
+        <result property="score" column="score"/>
+        <result property="count" column="count"/>
+        <collection property="categories" column="id" ofType="Category" select="selectMovieCate">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+
+    <!--查询所有的电影及评分-->
+    <select id="getAll" resultMap="movieScoreResult">
+        <include refid="movieScoreSql"></include>
     </select>
 
     <!--子查询-->
@@ -35,8 +55,8 @@
         select * from movie where id=#{id}
     </select>
 
-    <!--根据类别查电影-->
-    <select id="getByCategory" parameterType="Integer" resultMap="movieResult">
+    <!--根据类别id查电影-->
+    <select id="getByCategoryId" parameterType="Integer" resultMap="movieResult">
         select m.*
         from movie m,movie_category mc
         where mc.movie_id=m.id
@@ -65,7 +85,66 @@
         select * from movie where status=#{status}
     </select>
 
-    <select id="getUserMovie" resultMap="movieResult">
-        SELECT m.* FROM `watch` w LEFT JOIN `movie` m ON w.movie_id=m.id where w.user_id=#{userId}
+    <!--获取个人观看列表-->
+    <select id="getUserMovie" resultMap="movieScoreResult">
+        SELECT m.* FROM `watch` w LEFT JOIN (SELECT mc.*,s.score,s.count
+        FROM movie mc LEFT JOIN
+        (SELECT movie_id,ROUND(AVG(score),1) as score,COUNT(*) as count
+        FROM `score` GROUP BY movie_id) s on mc.id = s.movie_id) m ON w.movie_id=m.id where w.user_id=#{userId}
     </select>
+
+    <!--获取电影及评分-->
+    <select id="getMovieScore" resultMap="movieScoreResult">
+        <include refid="movieScoreSql"></include>
+        ORDER BY score DESC,count DESC
+    </select>
+
+    <!--根据名字查电影-->
+    <select id="getByName" resultMap="movieScoreResult" parameterType="String">
+        <include refid="movieScoreSql"></include>
+        where name like CONCAT('%',#{name},'%')
+    </select>
+
+    <!--根据导演查电影-->
+    <select id="getByDirector" resultMap="movieScoreResult" parameterType="String">
+        <include refid="movieScoreSql"></include>
+        where directors like CONCAT('%',#{director},'%')
+    </select>
+
+    <!--根据演员查电影-->
+    <select id="getByActor" resultMap="movieScoreResult" parameterType="String">
+        <include refid="movieScoreSql"></include>
+        where actors like CONCAT('%',#{actor},'%')
+    </select>
+
+    <!--根据国家查电影-->
+    <select id="getByCountry" resultMap="movieScoreResult" parameterType="String">
+        <include refid="movieScoreSql"></include>
+        where country like CONCAT('%',#{country},'%')
+    </select>
+
+    <!--根据类型名称查电影-->
+    <select id="getByCategory" resultMap="movieScoreResult" parameterType="String">
+        SELECT m.*,s.score,s.count
+        FROM (SELECT mc.*
+        from movie mc left join movie_category cat
+        on mc.id=cat.movie_id
+        LEFT JOIN category c
+        on category_id=c.id where c.name like CONCAT('%',#{category},'%')) m LEFT JOIN
+        (SELECT movie_id,ROUND(AVG(score),1) as score,COUNT(*) as count
+        FROM `score` GROUP BY movie_id) s on m.id = s.movie_id
+    </select>
+
+    <!--获取已经上映的电影及评分-->
+    <select id="getMovieScoreReleased" resultMap="movieScoreResult">
+        <include refid="movieScoreSql"></include>
+        where status=#{status}
+    </select>
+
+    <sql id="movieScoreSql">
+        SELECT m.*,s.score,s.count
+        FROM movie m LEFT JOIN
+        (SELECT movie_id,ROUND(AVG(score),1) as score,COUNT(*) as count
+        FROM `score` GROUP BY movie_id) s on m.id = s.movie_id
+    </sql>
 </mapper>

@@ -13,7 +13,8 @@
         <div class="order-container">
             <div class="order">
                 <img class="order__images" alt='' src="images/tickets.png">
-                <p class="order__title">预订<br><span class="order__descript">祝您观影愉快！</span></p>
+                <p class="order__title">预订:<span th:text="' '+${scenes.get(0).movieName}"><br><span
+                        class="order__descript">祝您观影愉快！</span></p>
             </div>
         </div>
         <div class="order-step-area">
@@ -51,9 +52,6 @@
         <input type='text' name='choosenTime' class="choosen-time">
         <input type='text' name='choosenDate' class="choosen-date">
         <input type='text' name='choosenScene' class="choosen-scene">
-        <input type='text' name='choosenCity' class="choosen-city">
-        <input type='text' name='choosenCinema' class="choosen-cinema">
-
 
         <div class="booking-pagination">
             <a href="#" class="booking-pagination__prev hide--arrow">

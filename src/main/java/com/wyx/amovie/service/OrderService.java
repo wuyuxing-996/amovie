@@ -1,6 +1,7 @@
 package com.wyx.amovie.service;
 
 import com.wyx.amovie.entity.Order;
+import com.wyx.amovie.entity.OrderVo;
 
 import java.util.List;
 
@@ -52,4 +53,12 @@ public interface OrderService {
      * @return
      */
     Order getOneById(Integer id);
+
+    /**
+     * 获取个人票面
+     *
+     * @param userId
+     * @return
+     */
+    List<OrderVo> getTicketByUserId(Integer userId);
 }

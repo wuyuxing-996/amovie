@@ -15,7 +15,8 @@
             <div class="order-container">
                 <div class="order">
                     <img class="order__images" alt='' src="images/tickets.png">
-                    <p class="order__title">预订<br><span class="order__descript">祝您观影愉快！</span></p>
+                    <p class="order__title">预订:<span th:text="' '+${bookForm.choosenMovie}"><br><span
+                            class="order__descript">祝您观影愉快！</span></p>
                 </div>
             </div>
             <div class="order-step-area">
@@ -523,15 +524,12 @@
     <form id='film-and-time' class="booking-form">
 
         <input type='text' name='choosenNumber' class="choosen-number">
-        <input type='text' name='choosenNumberCheap' class="choosen-number--cheap">
-        <input type='text' name='choosenNumberMiddle' class="choosen-number--middle">
-        <input type='text' name='choosenNumberExpansive' class="choosen-number--expansive">
         <input type='text' name='choosenCost' class="choosen-cost">
         <input type='text' name='choosenSits' class="choosen-sits">
 
 
         <div class="booking-pagination booking-pagination--margin">
-            <a th:href="@{/book1(movieId=${bookForm.choosenMovieId})}" class="booking-pagination__prev">
+            <a href="javascript:history.go(-1);" class="booking-pagination__prev">
                 <span class="arrow__text arrow--prev">上一步</span>
                 <span class="arrow__info">选择您要观看的场次</span>
             </a>

@@ -1,6 +1,7 @@
 package com.wyx.amovie.mapper;
 
 import com.wyx.amovie.entity.Order;
+import com.wyx.amovie.entity.OrderVo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -70,4 +71,13 @@ public interface OrderMapper {
      */
     @Delete("delete from `order` where id=#{id}")
     int deleteOrder(Integer id);
+
+    /**
+     * 获取个人所有订单
+     *
+     * @param userId
+     * @return
+     */
+    @Select("select o.*,s.movie_name,s.showtime from `order` o LEFT JOIN scene s on o.scene_id=s.id where o.user_id=#{userId}")
+    List<OrderVo> getTicketByUserId(Integer userId);
 }

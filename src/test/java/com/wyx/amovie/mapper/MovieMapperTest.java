@@ -1,6 +1,7 @@
 package com.wyx.amovie.mapper;
 
 import com.wyx.amovie.entity.Movie;
+import com.wyx.amovie.entity.MovieScore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -43,8 +42,20 @@ public class MovieMapperTest {
     }
 
     @Test
+    public void getByCategoryId() {
+        List<Movie> movies = movieMapper.getByCategoryId(2);
+        System.out.println(movies);
+    }
+
+    @Test
+    public void getMovieScore() {
+        List<MovieScore> movieScores = movieMapper.getMovieScore();
+        System.out.println(movieScores);
+    }
+
+    @Test
     public void getByCategory() {
-        List<Movie> movies = movieMapper.getByCategory(2);
+        List<MovieScore> movies = movieMapper.getByCategory("科幻");
         System.out.println(movies);
     }
 }

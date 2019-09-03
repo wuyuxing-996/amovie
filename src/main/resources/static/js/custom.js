@@ -161,9 +161,7 @@ function init_BookingOne() {
     var movie = $('.choosen-movie'),
         movieId = $('.choosen-movieId'),
         scene = $('.choosen-scene'),
-        city = $('.choosen-city'),
         date = $('.choosen-date'),
-        cinema = $('.choosen-cinema'),
         time = $('.choosen-time'),
         price = $('.choosen-price');
 
@@ -188,7 +186,11 @@ function init_BookingOne() {
 
     //3.下一步触发发送
     $('.book1Submit').click(function () {
-        $('.booking-form').submit();
+        if (scene.val() == '') {
+            alert("请先选择场次！")
+        } else {
+            $('.booking-form').submit();
+        }
     });
     //4.将数据打包发给下一个页面
     /*    $('.booking-form').submit(function () {
@@ -305,16 +307,10 @@ function init_BookingTwo() {
     //1.将数据放置到隐藏表单中
     var numberTicket = $('.choosen-number'),
         sumTicket = $('.choosen-cost'),
-        cheapTicket = $('.choosen-number--cheap'),
-        middleTicket = $('.choosen-number--middle'),
-        expansiveTicket = $('.choosen-number--expansive'),
         sits = $('.choosen-sits');
 
     //2.获取座位和票价等信息
     var sum = 0;
-    var cheap = 0;
-    var middle = 0;
-    var expansive = 0;
 
     $('.sits__place').click(function (e) {
         e.preventDefault();
@@ -347,19 +343,16 @@ function init_BookingTwo() {
         //data element set
         numberTicket.val(number);
         sumTicket.val(sum);
-        cheapTicket.val(cheap);
-        middleTicket.val(middle);
-        expansiveTicket.val(expansive);
 
 
         //data element init
         var chooseSits = '';
         $('.choosen-place').each(function () {
-            chooseSits += ', ' + $(this).text();
+            chooseSits += ',' + $(this).text();
         });
 
         //data element set
-        sits.val(chooseSits.substr(2));
+        sits.val(chooseSits.substr(1));
     });
 
     //3.获取url中的信息
@@ -371,13 +364,17 @@ function init_BookingTwo() {
         var bookData = $('.booking-form').serialize();
         var fullData = prevData + '&' + bookData;
         var action = "/book3-buy";
-        window.location.href = action + "?" + fullData;
+        if (sum == 0) {
+            alert("请至少选择一个座位");
+        } else {
+            window.location.href = action + "?" + fullData;
+        }
         /*$.get(action, fullData, function (data) {
             window.location.href="/book3-buy";
         });*/
     });
     //5.发送请求
-    $('.booking-form').submit(function (e) {
+    /*$('.booking-form').submit(function (e) {
         e.preventDefault();
         var bookData = $(this).serialize();
 
@@ -387,7 +384,7 @@ function init_BookingTwo() {
         $.get(action, fullData, function (data) {
 
         });
-    });
+    });*/
 
 
 }
@@ -648,23 +645,50 @@ function init_BookingTwo() {
 //订票函数book3(使用)
 function init_BookingThree() {
     var hasPay = false;
-    $('.pay').click(function () {
-        hasPay = true;
-        $(this).attr("disabled", true);
-        console.log(hasPay);
-    });
-
 
     //获取url中的信息
     var url = decodeURIComponent(document.URL);
     var prevData = url.substr(url.indexOf('?') + 1);
+
+    //生成订单
+    $('.pay').click(function () {
+        hasPay = true;
+        $.post("/order", prevData, function (data) {
+            alert(data);
+        });
+    });
+    //查看该订单
     $('.book3Submit').click(function () {
         if (hasPay) {
             window.location.href = "/book-final?" + prevData;
+        } else {
+            alert("请先支付哦！");
         }
     });
 
 }
+
+//post请求通用跳转页面
+function post(url, params) {
+    // 创建form元素
+    var temp_form = document.createElement("form");
+    // 设置form属性
+    temp_form.action = url;
+    temp_form.target = "_self";
+    temp_form.method = "post";
+    temp_form.style.display = "none";
+    // 处理需要传递的参数
+    for (var x in params) {
+        var opt = document.createElement("textarea");
+        opt.name = x;
+        opt.value = params[x];
+        temp_form.appendChild(opt);
+    }
+    document.body.appendChild(temp_form);
+    // 提交表单
+    temp_form.submit();
+}
+
 //未使用
 function init_CinemaList() {
     "use strict";
@@ -910,7 +934,7 @@ function init_MovieList() {
         };
         $.post("/watch", data, function (data) {
             alert(data);
-            window.location.href = "/watch";
+            window.location.reload();
         });
     });
 
@@ -927,13 +951,24 @@ function init_MovieList() {
                 data: {_method: "DELETE", movieId: movieId},
                 success: function (result) {
                     alert(result);
-                    window.location.href = "/watch";
+                    window.location.reload();
                 }
 
             });
 
         }
         ;
+    });
+
+    //4.搜索电影
+    $("#searchBtn").click(function (e) {
+        e.preventDefault();
+        var keyword = $("input[name='keyword']").val().replace(/\s+/g, "");
+        var cate = $("#search-sort").val();
+        var url = "/" + cate + "/" + keyword;
+        if (keyword.length != 0) {
+            window.location.href = url;
+        }
     });
 }
 
@@ -1038,23 +1073,25 @@ function init_MoviePage() {
 
     //4.评论
     $('.comment-form__btn').click(function () {
-        var movieId = $('.comment-form').find('[name=movieId]').val();
+        var content = $('.comment-form').find('[name=content]').val();
         var formInput = $('.comment-form').serialize();
-        $.post("/review", formInput, function (data) {
-            alert(data);
-            window.location.href = "/movie/" + movieId;
-        });
+        if (content.length != 0) {
+            $.post("/review", formInput, function (data) {
+                alert(data);
+                window.location.reload();
+            });
+        }
     });
 
     //5.添加到播放列表
-    $(".watchlist").click(function () {
+    $(".addWatchlist").click(function () {
         var movieId = $(this).attr('data-movieId');
         var data = {
             movieId: movieId,
         };
         $.post("/watch", data, function (data) {
             alert(data);
-            window.location.href = "/watch";
+            window.location.reload();
         });
     });
 }

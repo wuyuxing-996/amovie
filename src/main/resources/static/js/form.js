@@ -74,15 +74,17 @@ $(function () {
 
 
         var formInput = self.serialize();
-        $.post("/doRegister", formInput, function (data) {
-            if (data.code == 400) {
-                alert(data.extend.error);
-            } else {
-                window.location.href = "/";
-                if (error != 0) return;
-                self.find('[type=submit]').attr('disabled', 'disabled');
-            }
-        }, "json");
+        if ($email.val().length > 3 && $pass.val().length > 2) {
+            $.post("/doRegister", formInput, function (data) {
+                if (data.code == 400) {
+                    alert(data.extend.error);
+                } else {
+                    window.location.reload();
+                    if (error != 0) return;
+                    self.find('[type=submit]').attr('disabled', 'disabled');
+                }
+            }, "json");
+        }
     }); // end register
 
     //登录

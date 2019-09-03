@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress ALL-->
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{/fragment/common-fragment :: head(新闻)}"></div>
 
@@ -18,21 +19,21 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <!--First Slide-->
-                            <div class="swiper-slide"
+                            <div class="swiper-slide" style="display: none"
                                  data-text='Mauris gravida ipsum vitae libero eget dignissim ipsum egestas.'>
-                                <img alt='' src="http://placehold.it/1600x600">
+                                <img alt='' src="/images/n2.jpg">
                             </div>
 
                             <!--Second Slide-->
                             <div class="swiper-slide"
                                  data-text='Natalie Zea at Amazon Studios Launch Party for "Alpha House" and "Betas"'>
-                                <img alt='' src="http://placehold.it/1600x600">
+                                <img alt='' src="/images/n3.jpg">
                             </div>
 
                             <!--Third Slide-->
-                            <div class="swiper-slide"
+                            <div class="swiper-slide" style="display: none"
                                  data-text='Aliquam cursus porta porttitor. Donec faucibus risus vitae porta tincidunt.'>
-                                <img alt='' src="http://placehold.it/1600x600">
+                                <img alt='' src="/images/n2.jpg">
                             </div>
                         </div><!-- end swiper wrapper-->
                     </div><!-- end swiper container -->
@@ -42,21 +43,22 @@
 
                 </div>
 
-                <h1>Donec eu mollis augue, ut egestas leo (h1)</h1>
-                <p class="post__date">29 October 2013 </p>
+                <h1 th:text="${news.title}">Donec eu mollis augue, ut egestas leo (h1)</h1>
+                <p th:text="${news.createTime}" class="post__date">29 October 2013 </p>
 
                 <div class="wave-devider"></div>
 
-                <p>Mauris gravida ipsum vitae libero molestie eget dignissim ipsum egestas. Quisque in eros id velit
+                <p th:text="${news.content}">Mauris gravida ipsum vitae libero molestie eget dignissim ipsum egestas.
+                    Quisque in eros id velit
                     molestie placerat a ut arcu. Etiam consequat, turpis ac commodo rhoncus, justo enim consequat
                     tortor, vitae interdum odio tellus at sem. Aliquam lacus quam, lobortis sed lacus eget, commodo
                     volutpat nunc. <a href="#" class="link--text">Text link sample</a>. Proin accumsan diam vel nulla
                     ultrices congue.</p>
 
-                <p>Phasellus at faucibus nisi. Nullam tincidunt sapien leo, et sodales mauris placerat vulputate. Ut
+                <!--<p>Phasellus at faucibus nisi. Nullam tincidunt sapien leo, et sodales mauris placerat vulputate. Ut
                     pulvinar, dolor viverra pulvinar scelerisque, nisi tellus elementum libero, porta rutrum dui massa
                     bibendum nisl. Donec viverra mi sit amet massa commodo, ullamcorper sollicitudin quam laoreet. <a
-                            href="#" class="link--text">Text link hover sample</a>. Aliquam cursus porta porttitor.
+                            href="#" class="link&#45;&#45;text">Text link hover sample</a>. Aliquam cursus porta porttitor.
                     Donec faucibus risus vitae porta tincidunt. Sed egestas elementum quam sed fermentum. Cum sociis
                     natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque posuere suscipit
                     tristique. </p>
@@ -66,7 +68,7 @@
                     eros cursus, mattis massa eget, vulputate dolor. Nullam nec leo et odio condimentum iaculis eleifend
                     a nisi. Nullam est velit, porta suscipit arcu quis, varius tristique tortor. Aliquam et libero
                     sapien. Proin in dictum elit, quis ornare tellus. Ut consequat turpis id urna dignissim, non mattis
-                    velit eleifend. Ut lacinia egestas dolor. Aliquam vitae bibendum est. </p>
+                    velit eleifend. Ut lacinia egestas dolor. Aliquam vitae bibendum est. </p>-->
 
                 <div class="col-sm-12 col-md-6">
                     <blockquote class="quote quote--intext">

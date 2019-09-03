@@ -4,19 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
 /**
  * @author wyx
+ * @date 2019-08-24 17:12
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SceneVo {
+public class OrderVo {
     private Integer id;
-    private Integer movieId;
+    private Integer status;
+    private Integer userId;
+    private Date createTime;
+    private Integer sceneId;
+    private String ticketNum;
+    private Integer totalPrice;
+    private String seat;
+
     private String movieName;
-    private Integer price;
-    private Integer seatNum;
     private String showtime;
-    private String[] bookedSeat;
 }

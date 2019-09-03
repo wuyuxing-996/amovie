@@ -25,4 +25,9 @@ public class WatchServiceImpl implements WatchService {
     public int deleteWatch(Integer movieId) {
         return watchMapper.deleteWatch(movieId);
     }
+
+    @Override
+    public Watch getWatchByIds(Integer userId, Integer movieId) {
+        return watchMapper.getWatchByIds(userId, movieId);
+    }
 }

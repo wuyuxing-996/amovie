@@ -25,7 +25,7 @@ public class AdminNewsController {
     private NewsService newsService;
 
     @GetMapping
-    public ResponseEntity getCategory(
+    public ResponseEntity getNews(
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "size", required = false, defaultValue = "20") Integer size) {
         Page<News> news = PageHelper.startPage(page, size)
@@ -47,8 +47,8 @@ public class AdminNewsController {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity updateCategory(@PathVariable(value = "id") Integer id,
-                                         @RequestBody News news) {
+    public ResponseEntity updateNews(@PathVariable(value = "id") Integer id,
+                                     @RequestBody News news) {
         News news1 = newsService.getById(id);
         if (news1 == null) {
             Msg msg = Msg.fail().add("原因", "该资讯不存在！");
@@ -61,7 +61,7 @@ public class AdminNewsController {
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deleteCategory(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity deleteNews(@PathVariable(value = "id") Integer id) {
         News news = newsService.getById(id);
         if (news == null) {
             Msg msg = Msg.fail().add("原因", "该资讯不存在！");

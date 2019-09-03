@@ -22,4 +22,13 @@ public interface WatchService {
      * @return
      */
     int deleteWatch(Integer movieId);
+
+    /**
+     * 查询某电影是否存在列表中
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    Watch getWatchByIds(Integer userId, Integer movieId);
 }

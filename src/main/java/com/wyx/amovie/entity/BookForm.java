@@ -20,15 +20,10 @@ public class BookForm {
     private String choosenTime;
     private String choosenDate;
     private Integer choosenScene;
-    private String choosenCity;
-    private String choosenCinema;
     private Integer choosenPrice;
 
     //第二次提交
     private Integer choosenNumber;
-    private Integer choosenNumberCheap;
-    private Integer choosenNumberMiddle;
-    private Integer choosenNumberExpansive;
     private Integer choosenCost;
     private String choosenSits;
 }

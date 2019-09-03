@@ -50,7 +50,7 @@ public class UserController {
     @RequestMapping(value = "/doLogout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/doRegister")

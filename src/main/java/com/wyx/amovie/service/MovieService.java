@@ -1,6 +1,7 @@
 package com.wyx.amovie.service;
 
 import com.wyx.amovie.entity.Movie;
+import com.wyx.amovie.entity.MovieScore;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public interface MovieService {
      * @param name
      * @return
      */
-    List<Movie> getByName(String name);
+    List<MovieScore> getByName(String name);
 
     /**
      * 更新电影
@@ -69,5 +70,51 @@ public interface MovieService {
      * @param userId
      * @return
      */
-    List<Movie> getUserMovie(Integer userId);
+    List<MovieScore> getUserMovie(Integer userId);
+
+    /**
+     * 获取电影及评分
+     *
+     * @return
+     */
+    List<MovieScore> getMovieScore();
+
+    /**
+     * 根据导演查电影
+     *
+     * @param director
+     * @return
+     */
+    List<MovieScore> getByDirector(String director);
+
+    /**
+     * 根据演员查电影
+     *
+     * @param actor
+     * @return
+     */
+    List<MovieScore> getByActor(String actor);
+
+    /**
+     * 根据国家查电影
+     *
+     * @param country
+     * @return
+     */
+    List<MovieScore> getByCountry(String country);
+
+    /**
+     * 获取已经上映电影及其评分
+     *
+     * @return
+     */
+    List<MovieScore> getMovieScoreReleased();
+
+    /**
+     * 根据类型名称查询电影
+     *
+     * @param category
+     * @return
+     */
+    List<MovieScore> getByCategory(String category);
 }

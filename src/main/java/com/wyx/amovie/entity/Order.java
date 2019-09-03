@@ -19,6 +19,6 @@ public class Order {
     private Date createTime;
     private Integer sceneId;
     private String ticketNum;
-    private Float totalPrice;
+    private Integer totalPrice;
     private String seat;
 }

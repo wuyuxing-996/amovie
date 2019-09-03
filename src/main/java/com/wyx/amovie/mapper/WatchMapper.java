@@ -42,4 +42,14 @@ public interface WatchMapper {
      */
     @Delete("delete from `watch` where movie_id=#{movieId}")
     int deleteWatch(Integer movieId);
+
+    /**
+     * 判断电影是否存在个人列表中
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    @Select("select * from watch where user_id=#{userId} and movie_id=#{movieId}")
+    Watch getWatchByIds(Integer userId, Integer movieId);
 }

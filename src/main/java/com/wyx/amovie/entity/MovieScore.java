@@ -5,14 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wyx
+ * @date 2019-08-30 09:41
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieDo {
+public class MovieScore {
     private Integer id;
     private String name;
     private String duration;
@@ -23,5 +25,8 @@ public class MovieDo {
     private String plot;
     private String poster;
     private String country;
-    private CategoryDo categories;
+    private List<Category> categories;
+
+    private Double score = 0.0;
+    private Integer count = 0;
 }

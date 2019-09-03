@@ -2,7 +2,7 @@ package com.wyx.amovie.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.wyx.amovie.entity.Movie;
+import com.wyx.amovie.entity.MovieScore;
 import com.wyx.amovie.entity.User;
 import com.wyx.amovie.entity.Watch;
 import com.wyx.amovie.service.MovieService;
@@ -29,20 +29,23 @@ public class WatchController {
     @Autowired
     private WatchService watchService;
 
-    @GetMapping(value = "/watch")
+    @GetMapping(value = "/watch-list")
     public String watchList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                             @RequestParam(value = "size", defaultValue = "3") Integer size,
                             Model model, HttpSession session) {
         User user = (User) session.getAttribute("login");
-        Page<Movie> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getUserMovie(user.getId()));
-        model.addAttribute("movies", movies);
-        model.addAttribute("pageNum", movies.getPageNum());
-        return "watchlist";
+        Page<MovieScore> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getUserMovie(user.getId()));
+        model.addAttribute("movies", movies.toPageInfo());
+        return "watch-list";
     }
 
     @PostMapping(value = "/watch")
     public ResponseEntity addWatch(HttpSession session, Integer movieId) {
         User user = (User) session.getAttribute("login");
+        Watch watch1 = watchService.getWatchByIds(user.getId(), movieId);
+        if (watch1 != null) {
+            return ResponseEntity.ok("已经在列表中，请勿重复添加！");
+        }
         Watch watch = new Watch();
         watch.setMovieId(movieId);
         watch.setUserId(user.getId());

@@ -3,6 +3,7 @@ package com.wyx.amovie.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wyx.amovie.entity.Movie;
+import com.wyx.amovie.entity.MovieScore;
 import com.wyx.amovie.entity.ReviewVo;
 import com.wyx.amovie.entity.Scene;
 import com.wyx.amovie.service.MovieService;
@@ -11,6 +12,7 @@ import com.wyx.amovie.service.SceneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,9 +40,8 @@ public class MovieController {
     public String movieList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                             @RequestParam(value = "size", defaultValue = "3") Integer size,
                             Model model) {
-        Page<Movie> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getAll());
-        model.addAttribute("movies", movies);
-        model.addAttribute("pageNum", movies.getPageNum());
+        Page<MovieScore> movies = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getAll());
+        model.addAttribute("movies", movies.toPageInfo());
         return "movie-list";
     }
 
@@ -49,10 +50,18 @@ public class MovieController {
         Movie movie = movieService.getById(id);
         List<Scene> scenes = sceneService.getSceneCount(id);
         List<ReviewVo> reviews = reviewService.getMovieReview(id);
-        System.out.println(reviews);
         model.addAttribute("reviews", reviews);
         model.addAttribute("movie", movie);
         model.addAttribute("scenes", scenes);
         return "movie";
+    }
+
+    @GetMapping("/rate")
+    public String getMovieScore(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                @RequestParam(value = "size", defaultValue = "5") Integer size,
+                                Model model) {
+        Page<MovieScore> movieScores = PageHelper.startPage(page, size).doSelectPage(() -> movieService.getMovieScore());
+        model.addAttribute("movies", movieScores.toPageInfo());
+        return "rate";
     }
 }

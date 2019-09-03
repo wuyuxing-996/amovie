@@ -1,7 +1,6 @@
 package com.wyx.amovie.service.impl;
 
 import com.wyx.amovie.entity.Category;
-import com.wyx.amovie.entity.MovieAndCategory;
 import com.wyx.amovie.mapper.CategoryMapper;
 import com.wyx.amovie.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

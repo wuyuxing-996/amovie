@@ -23,7 +23,7 @@
                     <option value="byTitle" selected="selected">电影名</option>
                     <option value="byDirector">导演</option>
                     <option value="byActors">演员</option>
-                    <option value="byCountry">国家/地区</option>
+                    <option value="byCountry">国家</option>
                     <option value="byCategory">类型</option>
                 </select>
                 <button id="searchBtn" class="btn btn-md btn--danger search__button">
@@ -109,7 +109,7 @@
             </div>
 
             <!-- MovieService preview item -->
-            <div th:each="movie:${movies.list}" class="movie movie--preview movie--full release">
+            <div th:each="movie:${movies}" class="movie movie--preview movie--full release">
                 <div class="col-sm-3 col-md-2 col-lg-2">
                     <div class="movie__images">
                         <img alt="" th:src="${movie.poster}"/>
@@ -168,15 +168,6 @@
             </div>
             <!-- end movie preview item -->
 
-            <div class="coloum-wrapper">
-                <div class="pagination paginatioon--full">
-                    <a th:if="${movies.hasPreviousPage}" th:href="@{/movie-list(page=${movies.pageNum}-1)}"
-                       class="pagination__prev">prev</a>
-                    <!--/*@thymesVar id="pageNum" type="int"*/-->
-                    <a th:if="${movies.hasNextPage}" th:href="@{/movie-list(page=${movies.pageNum}+1)}"
-                       class="pagination__next">next</a>
-                </div>
-            </div>
         </div>
     </section>
 

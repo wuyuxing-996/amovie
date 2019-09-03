@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress ALL-->
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{/fragment/common-fragment :: head(资讯列表)}"></div>
 <body>
@@ -15,18 +16,23 @@
                 <h2 class="page-heading">资讯</h2>
 
                 <!-- NewsService post article-->
-                <article class="post post--news">
-                    <a href='news.html' class="post__image-link">
-                        <img alt='' src="http://placehold.it/1600x600">
+                <article th:each="news,n:${newsList.list}" th:switch="${n.index}%2" class="post post--news">
+                    <a th:case="0" th:href="'/news/'+${news.id}" class="post__image-link">
+                        <img alt='' src="/images/n2.jpg">
+                    </a>
+                    <a th:case="1" th:href="'/news/'+${news.id}" class="post__image-link">
+                        <img alt='' src="/images/n3.jpg">
                     </a>
 
-                    <h1><a href="single-page-full.html" class="post__title-link">Donec eu mollis augue, ut egestas
+                    <h1><a th:href="'/news/'+${news.id}" th:text="${news.title}" class="post__title-link">Donec eu
+                        mollis augue, ut egestas
                         leo</a></h1>
-                    <p class="post__date">29 October 2013 </p>
+                    <p th:text="${news.createTime}" class="post__date">29 October 2013 </p>
 
                     <div class="wave-devider"></div>
 
-                    <p class="post__text">Mauris gravida ipsum vitae libero molestie eget dignissim ipsum egestas.
+                    <p th:text="${news.content}" class="post__text">Mauris gravida ipsum vitae libero molestie eget
+                        dignissim ipsum egestas.
                         Quisque in eros id velit molestie placerat a ut arcu. Etiam consequat, turpis ac commodo
                         rhoncus, justo enim consequat tortor, vitae interdum odio tellus at sem. Aliquam lacus quam,
                         lobortis sed lacus eget, commodo volutpat nunc. Text link sample. Proin accumsan diam vel nulla
@@ -37,8 +43,10 @@
                 <!-- end NewsService post article-->
 
                 <div class="pagination">
-                    <a href='#' class="pagination__prev">prev</a>
-                    <a href='#' class="pagination__next">next</a>
+                    <a th:if="${newsList.hasPreviousPage}" th:href="@{/news-list(page=${newsList.pageNum}-1)}"
+                       class="pagination__prev">prev</a>
+                    <a th:if="${newsList.hasNextPage}" th:href="@{/news-list(page=${newsList.pageNum}+1)}"
+                       class="pagination__next">next</a>
                 </div>
 
             </div>

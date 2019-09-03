@@ -30,7 +30,8 @@
                         <p th:text="${movie.duration}+' min'" class="movie__time">169 min</p>
 
                         <p class="movie__option">
-                            <strong>国家: </strong><a th:text="${movie.country}" href="#">New Zeland</a>
+                            <strong>国家: </strong><a th:text="${movie.country}" th:href="'/byCountry/'+${movie.country}">New
+                            Zeland</a>
                         </p>
                         <p class="movie__option">
                             <strong>年份: </strong><a th:text="${#dates.format(movie.releaseDate,'yyyy')}"
@@ -38,18 +39,18 @@
                         </p>
                         <p class="movie__option">
                             <strong>类别: </strong><a th:each="cate:${movie.categories}" th:text="${cate.name}+' '"
-                                                    href="#">Adventure</a>
+                                                    th:href="'/byCategory/'+${cate.name}">Adventure</a>
                         </p>
                         <p class="movie__option">
                             <strong>上映日期: </strong><span th:text="${#dates.format(movie.releaseDate,'yyyy-MM-dd')}">December 12, 2012</span>
                         </p>
                         <p class="movie__option">
-                            <strong>导演: </strong><a th:text="${movie.directors}" href="#">Peter Jackson</a>
+                            <strong>导演: </strong><a th:text="${movie.directors}"
+                                                    th:href="'/byDirector/'+${movie.directors}">Peter Jackson</a>
                         </p>
                         <p class="movie__option">
                             <strong>演员: </strong>
-                            <a href="#" th:text="${movie.actors}">Martin Freeman</a>
-                            <a href="#">...</a>
+                            <a th:href="'/byActors/'+${movie.actors}" th:text="${movie.actors}">Martin Freeman</a>
                         <p><a href="#" th:text="'评论: '+${reviews.size()}" class="comment-link">评论: 15</a></p>
                         <div class="movie__btns movie__btns--full">
                             <a th:href="@{/book1(movieId=${movie.id})}" class="btn btn-md btn--warning">预订此电影</a>

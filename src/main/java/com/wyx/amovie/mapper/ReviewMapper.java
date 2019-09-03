@@ -40,6 +40,6 @@ public interface ReviewMapper {
      * @param movieId
      * @return
      */
-    @Select("SELECT r.*,nickname FROM `review` r LEFT JOIN `user` u on user_id=u.id where movie_id=#{movieId}")
+    @Select("SELECT r.*,nickname FROM `review` r LEFT JOIN `user` u on user_id=u.id where movie_id=#{movieId} order by r.create_time DESC")
     List<ReviewVo> getMovieReview(Integer movieId);
 }

@@ -100,14 +100,14 @@
                     <span th:text="${session.login.getNickname()}"></span>
                 </a>
                 <ul class="auth__function">
-                    <li><a href="/watch" class="auth__function-item">观看列表</a></li>
+                    <li><a href="/watch-list" class="auth__function-item">观看列表</a></li>
                     <li><a href="/ticket" class="auth__function-item">已预定的电影票</a></li>
                     <li><a href="/doLogout" class="auth__function-item">退出登录</a></li>
                 </ul>
             </div>
-            <a th:if="${session.login!=null}">
-                <a href="/book1" class="btn btn-md btn--warning btn--book btn-control--home">预定</a>
-            </a>
+            <!--<a th:if="${session.login!=null}">
+                <a href="/book1" class="btn btn-md btn&#45;&#45;warning btn&#45;&#45;book btn-control&#45;&#45;home">预定</a>
+            </a>-->
         </div>
     </div>
 </header>
@@ -124,10 +124,10 @@
         </div>
         <div class="col-xs-4 col-md-2 footer-nav">
             <ul class="nav-link">
-                <li><a href="#" class="nav-link__item">Terms of use</a></li>
-                <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
-                <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
-                <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
+                <li><a href="#" class="nav-link__item">使用条款</a></li>
+                <li><a href="#" class="nav-link__item">开发人员</a></li>
+                <li><a href="#" class="nav-link__item">联系我们</a></li>
+                <li><a href="#" class="nav-link__item">公司简码</a></li>
             </ul>
         </div>
         <div class="col-xs-12 col-md-6">

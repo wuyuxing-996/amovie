@@ -2,6 +2,7 @@ package com.wyx.amovie.service.impl;
 
 import com.wyx.amovie.constant.Status;
 import com.wyx.amovie.entity.Movie;
+import com.wyx.amovie.entity.MovieScore;
 import com.wyx.amovie.mapper.CategoryMapper;
 import com.wyx.amovie.mapper.MovieMapper;
 import com.wyx.amovie.service.MovieService;
@@ -45,7 +46,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getByName(String name) {
+    public List<MovieScore> getByName(String name) {
         return movieMapper.getByName(name);
     }
 
@@ -67,7 +68,37 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getUserMovie(Integer userId) {
+    public List<MovieScore> getUserMovie(Integer userId) {
         return movieMapper.getUserMovie(userId);
+    }
+
+    @Override
+    public List<MovieScore> getMovieScore() {
+        return movieMapper.getMovieScore();
+    }
+
+    @Override
+    public List<MovieScore> getByDirector(String director) {
+        return movieMapper.getByDirector(director);
+    }
+
+    @Override
+    public List<MovieScore> getByActor(String actor) {
+        return movieMapper.getByActor(actor);
+    }
+
+    @Override
+    public List<MovieScore> getByCountry(String country) {
+        return movieMapper.getByCountry(country);
+    }
+
+    @Override
+    public List<MovieScore> getMovieScoreReleased() {
+        return movieMapper.getMovieScoreReleased(Status.ON);
+    }
+
+    @Override
+    public List<MovieScore> getByCategory(String category) {
+        return movieMapper.getByCategory(category);
     }
 }

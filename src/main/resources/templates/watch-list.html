@@ -14,7 +14,7 @@
         <div class="col-sm-12">
 
             <!-- MovieService preview item -->
-            <div th:each="movie:${movies}" class="movie movie--preview movie--full release">
+            <div th:each="movie:${movies.list}" class="movie movie--preview movie--full release">
                 <div class="col-sm-3 col-md-2 col-lg-2">
                     <div class="movie__images">
                         <img alt="" th:src="${movie.poster}"/>
@@ -32,22 +32,24 @@
                     <p th:text="${movie.duration}+' min'" class="movie__time">105 min</p>
 
                     <p class="movie__option">
-                        <strong>Country: </strong><a th:text="${movie.country}" href="#">USA</a>
+                        <strong>Country: </strong><a th:text="${movie.country}"
+                                                     th:href="'/byCountry/'+${movie.country}">USA</a>
                     </p>
                     <p class="movie__option">
                         <strong>Category: </strong><a th:each="cate:${movie.categories}" th:text="${cate.name}+' '"
-                                                      href="#">Comady</a>
+                                                      th:href="'/byCategory/'+${cate.name}">Comady</a>
                     </p>
                     <p class="movie__option">
                         <strong>Release date: </strong><span
                             th:text="${#dates.format(movie.releaseDate,'yyyy-MM-dd')}">November 1, 2013</span>
                     </p>
                     <p class="movie__option">
-                        <strong>Director: </strong><a href="#">Jon Turteltaub</a>
+                        <strong>Director: </strong><a th:href="'/byDirector/'+${movie.directors}"
+                                                      th:text="${movie.directors}">Jon Turteltaub</a>
                     </p>
                     <p class="movie__option">
-                        <strong>Actors: </strong><a th:text="${movie.actors}" href="#">Robert De Niro</a>
-                        <a href="#">...</a>
+                        <strong>Actors: </strong><a th:text="${movie.actors}" th:href="'/byActors/'+${movie.actors}">Robert
+                        De Niro</a>
                     </p>
                     <p class="movie__option">
                         <strong>Age restriction: </strong><a href="#">13</a>
@@ -61,8 +63,8 @@
                     <div class="preview-footer">
                         <div class="movie__rate">
                             <div class="score"></div>
-                            <span class="movie__rate-number">170 个评分</span>
-                            <span class="movie__rating">5.0</span>
+                            <span th:text="${movie.count}+ ' 个评分'" class="movie__rate-number">170 个评分</span>
+                            <span th:text="${movie.score}" class="movie__rating">5.0</span>
                         </div>
                     </div>
                 </div>
@@ -73,9 +75,10 @@
 
             <div class="coloum-wrapper">
                 <div class="pagination paginatioon--full">
-                    <a th:href="@{/watch(page=${pageNum}-1)}" class="pagination__prev">prev</a>
-                    <!--/*@thymesVar id="pageNum" type="int"*/-->
-                    <a th:href="@{/watch(page=${pageNum}+1)}" class="pagination__next">next</a>
+                    <a th:if="${movies.hasPreviousPage}" th:href="@{/watch-list(page=${movies.pageNum}-1)}"
+                       class="pagination__prev">prev</a>
+                    <a th:if="${movies.hasNextPage}" th:href="@{/watch-list(page=${movies.pageNum}+1)}"
+                       class="pagination__next">next</a>
                 </div>
             </div>
         </div>
