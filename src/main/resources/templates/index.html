@@ -272,9 +272,10 @@
                         <img alt="" src="/images/gf.jpg" style="height: 187px"/>
                     </div>
                     <p th:text="${#dates.format(news.createTime,'yyyy-MM-dd')}" class="post__date">22 October 2013</p>
-                    <a href="news.html" th:text="${news.title}" class="post__title">"Thor: The Dark World" - World
+                    <a th:href="'/news/'+${news.id}" th:text="${news.title}" class="post__title">"Thor: The Dark World"
+                        - World
                         Premiere</a>
-                    <a href="news.html" class="btn read-more post--btn">了解更多</a>
+                    <a th:href="'/news/'+${news.id}" class="btn read-more post--btn">了解更多</a>
                 </div>
             </div>
             <!-- end -->
