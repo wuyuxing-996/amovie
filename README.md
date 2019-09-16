@@ -1,7 +1,16 @@
 # 基于spring boot的电影订票网站
+***项目介绍：*** 该项目是实现网上购票为主的电影网站，主要功能有购买电影票，电影的展示，排行，推荐，评分及评论等。后台包括了电影，资讯，类别，场次等一系列实体的操作，增删改查实现管理。
 # 部分功能动图如下
-### 登录功能
-![image](src/main/resources/static/images/rate/n2.jpg)
+### 登录
+![image](src/main/resources/static/images/gif/login.gif)
+### 订票
+![image](src/main/resources/static/images/gif/booking.gif)
+### 排行榜
+![image](src/main/resources/static/images/gif/top.gif)
+### 评分
+![image](src/main/resources/static/images/gif/score.gif)
+### 添加到播放列表
+![image](src/main/resources/static/images/gif/addToWatchList.gif)
 # Moive后台接口文档
 合理使用以下类：
 
