@@ -1,7 +1,7 @@
 # 基于spring boot的电影订票网站
 #部分功能动图如下
-
-![image](https://github.com/wuyuxing-996/amovie/static/images/gif/booking.gif)
+###登录功能
+![image](src/main/resources/static/images/gif/login.gif)
 # Moive后台接口文档
 合理使用以下类：
 
