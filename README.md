@@ -1,7 +1,7 @@
 # 基于spring boot的电影订票网站
-#部分功能动图如下
-###登录功能
-![image](src/main/resources/static/images/gif/login.gif)
+# 部分功能动图如下
+### 登录功能
+![image](src/main/resources/static/images/rate/n2.jpg)
 # Moive后台接口文档
 合理使用以下类：
 
